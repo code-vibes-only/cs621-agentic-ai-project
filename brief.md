@@ -4,7 +4,7 @@ CS621 Agentic AI for Intelligent Autonomy, group project.
 Final report/deck and presentation: **Tue 3 Nov 2026** (assumed). Internal completion target:
 **Fri 30 Oct 2026**.
 
-Status: **draft v0.3, 15 Oct 2026.** Every design choice below is *proposed* until the team
+Status: **draft v0.4, 15 Oct 2026.** Every design choice below is *proposed* until the team
 agrees it. Record agreed choices in the [decision log](#16-decision-log). Put anything
 unresolved in [open questions](#15-open-questions). Terms are defined in
 [§0](#0-definitions).
@@ -507,17 +507,11 @@ Keys cannot be pooled, so the team total of USD 50 only counts if the work is sp
 - After the first 10 dev episodes, replace this estimate with measured cost and re-plan the
   sweeps.
 
-## 13. Workstreams (5 team members, proposed)
+## 13. Work plan (after the brief is agreed)
 
-| # | Workstream | Owns |
-|---|---|---|
-| 1 | World & data | Personas, calendars, ground-truth constraints, external schedule corpus, rooms, scenario generator, generation write-up |
-| 2 | Personal agents & memory | Calendar/preference → constraint translation, movability, preference memory (provenance/scope/expiry), availability summaries |
-| 3 | Coordinator agent & control flow | Coordinator agent loop, enumerator/scorer, ask-relax-replan, approval graph, sandbox writes |
-| 4 | Evaluation | Harness, independent checker, baselines (a)–(c), sweep split across keys, cost tracking, results tables |
-| 5 | Privacy, safety & UX | Privacy filter, leak/injection probes, demo UI, user-experience section |
-
-Each team member reviews one other workstream. Owner names go here once agreed.
+The team confirms this brief and its scope first. The work is then split from the agreed brief
+on Sat 17 Oct into swimlanes, each with an owner and a reviewer from another lane. The work plan
+and owners are recorded in [HANDOFF.md](HANDOFF.md), not here.
 
 ## 14. Timeline (proposed)
 
@@ -525,7 +519,9 @@ Work back from the internal target of **Fri 30 Oct**, leaving 31 Oct–2 Nov as 
 
 | By | Milestone |
 |---|---|
-| Mon 19 Oct | Project brief agreed; availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline runs; first measured cost per episode |
+| Fri 16 Oct (night) | Team members have read the brief and replied on scope and the open questions |
+| Sat 17 Oct | Brief and scope agreed; work plan (swimlanes, owners, reviewers) agreed; build starts |
+| Mon 19 Oct | Availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline runs; first measured cost per episode |
 | Thu 22 Oct | Personal agents + coordinator agent end to end on the dev set; checker working; single-call baseline |
 | Sat 24 Oct | Held-out set frozen; shared-context ablation; privacy probes |
 | Tue 27 Oct | All arms × 3 runs on the held-out set (split across keys); failure analysis done |
@@ -544,10 +540,9 @@ Work back from the internal target of **Fri 30 Oct**, leaving 31 Oct–2 Nov as 
 | 5 | Promotion threshold for an action class (e.g. mean − 1 SD ≥ 90%, 0 critical violations)? | |
 | 6 | How do we measure the user-experience claims: a small walkthrough with classmates, or descriptive only? | |
 | 7 | Meeting rooms in the MVP, or time slots only? | |
-| 8 | Team roster and workstream owners | |
 
-Question 2 (keys) is answered; see the decision log. The numbers are kept so earlier references
-stay valid.
+Question 2 (keys) is answered; see the decision log. Question 8 (roster and owners) moved to the
+work plan (§13). The numbers are kept so earlier references stay valid.
 
 ## 16. Decision log
 
@@ -565,3 +560,4 @@ stay valid.
 | 2026-10-15 | Held-out sweep split across keys by scenario subset (6 scenarios per team member, all LLM arms) | Proposed (Kenneth), pending team |
 | 2026-10-15 | The agent never moves, declines or shortens a participant's existing commitments; it only asks | Proposed (Kenneth), pending team |
 | 2026-10-15 | Environment: uv with a committed lockfile; Docker optional later, built from the same lockfile; code follows the "keep it portable" rules in §12 | Proposed (Kenneth), pending team |
+| 2026-10-15 | Brief and scope are confirmed first (replies by Fri 16 Oct night); swimlanes, owners and reviewers are planned from the agreed brief on Sat 17 Oct | Proposed (Kenneth), pending team |
