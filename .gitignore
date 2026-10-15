@@ -1,0 +1,25 @@
+# Secrets: this repo is public. Keys live only in each team member's local .env
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python environment and build artefacts (uv.lock and .python-version ARE committed)
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
