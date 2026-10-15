@@ -73,7 +73,7 @@ swimlanes, owners and reviewers here once they are agreed.
 
 | # | Action | Owner | Due |
 |---|---|---|---|
-| 1 | Share the brief with the team (collaborator invites were sent on 15 Oct); everyone accepts their repo invite | Kenneth; all | Thu 15 Oct; accept by Fri 16 Oct |
+| 1 | Everyone accepts their repo invite (invites and the brief were sent on 15 Oct) | All | Fri 16 Oct |
 | 2 | Everyone reads the brief and replies on the scope and §15 (open questions) | All | Fri 16 Oct night |
 | 3 | Agree the brief: move accepted §16 rows to "Agreed"; remove answered questions from §15 | All | Sat 17 Oct |
 | 4 | Plan the work from the agreed brief: swimlanes, owners and reviewers | Kenneth drafts; all agree | Sat 17 Oct |
@@ -99,7 +99,7 @@ Messages sent to the team or the instructors. Log a message once it has actually
 
 | Date | To | Channel | Summary |
 |---|---|---|---|
-| | | | |
+| 2026-10-15 | Team (all team members) | Team chat | Shared brief v0.4 with a summary. Asked everyone to read it (start with §0), reply on scope and §15 (esp. report vs. deck) and accept the repo invite by Fri 16 Oct night. Brief locked and work split on Sat 17 Oct; build starts that weekend. House rules: public repo, keys in local `.env`; AI tools read AGENTS.md and update HANDOFF.md |
 
 ## Session log
 
