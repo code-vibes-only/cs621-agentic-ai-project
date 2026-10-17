@@ -1,5 +1,8 @@
 # Issue review: open discussions before brief v0.5
 
+**Status: resolved at the team sync on Sat 17 Oct 2026. The decisions are recorded in
+[brief v0.5 §16](brief.md#16-decision-log); this page is kept as the record of the discussion.**
+
 This page summarises the 8 open [GitHub issues](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues)
 as of **Sat 17 Oct 2026**, so the team can settle them before the brief is updated to v0.5.
 
@@ -26,15 +29,15 @@ Terms follow [brief §0](brief.md#0-definitions).
 
 | # | Issue | Question | Suggested default | Decided |
 |---|---|---|---|---|
-| D1 | [#1](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/1) | Who is the primary user? | Keep workplace meetings primary. Add a part-time student persona whose groups span work, study and family | |
-| D2 | [#2](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/2) | Should autonomy differ by agent and by participant? | Yes, within limits. Name the acting agent in §6. A participant may pre-consent to relaxing named movable commitments; the "Never" rows still hold | |
-| D3 | [#3](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/3) | Docker now, or later? | Add a Dockerfile to the Mon 19 Oct skeleton, built from `uv.lock`. Keep uv for day-to-day work | |
-| D4 | [#4](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/4) | Is leave hard or soft? | Hard by default. A participant can mark a leave period "reachable if urgent", which makes it relaxable only with their private consent | |
-| D5 | [#5](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/5) | Should there be required and optional attendees? | Yes, in the MVP. The organiser sets the roles in the request; optional attendees count as soft | |
-| D6 | [#5](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/5), [#4](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/4) | Should there be backup attendees? | Stretch goal only. The organiser names the backup in the request, and it is used only with the organiser's approval. No hierarchy chart | |
-| D7 | [#6](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/6) | How are RSVPs handled after the invite? | A required decline triggers a replan and a new approval; an optional decline keeps the meeting. Tentative or no response goes back to the organiser. No automatic ranking of meetings | |
-| D8 | [#7](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/7) | Can the agent reschedule an agreed meeting when a clash arrives? | No. The personal agent alerts its participant; if they decline meeting A themselves, D7 applies. Mention it as future work | |
-| D9 | [#8](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/8) | Multi-timezone meetings? | Out of the MVP. Stretch goal only if ahead of plan after Sat 24 Oct; prepare a one-line answer for Q&A | |
+| D1 | [#1](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/1) | Who is the primary user? | Keep workplace meetings primary. Add a part-time student persona whose groups span work, study and family | Workplace meetings with personal calendars integration |
+| D2 | [#2](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/2) | Should autonomy differ by agent and by participant? | Yes, within limits. Name the acting agent in §6. A participant may pre-consent to relaxing named movable commitments; the "Never" rows still hold | Need to reflect host agent autonomy level on top of participants' agents' autonomy level |
+| D3 | [#3](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/3) | Docker now, or later? | Add a Dockerfile to the Mon 19 Oct skeleton, built from `uv.lock`. Keep uv for day-to-day work | Agreed. |
+| D4 | [#4](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/4) | Is leave hard or soft? | Hard by default. A participant can mark a leave period "reachable if urgent", which makes it relaxable only with their private consent | Agreed. |
+| D5 | [#5](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/5) | Should there be required and optional attendees? | Yes, in the MVP. The organiser sets the roles in the request; optional attendees count as soft | Agreed |
+| D6 | [#5](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/5), [#4](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/4) | Should there be backup attendees? | Stretch goal only. The organiser names the backup in the request, and it is used only with the organiser's approval. No hierarchy chart | Agreed. Stretch goal only. Potentially the agent references an org chart of sorts and decides a suitable stand-in or cover. |
+| D7 | [#6](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/6) | How are RSVPs handled after the invite? | A required decline triggers a replan and a new approval; an optional decline keeps the meeting. Tentative or no response goes back to the organiser. No automatic ranking of meetings | Agreed. |
+| D8 | [#7](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/7) | Can the agent reschedule an agreed meeting when a clash arrives? | No. The personal agent alerts its participant; if they decline meeting A themselves, D7 applies. Mention it as future work | Agreed. |
+| D9 | [#8](https://github.com/code-vibes-only/cs621-agentic-ai-project/issues/8) | Multi-timezone meetings? | Out of the MVP. Stretch goal only if ahead of plan after Sat 24 Oct; prepare a one-line answer for Q&A | Agreed. |
 
 The brief's own open questions are still unanswered as well; see
 [Still-open brief questions](#f-still-open-brief-questions-15). Q1 (report or deck) and Q7
@@ -90,7 +93,7 @@ needs no re-scoping. Option 2 is also cheap if the team prefers it to the social
 - Discuss how autonomy differs between the coordinator agent and the personal agents.
 - Let each participant choose the autonomy level of their own personal agent.
 
-**What the brief says.** [§6](brief.md#6-autonomy-level-per-action-class-proposed) sets autonomy
+**What the brief says.** [§6](brief.md#6-autonomy-level-per-action-class) sets autonomy
 per *action class* (L0–L4 plus two "Never" rows). It does not say which agent acts, and
 participants cannot change it.
 
@@ -121,7 +124,7 @@ check that consent was recorded before any relaxation.
 
 **Proposed.** Use Docker, because it is better industry practice than uv alone.
 
-**What the brief says.** [§12](brief.md#12-stack-and-budget-proposed) proposes uv now and an
+**What the brief says.** [§12](brief.md#12-stack-and-budget) proposes uv now and an
 optional Dockerfile later, installed from the same lockfile. The "keep it portable" rules make
 adding Docker about an hour's work. Keys are passed at run time and never baked into the image.
 
@@ -167,7 +170,7 @@ agent asks for approval. Backups are covered under #5 below.
 
 - Leave is a hard constraint ([§0](brief.md#0-definitions), worked example in
   [§5](brief.md#5-decisions-the-agent-makes)).
-- [§6](brief.md#6-autonomy-level-per-action-class-proposed) says the agent **never** relaxes a
+- [§6](brief.md#6-autonomy-level-per-action-class) says the agent **never** relaxes a
   hard constraint.
 - Relaxing a soft constraint or a movable commitment always needs the participant's private
   consent.
@@ -217,7 +220,7 @@ when the original participant cannot attend.
 
 - Every participant counts equally today.
 - The organiser's request already carries room needs, and these do not go through the
-  availability summaries ([§4](brief.md#4-architecture-proposed)).
+  availability summaries ([§4](brief.md#4-architecture)).
 
 **Fit or conflict.**
 
@@ -280,7 +283,7 @@ unanswered. After an invite goes out:
   covers a change after approval: no write, replan, new approval.
 - "Replan" is one of the agent's decisions ([§5](brief.md#5-decisions-the-agent-makes)).
 - The agent never declines a participant's commitments ([§3](brief.md#3-scope),
-  [§6](brief.md#6-autonomy-level-per-action-class-proposed)).
+  [§6](brief.md#6-autonomy-level-per-action-class)).
 
 **Fit or conflict.**
 
@@ -327,7 +330,7 @@ Suggested rules:
 
 - "Several meetings scheduled together" is out of scope ([§3](brief.md#3-scope)).
 - The agent never moves, declines or shortens an existing commitment; it only asks
-  ([§3](brief.md#3-scope), [§6](brief.md#6-autonomy-level-per-action-class-proposed)).
+  ([§3](brief.md#3-scope), [§6](brief.md#6-autonomy-level-per-action-class)).
 
 **Fit or conflict.**
 
@@ -395,12 +398,12 @@ the team chat.
 
 | # | Question (from [brief §15](brief.md#15-open-questions)) | Decided |
 |---|---|---|
-| 1 | Final format: 4-page report or 12-slide deck? | |
-| 3 | External schedules: fictional sources, or dated snapshots of real ones? Singapore public holidays, for example, are real and stable | |
-| 4 | Should the coordinator agent see each participant's availability summary, or only the count of available participants per slot? Per-participant summaries let it ask the right participant before relaxing; counts are more private | |
-| 5 | Promotion threshold for an action class (e.g. mean − 1 SD ≥ 90%, 0 critical violations)? | |
-| 6 | How do we measure the user-experience claims: a small walkthrough with classmates, or descriptive only? | |
-| 7 | Meeting rooms in the MVP, or time slots only? | |
+| 1 | Final format: 4-page report or 12-slide deck? | 12 slide deck |
+| 3 | External schedules: fictional sources, or dated snapshots of real ones? Singapore public holidays, for example, are real and stable | Synthetic sources, dated snapshots or simulated real-time calendar data for users' calendar data. Where applicable and easy to procure such as holiday calendars, find a source. |
+| 4 | Should the coordinator agent see each participant's availability summary, or only the count of available participants per slot? Per-participant summaries let it ask the right participant before relaxing; counts are more private | Coordinator agent able to see each participant's availability summary for MVP. |
+| 5 | Promotion threshold for an action class (e.g. mean − 1 SD ≥ 90%, 0 critical violations)? | Recommend and we tune later where necessary |
+| 6 | How do we measure the user-experience claims: a small walkthrough with classmates, or descriptive only? | Descriptive only, claims do not necessarily need to be measured |
+| 7 | Meeting rooms in the MVP, or time slots only? | No meeting rooms, time-slots only. Push back if you think having meeting rooms in the MVP offer significant value in showcasing any Agentic AI concepts. |
 
 Q1 sets the shape of the final deliverable, and Q7 decides whether rooms are worked on at all.
 Both are needed for the work plan.
