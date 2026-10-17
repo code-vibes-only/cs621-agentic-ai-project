@@ -3,8 +3,9 @@
 The shared state of the project, for team members and for AI agent sessions (Claude Code,
 Codex, Cursor and similar). Read it at the start of a session; update it at the end.
 
-Last updated: **15 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief drafted (v0.4);
-team confirms brief and scope by Fri 16 Oct night.**
+Last updated: **17 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.4 reviewed;
+team feedback (GitHub issues #1–#8) summarised in [issue-review.md](issue-review.md) for
+decision before brief v0.5.**
 
 ## How to use this file
 
@@ -31,13 +32,14 @@ team confirms brief and scope by Fri 16 Oct night.**
 | Design, definitions, scope, evaluation plan, budget | [brief.md](brief.md) |
 | Decisions and their status (proposed / agreed) | brief.md §16 |
 | Open questions | brief.md §15 |
+| Open discussions from the GitHub issues (temporary, until brief v0.5) | [issue-review.md](issue-review.md) |
 | Current state, owners, next actions, session history | this file |
 | Rules for AI agents working in the repo | [AGENTS.md](AGENTS.md) |
 | Evaluation results | result files committed under `results/` (once they exist); every number in the report traces to one |
 
 ## Current state
 
-- **Repo:** contains `brief.md` (draft v0.4), `.gitignore`, this file and `AGENTS.md` /
+- **Repo:** contains `brief.md` (draft v0.4), `issue-review.md`, `.gitignore`, this file and `AGENTS.md` /
   `CLAUDE.md`. There is no code, `pyproject.toml` or data yet.
 - **Topic (agreed):** Agentic Natural Language Scheduler. Workplace meetings are the primary
   domain; social groups are a small generalisation family.
@@ -53,7 +55,7 @@ From brief §14. Internal completion target **Fri 30 Oct**; submission and prese
 
 | By | Milestone | Status |
 |---|---|---|
-| Fri 16 Oct (night) | Team members have read the brief and replied on scope and the open questions | In progress: brief shared for review |
+| Fri 16 Oct (night) | Team members have read the brief and replied on scope and the open questions | Done: replies came as GitHub issues #1–#8; §15 questions still unanswered |
 | Sat 17 Oct | Brief and scope agreed; work plan (swimlanes, owners, reviewers) agreed; build starts | Not started |
 | Mon 19 Oct | Availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline; first measured cost per episode | Not started |
 | Thu 22 Oct | End to end on the dev set; checker; single-call baseline | Not started |
@@ -76,6 +78,7 @@ swimlanes, owners and reviewers here once they are agreed.
 | 1 | Everyone accepts their repo invite (invites and the brief were sent on 15 Oct) | All | Fri 16 Oct |
 | 2 | Everyone reads the brief and replies on the scope and §15 (open questions) | All | Fri 16 Oct night |
 | 3 | Agree the brief: move accepted §16 rows to "Agreed"; remove answered questions from §15 | All | Sat 17 Oct |
+| 3a | Resolve the discussions in [issue-review.md](issue-review.md) (issues #1–#8 and the remaining §15 questions); Kenneth then updates the brief to v0.5 and closes the issues | All; Kenneth updates the brief | Sat 17 Oct |
 | 4 | Plan the work from the agreed brief: swimlanes, owners and reviewers | Kenneth drafts; all agree | Sat 17 Oct |
 | 5 | Set up the project skeleton: `uv init`, `pyproject.toml`, `uv.lock`, `.python-version`, `.env.example`, package layout following the brief's "keep it portable" rules | From the work plan | Mon 19 Oct |
 | 6 | Freeze the availability summary schema and the scenario file format | From the work plan | Mon 19 Oct |
@@ -109,3 +112,4 @@ Newest last. One row per working session, human or agent.
 |---|---|---|---|---|
 | 2026-10-15 | Kenneth + Claude Code | Created the repo clone; drafted brief v0.1 → v0.3. Answered: due 3 Nov with a 30 Oct target; OpenAI with per-person USD 10 keys; workplace-first domain; participant/team-member naming; uv now with Docker optional. Added `.gitignore`, this handoff and the agent instructions | `751c3fb` brief v0.3; `b781274` .gitignore; `a62dbd8` handoff and agent instructions | Team review of the brief (next actions 1–3) |
 | 2026-10-15 | Kenneth + Claude Code | Brief v0.4: workstreams removed until the brief and scope are agreed; review brought forward to Fri 16 Oct night; work plan on Sat 17 Oct so the build starts that weekend. Q8 (roster and owners) moved to the work plan | brief v0.4 (this commit) | Team replies by Fri 16 Oct night (next actions 1–2) |
+| 2026-10-17 | Kenneth + Claude Code | Team feedback arrived as GitHub issues #1–#8. Summarised them in `issue-review.md`: 9 decisions (D1–D9) with suggested defaults, plus the remaining §15 questions and a scope check. Brief unchanged until the team decides | `issue-review.md` (this commit) | Team resolves `issue-review.md` (next action 3a); then brief v0.5 and the work plan |
