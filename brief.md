@@ -4,10 +4,13 @@ CS621 Agentic AI for Intelligent Autonomy, group project.
 Final deck (12 slides) and presentation: **Tue 3 Nov 2026** (assumed). Internal completion
 target: **Fri 30 Oct 2026**.
 
-Status: **draft v0.5, 18 Oct 2026.** It records the decisions from the team sync on Sat 17 Oct,
-which settled GitHub issues #1–#8 and the open questions (discussion in
-[issue-review.md](issue-review.md)). Every row in the [decision log](#16-decision-log) is now
-agreed or overturned. Changing a decision needs the team's agreement and a new row in the
+Status: **draft v0.6, 18 Oct 2026.** v0.5 recorded the decisions from the team sync on Sat 17
+Oct, which settled GitHub issues #1–#8 and the open questions (discussion in
+[issue-review.md](issue-review.md)). v0.6 adds two rows marked *Proposed (Kenneth), pending team*:
+- the build is one guided solution (§13);
+- the action classes in §6 are renamed A0–A4.
+
+Every other row in the [decision log](#16-decision-log) is agreed or overturned. Changing a decision needs the team's agreement and a new row in the
 decision log. Put anything unresolved in [open questions](#15-open-questions). Terms are defined
 in [§0](#0-definitions).
 
@@ -351,15 +354,23 @@ that places holds or, with approval, sends invites. A participant can widen what
 personal agent may do only through pre-given consent. The "Never" rows hold whatever any setting
 says.
 
-| Level | Action | Acting agent | Autonomy | Guard |
+The action classes are labelled A0–A4 so they are not confused with the course's autonomy levels
+(week 1: L1 Operator … L5 Observer). In the course's terms:
+- A0–A3 act within limits without a person (the coordinator agent works at Consultant level for
+  A2: it consults the participant on a judgement);
+- A4 is Approver: one interrupt before the write.
+
+*(Rename proposed, pending team.)*
+
+| Class | Action | Acting agent | Autonomy | Guard |
 |---|---|---|---|---|
-| L0 | Read own participant's calendars/memory, look up external schedules; read availability summaries and call the enumerator | Personal agent (calendars, memory, lookups); coordinator agent (summaries, enumerator) | Autonomous | Read-only tools; a personal agent can read only its own participant's calendars; tool output treated as data, not instructions |
-| L1 | Propose slots in the request thread | Coordinator agent | Autonomous | Privacy filter on every message in the request thread |
-| L2 | Ask a participant a private relax/clarify question | Coordinator agent, through the participant's personal agent | Autonomous within a budget (e.g. ≤ 2 questions per participant per request) | Question cap; never in the request thread |
-| L2 | Answer a relax question from pre-given consent | Personal agent | Autonomous, only for the commitment the consent names | Consent stored in preference memory, outside model text; the approval gate checks it |
-| L2 | Alert own participant about a clash with an agreed meeting | Personal agent | Autonomous, informational only | No write; the participant decides |
-| L3 | Place a tentative hold on sandbox calendars | Coordinator agent | Autonomous, reversible, auto-expires | Idempotent; released on replan |
-| L4 | Send invites | Coordinator agent | **Supervised**: the organiser approves; participants whose relaxable time is used must have consented, live or pre-given. A replan after a required decline needs a new approval | Approval stored outside model text; revalidated at commit; read-back verification |
+| A0 | Read own participant's calendars/memory, look up external schedules; read availability summaries and call the enumerator | Personal agent (calendars, memory, lookups); coordinator agent (summaries, enumerator) | Autonomous | Read-only tools; a personal agent can read only its own participant's calendars; tool output treated as data, not instructions |
+| A1 | Propose slots in the request thread | Coordinator agent | Autonomous | Privacy filter on every message in the request thread |
+| A2 | Ask a participant a private relax/clarify question | Coordinator agent, through the participant's personal agent | Autonomous within a budget (e.g. ≤ 2 questions per participant per request) | Question cap; never in the request thread |
+| A2 | Answer a relax question from pre-given consent | Personal agent | Autonomous, only for the commitment the consent names | Consent stored in preference memory, outside model text; the approval gate checks it |
+| A2 | Alert own participant about a clash with an agreed meeting | Personal agent | Autonomous, informational only | No write; the participant decides |
+| A3 | Place a tentative hold on sandbox calendars | Coordinator agent | Autonomous, reversible, auto-expires | Idempotent; released on replan |
+| A4 | Send invites | Coordinator agent | **Supervised**: the organiser approves; participants whose relaxable time is used must have consented, live or pre-given. A replan after a required decline needs a new approval | Approval stored outside model text; revalidated at commit; read-back verification |
 | — | Relax a *hard* constraint | Neither | **Never** | Enforced in the enumerator, not the prompt |
 | — | Move, decline or shorten a participant's existing commitment | Neither | **Never**: the agent only asks; the participant acts | No such write tool exists. Moving another meeting would affect people outside the request |
 
@@ -502,7 +513,7 @@ Change one thing at a time between arms: same model, settings, corpus, enumerato
 | 3 | Harness, ≥3 runs, SD, baselines, trajectory checks | Sections 8–9 |
 | 4 | Context and retrieval | External schedule search vs. pre-loading; context protection in personal agents |
 | 5 | Hard vs. soft constraints, retry vs. replan, memory provenance/expiry | Enumerator (including optional attendees as soft); relax-and-replan; preference memory and pre-given consent |
-| 6 | Explicit control flow, approval interrupts | LangGraph graph with an approval interrupt before L4, and a new approval after an RSVP replan |
+| 6 | Explicit control flow, approval interrupts | LangGraph graph with an approval interrupt before A4, and a new approval after an RSVP replan |
 | 7 | Multi-agent: isolation, permissions, what gets passed on ("Brief"), MAST failures | Personal agents + coordinator agent; single-agent ablation |
 | 8 | Safety, oversight, governance *(lecture on 20 Oct; this row is extrapolated until then)* | Privacy filter, injection tests, authorisation gates, no-write-to-others rule |
 
@@ -585,9 +596,15 @@ Keys cannot be pooled, so the team total of USD 50 only counts if the work is sp
 
 ## 13. Work plan (after the brief is agreed)
 
-The team agreed this brief and its scope at the sync on Sat 17 Oct. The work is split from v0.5
-into swimlanes, each with an owner and a reviewer from another lane, drafted on Sun 18 Oct. The
-work plan and owners are recorded in [work-plan.md](work-plan.md), not here.
+The team agreed this brief and its scope at the sync on Sat 17 Oct. Most of the build depends on
+the step before it, so lanes working in parallel would wait on each other. Instead (proposed,
+pending team):
+- the build is **one guided solution in 16 steps**, which Kenneth replays into this repo, one
+  branch and pull request per step;
+- each lane owns a section of the steps for review and presents that section;
+- the team reviews the steps centrally, and agrees any change before it is made.
+
+Lanes, owners and the steps each lane reviews are in [work-plan.md](work-plan.md).
 
 ## 14. Timeline
 
@@ -650,3 +667,5 @@ older row is marked *Overturned*.
 | 2026-10-17 | Promotion threshold for an action class: mean − 1 SD ≥ 90% pass rate and zero critical violations; tunable until the held-out set is frozen on Sat 24 Oct (Q5) | Agreed by team (17 Oct sync) |
 | 2026-10-17 | User-experience claims are described, not measured (Q6) | Agreed by team (17 Oct sync) |
 | 2026-10-17 | No meeting rooms in the MVP; time slots only (Q7) | Agreed by team (17 Oct sync) |
+| 2026-10-18 | Build: one guided solution in 16 steps, replayed by Kenneth into this repo (one branch and PR per step, tags at the gates); lanes become review ownership of sections of the steps; the team reviews centrally | Proposed (Kenneth), pending team |
+| 2026-10-18 | The action classes in §6 are renamed A0–A4, mapped to the course's autonomy levels, so they are not confused with week 1's L1–L5 | Proposed (Kenneth), pending team |
