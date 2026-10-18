@@ -587,7 +587,7 @@ Keys cannot be pooled, so the team total of USD 50 only counts if the work is sp
 
 The team agreed this brief and its scope at the sync on Sat 17 Oct. The work is split from v0.5
 into swimlanes, each with an owner and a reviewer from another lane, drafted on Sun 18 Oct. The
-work plan and owners are recorded in [HANDOFF.md](HANDOFF.md), not here.
+work plan and owners are recorded in [work-plan.md](work-plan.md), not here.
 
 ## 14. Timeline
 
