@@ -54,6 +54,16 @@ Commit your `results/heldout-final/` files; anyone can then merge and report:
 uv run python -m scheduler.eval --report heldout-final
 ```
 
+### Demo
+
+A page that replays a saved episode step by step (the request thread, what the coordinator
+sees, what each participant's agent did privately, and every guardrail verdict), or runs one
+live with you as the organiser. It offers dev scenarios only.
+
+```sh
+uv run --group demo python -m streamlit run scheduler/demo/app.py
+```
+
 ### Docker
 
 The image runs the same commands from the same lockfile. The key comes in at run time.
@@ -73,6 +83,7 @@ docker run --rm --env-file .env -v "$PWD/results:/app/results" scheduler --arm d
 | `scheduler/engine/` | Enumerator and scorer; approval gate, write and verify |
 | `scheduler/eval/` | Arms, baselines, the episode runner, the independent checker and the metrics |
 | `scheduler/world/` | The scenario generator and its assumptions (work, evening and weekend settings; attack cases) |
+| `scheduler/demo/` | The demo page |
 | `docs/` | The security review |
 | `data/` | The frozen corpus and the dev and held-out scenarios |
 | `results/` | Result files from real runs; every reported number comes from one |
