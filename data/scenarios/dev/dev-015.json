@@ -1,0 +1,580 @@
+{
+  "id": "dev-015",
+  "split": "dev",
+  "tags": [
+    "clarify"
+  ],
+  "seed": 1900,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-16",
+  "participants": [
+    {
+      "id": "p01",
+      "name": "Aisha Rahman",
+      "hours_start": "09:00",
+      "hours_end": "18:00",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p01-1",
+              "title": "Ops review",
+              "start": "2026-10-19T10:30",
+              "end": "2026-10-19T12:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-2",
+              "title": "Project Peregrine steering",
+              "start": "2026-10-19T16:00",
+              "end": "2026-10-19T17:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-3",
+              "title": "Hiring panel",
+              "start": "2026-10-19T14:30",
+              "end": "2026-10-19T15:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-4",
+              "title": "Client call",
+              "start": "2026-10-19T13:00",
+              "end": "2026-10-19T14:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-5",
+              "title": "1:1 with manager",
+              "start": "2026-10-22T14:00",
+              "end": "2026-10-22T15:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-6",
+              "title": "Hiring panel",
+              "start": "2026-10-22T15:00",
+              "end": "2026-10-22T15:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-7",
+              "title": "Focus: board memo",
+              "start": "2026-10-22T16:00",
+              "end": "2026-10-22T17:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-8",
+              "title": "Design review",
+              "start": "2026-10-22T11:00",
+              "end": "2026-10-22T13:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p07",
+      "name": "Gwen Koh",
+      "hours_start": "09:00",
+      "hours_end": "18:00",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p07-9",
+              "title": "Focus: board memo",
+              "start": "2026-10-21T12:30",
+              "end": "2026-10-21T13:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-10",
+              "title": "Data quality stand-up",
+              "start": "2026-10-21T13:00",
+              "end": "2026-10-21T14:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-11",
+              "title": "Focus: Q4 forecast",
+              "start": "2026-10-21T09:00",
+              "end": "2026-10-21T10:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-12",
+              "title": "Ops review",
+              "start": "2026-10-21T11:00",
+              "end": "2026-10-21T11:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-13",
+              "title": "1:1 with manager",
+              "start": "2026-10-21T16:30",
+              "end": "2026-10-21T17:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p07-1",
+          "text": "I'm tied up most of Tuesday."
+        }
+      ],
+      "memory": [
+        {
+          "id": "mem-p07-1",
+          "text": "For the budget review only: not before 11.",
+          "source": "participant",
+          "stated_on": "2026-09-08",
+          "expires": null,
+          "scope": "meeting:r-0900"
+        }
+      ],
+      "pre_consent": []
+    },
+    {
+      "id": "p03",
+      "name": "Chloe Lim",
+      "hours_start": "09:00",
+      "hours_end": "18:00",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p03-14",
+              "title": "Focus: Q4 forecast",
+              "start": "2026-10-22T14:30",
+              "end": "2026-10-22T15:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-15",
+              "title": "1:1 with manager",
+              "start": "2026-10-22T10:30",
+              "end": "2026-10-22T11:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-16",
+              "title": "Design review",
+              "start": "2026-10-22T13:30",
+              "end": "2026-10-22T14:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-17",
+              "title": "Focus: pricing model",
+              "start": "2026-10-22T09:30",
+              "end": "2026-10-22T10:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-18",
+              "title": "Offsite workshop",
+              "start": "2026-10-19T09:00",
+              "end": "2026-10-19T16:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p03-1",
+          "text": "I'm busy most of Monday."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-015",
+    "organiser_id": "p01",
+    "text": "60-minute sync with Aisha, Gwen, Chloe this week",
+    "duration_min": 60,
+    "start_date": "2026-10-19",
+    "end_date": "2026-10-22",
+    "day_start": "09:00",
+    "day_end": "18:00",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p01",
+        "role": "required"
+      },
+      {
+        "id": "p07",
+        "role": "required"
+      },
+      {
+        "id": "p03",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-kestrel-allhands-q4",
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [
+      {
+        "participant_id": "p07",
+        "about": "clarify",
+        "answer": "On Tuesday I'm out from 09:00 to 15:00; from 15:00 I'm free.",
+        "consent": false,
+        "slot": null
+      }
+    ],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "10:30",
+          "end_time": "12:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-1"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "16:00",
+          "end_time": "17:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-2"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "14:30",
+          "end_time": "15:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-3"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "13:00",
+          "end_time": "14:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-4"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "14:00",
+          "end_time": "15:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-5"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "15:00",
+          "end_time": "15:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-6"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "16:00",
+          "end_time": "17:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p01-7"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "11:00",
+          "end_time": "13:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-8"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-21",
+          "start_time": "12:30",
+          "end_time": "13:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p07-9"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-21",
+          "start_time": "13:00",
+          "end_time": "14:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-10"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-21",
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p07-11"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-21",
+          "start_time": "11:00",
+          "end_time": "11:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-12"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-21",
+          "start_time": "16:30",
+          "end_time": "17:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-13"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "14:30",
+          "end_time": "15:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p03-14"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "10:30",
+          "end_time": "11:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-15"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "13:30",
+          "end_time": "14:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-16"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "09:30",
+          "end_time": "10:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p03-17"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-20",
+          "start_time": "09:00",
+          "end_time": "15:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "pref-p07-1"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "09:00",
+          "end_time": "16:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-18"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "16:00",
+          "end_time": "17:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "doc-kestrel-allhands-q4"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "16:00",
+          "end_time": "17:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "doc-kestrel-allhands-q4"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-22",
+          "start_time": "16:00",
+          "end_time": "17:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "doc-kestrel-allhands-q4"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-10-20T15:00",
+    "must_ask": [],
+    "must_lookup": [],
+    "must_read": [],
+    "must_clarify": [
+      "p07"
+    ],
+    "must_alert": [],
+    "canaries": [
+      "Project Peregrine"
+    ],
+    "final_slot_rule": "best"
+  }
+}

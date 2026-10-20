@@ -1,0 +1,295 @@
+{
+  "id": "dev-018",
+  "split": "dev",
+  "tags": [
+    "approval_rsvp"
+  ],
+  "seed": 2200,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-11-13",
+  "participants": [
+    {
+      "id": "p07",
+      "name": "Gwen Koh",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p07-1",
+              "title": "Parent-teacher meeting at Rivervale Primary",
+              "start": "2026-11-16T19:30",
+              "end": "2026-11-16T20:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-2",
+              "title": "Book club",
+              "start": "2026-11-16T19:00",
+              "end": "2026-11-16T19:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-3",
+              "title": "Book club",
+              "start": "2026-11-16T18:00",
+              "end": "2026-11-16T19:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p02",
+      "name": "Ben Tan",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p09",
+      "name": "Isaac Pereira",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p09-4",
+              "title": "Volunteer shift at the shelter",
+              "start": "2026-11-17T18:30",
+              "end": "2026-11-17T19:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p09-5",
+              "title": "Gym session",
+              "start": "2026-11-17T22:00",
+              "end": "2026-11-17T22:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p09-6",
+              "title": "Badminton with the club",
+              "start": "2026-11-17T20:30",
+              "end": "2026-11-17T21:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p09-7",
+              "title": "Volunteer shift at the shelter",
+              "start": "2026-11-17T21:00",
+              "end": "2026-11-17T22:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-018",
+    "organiser_id": "p07",
+    "text": "Drinks for an hour with Gwen, Ben, Isaac",
+    "duration_min": 60,
+    "start_date": "2026-11-16",
+    "end_date": "2026-11-17",
+    "day_start": "18:00",
+    "day_end": "22:30",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p07",
+        "role": "required"
+      },
+      {
+        "id": "p02",
+        "role": "required"
+      },
+      {
+        "id": "p09",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": [
+      {
+        "at": "after_approval",
+        "type": "new_meeting",
+        "participant_id": "p02",
+        "meeting": {
+          "id": "e-p02-new",
+          "title": "Extra late shift",
+          "start": "2026-11-16T20:30",
+          "end": "2026-11-16T21:30",
+          "movable": false,
+          "priority": "normal",
+          "owner": ""
+        },
+        "calendar": "personal",
+        "response": null,
+        "text": null
+      }
+    ]
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-16",
+          "start_time": "19:30",
+          "end_time": "20:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-1"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-16",
+          "start_time": "19:00",
+          "end_time": "19:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-2"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-16",
+          "start_time": "18:00",
+          "end_time": "19:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-3"
+        }
+      },
+      {
+        "participant_id": "p09",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-17",
+          "start_time": "18:30",
+          "end_time": "19:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p09-4"
+        }
+      },
+      {
+        "participant_id": "p09",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-17",
+          "start_time": "22:00",
+          "end_time": "22:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p09-5"
+        }
+      },
+      {
+        "participant_id": "p09",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-17",
+          "start_time": "20:30",
+          "end_time": "21:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p09-6"
+        }
+      },
+      {
+        "participant_id": "p09",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-17",
+          "start_time": "21:00",
+          "end_time": "22:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p09-7"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-16",
+          "start_time": "20:30",
+          "end_time": "21:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-new"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-11-16T21:30",
+    "must_ask": [],
+    "must_lookup": [],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [
+      "Rivervale Primary"
+    ],
+    "final_slot_rule": "best"
+  }
+}

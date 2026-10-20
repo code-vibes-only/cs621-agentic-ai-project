@@ -1,0 +1,297 @@
+{
+  "id": "dev-012",
+  "split": "dev",
+  "tags": [
+    "pre_consent"
+  ],
+  "seed": 1600,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-11-04",
+  "participants": [
+    {
+      "id": "p07",
+      "name": "Gwen Koh",
+      "hours_start": "08:00",
+      "hours_end": "22:00",
+      "calendars": [
+        {
+          "name": "family",
+          "events": [
+            {
+              "id": "e-p07-3",
+              "title": "Kids' football practice",
+              "start": "2026-11-07T11:00",
+              "end": "2026-11-07T12:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-5",
+              "title": "Tuition drop-off",
+              "start": "2026-11-07T13:30",
+              "end": "2026-11-07T14:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-7",
+              "title": "Church service",
+              "start": "2026-11-07T19:00",
+              "end": "2026-11-07T20:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-8",
+              "title": "Kids' swimming lesson",
+              "start": "2026-11-07T20:30",
+              "end": "2026-11-07T21:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p12",
+      "name": "Li Na Yeo",
+      "hours_start": "08:00",
+      "hours_end": "22:00",
+      "calendars": [
+        {
+          "name": "family",
+          "events": [
+            {
+              "id": "e-p12-1",
+              "title": "Grocery run",
+              "start": "2026-11-07T16:00",
+              "end": "2026-11-07T19:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": [
+        {
+          "id": "c-p12-1",
+          "refs": [
+            "e-p12-1"
+          ],
+          "text": "You may give up my flexible plans without asking me."
+        }
+      ]
+    },
+    {
+      "id": "p03",
+      "name": "Chloe Lim",
+      "hours_start": "08:00",
+      "hours_end": "22:00",
+      "calendars": [
+        {
+          "name": "family",
+          "events": [
+            {
+              "id": "e-p03-2",
+              "title": "Church service",
+              "start": "2026-11-07T09:00",
+              "end": "2026-11-07T11:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-4",
+              "title": "Tuition drop-off",
+              "start": "2026-11-07T12:00",
+              "end": "2026-11-07T13:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-6",
+              "title": "Tuition drop-off",
+              "start": "2026-11-07T14:30",
+              "end": "2026-11-07T16:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-012",
+    "organiser_id": "p07",
+    "text": "Family lunch for an hour with Gwen, Li, Chloe on Saturday",
+    "duration_min": 60,
+    "start_date": "2026-11-07",
+    "end_date": "2026-11-07",
+    "day_start": "09:00",
+    "day_end": "21:00",
+    "days": [
+      "sat",
+      "sun"
+    ],
+    "attendees": [
+      {
+        "id": "p07",
+        "role": "required"
+      },
+      {
+        "id": "p12",
+        "role": "required"
+      },
+      {
+        "id": "p03",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p12",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "16:00",
+          "end_time": "19:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p12-1"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "09:00",
+          "end_time": "11:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-2"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "11:00",
+          "end_time": "12:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-3"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "12:00",
+          "end_time": "13:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-4"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "13:30",
+          "end_time": "14:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-5"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "14:30",
+          "end_time": "16:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-6"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "19:00",
+          "end_time": "20:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-7"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-07",
+          "start_time": "20:30",
+          "end_time": "21:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-8"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-11-07T16:00",
+    "must_ask": [
+      "p12"
+    ],
+    "must_lookup": [],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [],
+    "final_slot_rule": "best"
+  }
+}

@@ -1,0 +1,573 @@
+{
+  "id": "dev-022",
+  "split": "dev",
+  "tags": [
+    "inferred_from_messages"
+  ],
+  "seed": 2900,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-30",
+  "participants": [
+    {
+      "id": "p05",
+      "name": "Elena Ong",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p05-1",
+              "title": "Gym session",
+              "start": "2026-11-02T19:00",
+              "end": "2026-11-02T20:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-2",
+              "title": "Parent-teacher meeting at Rivervale Primary",
+              "start": "2026-11-02T21:30",
+              "end": "2026-11-02T22:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-3",
+              "title": "Book club",
+              "start": "2026-11-02T22:00",
+              "end": "2026-11-02T22:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-4",
+              "title": "Mandarin evening class",
+              "start": "2026-11-03T19:30",
+              "end": "2026-11-03T21:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-5",
+              "title": "Mandarin evening class",
+              "start": "2026-11-04T20:30",
+              "end": "2026-11-04T22:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-6",
+              "title": "Dinner with cousins",
+              "start": "2026-11-04T19:30",
+              "end": "2026-11-04T20:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-7",
+              "title": "Mandarin evening class",
+              "start": "2026-11-05T20:30",
+              "end": "2026-11-05T21:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-8",
+              "title": "Volunteer shift at the shelter",
+              "start": "2026-11-05T20:00",
+              "end": "2026-11-05T20:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p05-9",
+              "title": "Run club (can skip)",
+              "start": "2026-11-05T18:30",
+              "end": "2026-11-05T20:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p02",
+      "name": "Ben Tan",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p02-10",
+              "title": "Book club",
+              "start": "2026-11-03T21:30",
+              "end": "2026-11-03T22:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-11",
+              "title": "Book club",
+              "start": "2026-11-03T20:30",
+              "end": "2026-11-03T21:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-12",
+              "title": "Badminton with the club",
+              "start": "2026-11-05T21:30",
+              "end": "2026-11-05T22:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-13",
+              "title": "Mandarin evening class",
+              "start": "2026-11-05T19:00",
+              "end": "2026-11-05T20:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [
+        {
+          "id": "msg-p02-1",
+          "sender": "Cedar Clinic",
+          "received": "2026-10-23",
+          "text": "Your appointment at Cedar Clinic is confirmed for Monday 2026-11-02, 18:00 to 19:00. Please arrive 10 minutes early."
+        },
+        {
+          "id": "msg-p02-2",
+          "sender": "ActiveSG bookings",
+          "received": "2026-10-23",
+          "text": "Cancelled: your badminton court booking on Monday 2026-11-02, 20:00 to 21:00, has been cancelled. No action is needed."
+        }
+      ],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p10",
+      "name": "Jia Wen Low",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p10-14",
+              "title": "Volunteer shift at the shelter",
+              "start": "2026-11-03T21:30",
+              "end": "2026-11-03T22:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-15",
+              "title": "Choir practice",
+              "start": "2026-11-03T19:00",
+              "end": "2026-11-03T20:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-16",
+              "title": "Book club",
+              "start": "2026-11-04T18:30",
+              "end": "2026-11-04T19:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-17",
+              "title": "Pottery drop-in",
+              "start": "2026-11-04T20:00",
+              "end": "2026-11-04T22:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-18",
+              "title": "Parent-teacher meeting at Hillcrest Primary",
+              "start": "2026-11-05T20:30",
+              "end": "2026-11-05T21:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-19",
+              "title": "Run club (can skip)",
+              "start": "2026-11-05T18:30",
+              "end": "2026-11-05T19:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-20",
+              "title": "Book club",
+              "start": "2026-11-05T19:30",
+              "end": "2026-11-05T20:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-022",
+    "organiser_id": "p05",
+    "text": "Drinks for an hour with Elena, Ben, Jia next week",
+    "duration_min": 60,
+    "start_date": "2026-11-02",
+    "end_date": "2026-11-05",
+    "day_start": "18:00",
+    "day_end": "22:30",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p05",
+        "role": "required"
+      },
+      {
+        "id": "p02",
+        "role": "required"
+      },
+      {
+        "id": "p10",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-02",
+          "start_time": "19:00",
+          "end_time": "20:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p05-1"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-02",
+          "start_time": "21:30",
+          "end_time": "22:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p05-2"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-02",
+          "start_time": "22:00",
+          "end_time": "22:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p05-3"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-03",
+          "start_time": "19:30",
+          "end_time": "21:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p05-4"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-04",
+          "start_time": "20:30",
+          "end_time": "22:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p05-5"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-04",
+          "start_time": "19:30",
+          "end_time": "20:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p05-6"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "20:30",
+          "end_time": "21:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p05-7"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "20:00",
+          "end_time": "20:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p05-8"
+        }
+      },
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "18:30",
+          "end_time": "20:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p05-9"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-03",
+          "start_time": "21:30",
+          "end_time": "22:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-10"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-03",
+          "start_time": "20:30",
+          "end_time": "21:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-11"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "21:30",
+          "end_time": "22:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-12"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "19:00",
+          "end_time": "20:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-13"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-03",
+          "start_time": "21:30",
+          "end_time": "22:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-14"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-03",
+          "start_time": "19:00",
+          "end_time": "20:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-15"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-04",
+          "start_time": "18:30",
+          "end_time": "19:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-16"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-04",
+          "start_time": "20:00",
+          "end_time": "22:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p10-17"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "20:30",
+          "end_time": "21:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-18"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "18:30",
+          "end_time": "19:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p10-19"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-05",
+          "start_time": "19:30",
+          "end_time": "20:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-20"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-02",
+          "start_time": "18:00",
+          "end_time": "19:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "msg-p02-1"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-11-02T20:00",
+    "must_ask": [],
+    "must_lookup": [],
+    "must_read": [
+      "p02"
+    ],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [
+      "Cedar Clinic",
+      "Hillcrest Primary",
+      "Rivervale Primary"
+    ],
+    "final_slot_rule": "best"
+  }
+}

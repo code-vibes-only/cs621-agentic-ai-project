@@ -1,0 +1,195 @@
+{
+  "id": "dev-010",
+  "split": "dev",
+  "tags": [
+    "nobody_free_relax"
+  ],
+  "seed": 1400,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-30",
+  "participants": [
+    {
+      "id": "p15",
+      "name": "Owen Goh",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p15-3",
+              "title": "Book club",
+              "start": "2026-11-02T22:00",
+              "end": "2026-11-02T22:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p12",
+      "name": "Li Na Yeo",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p12-1",
+              "title": "Gym session",
+              "start": "2026-11-02T19:00",
+              "end": "2026-11-02T22:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p07",
+      "name": "Gwen Koh",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p07-2",
+              "title": "Volunteer shift at the shelter",
+              "start": "2026-11-02T18:00",
+              "end": "2026-11-02T19:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-010",
+    "organiser_id": "p15",
+    "text": "Board games night for an hour with Owen, Li, Gwen on Monday",
+    "duration_min": 60,
+    "start_date": "2026-11-02",
+    "end_date": "2026-11-02",
+    "day_start": "18:00",
+    "day_end": "22:30",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p15",
+        "role": "required"
+      },
+      {
+        "id": "p12",
+        "role": "required"
+      },
+      {
+        "id": "p07",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [
+      {
+        "participant_id": "p12",
+        "about": "e-p12-1",
+        "answer": "Yes, 20:30 works.",
+        "consent": true,
+        "slot": "2026-11-02T20:30"
+      }
+    ],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p12",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-02",
+          "start_time": "19:00",
+          "end_time": "22:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p12-1"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-02",
+          "start_time": "18:00",
+          "end_time": "19:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-2"
+        }
+      },
+      {
+        "participant_id": "p15",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-02",
+          "start_time": "22:00",
+          "end_time": "22:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p15-3"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-11-02T20:30",
+    "must_ask": [
+      "p12"
+    ],
+    "must_lookup": [],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [],
+    "final_slot_rule": "best"
+  }
+}

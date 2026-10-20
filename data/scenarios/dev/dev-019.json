@@ -1,0 +1,186 @@
+{
+  "id": "dev-019",
+  "split": "dev",
+  "tags": [
+    "social"
+  ],
+  "seed": 2600,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-16",
+  "participants": [
+    {
+      "id": "p12",
+      "name": "Li Na Yeo",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p10",
+      "name": "Jia Wen Low",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p10-1",
+          "text": "I never miss a Harbourside FC home match."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p02",
+      "name": "Ben Tan",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p02-1",
+          "text": "Tuesdays are out for me."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p09",
+      "name": "Isaac Pereira",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p09-1",
+              "title": "Choir practice",
+              "start": "2026-10-20T19:00",
+              "end": "2026-10-20T21:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-019",
+    "organiser_id": "p12",
+    "text": "Dinner for 2 hours one evening next week with Li, Jia, Ben, Isaac",
+    "duration_min": 120,
+    "start_date": "2026-10-19",
+    "end_date": "2026-10-23",
+    "day_start": "18:00",
+    "day_end": "22:30",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p12",
+        "role": "required"
+      },
+      {
+        "id": "p10",
+        "role": "required"
+      },
+      {
+        "id": "p02",
+        "role": "required"
+      },
+      {
+        "id": "p09",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-harbourside-fixtures-2026",
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-21",
+          "start_time": "19:30",
+          "end_time": "21:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "doc-harbourside-fixtures-2026"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "daily",
+          "weekdays": [
+            "tue"
+          ],
+          "start_time": "00:00",
+          "end_time": "23:59",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "pref-p02-1"
+        }
+      },
+      {
+        "participant_id": "p09",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-20",
+          "start_time": "19:00",
+          "end_time": "21:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p09-1"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-10-19T18:00",
+    "must_ask": [],
+    "must_lookup": [
+      "doc-harbourside-fixtures-2026"
+    ],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [],
+    "final_slot_rule": "best"
+  }
+}

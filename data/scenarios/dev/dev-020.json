@@ -1,0 +1,1383 @@
+{
+  "id": "dev-020",
+  "split": "dev",
+  "tags": [
+    "weekend_family"
+  ],
+  "seed": 2700,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-21",
+  "participants": [
+    {
+      "id": "p04",
+      "name": "Dev Nair",
+      "hours_start": "08:00",
+      "hours_end": "22:00",
+      "calendars": [
+        {
+          "name": "family",
+          "events": [
+            {
+              "id": "e-p04-1",
+              "title": "Car wash",
+              "start": "2026-10-24T10:00",
+              "end": "2026-10-24T11:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-2",
+              "title": "Grocery run",
+              "start": "2026-10-24T14:30",
+              "end": "2026-10-24T16:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-3",
+              "title": "Lunch at Grandma's",
+              "start": "2026-10-24T17:00",
+              "end": "2026-10-24T18:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-4",
+              "title": "Wedding dinner",
+              "start": "2026-10-24T12:30",
+              "end": "2026-10-24T14:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-5",
+              "title": "Parent-teacher meeting at Hillcrest Primary",
+              "start": "2026-10-24T18:30",
+              "end": "2026-10-24T19:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-6",
+              "title": "Wedding dinner",
+              "start": "2026-10-24T19:00",
+              "end": "2026-10-24T20:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-7",
+              "title": "Church service",
+              "start": "2026-10-25T15:30",
+              "end": "2026-10-25T16:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-8",
+              "title": "Wedding dinner",
+              "start": "2026-10-25T10:00",
+              "end": "2026-10-25T12:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-9",
+              "title": "Kids' football practice",
+              "start": "2026-10-25T17:00",
+              "end": "2026-10-25T17:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-10",
+              "title": "Haircut (can move)",
+              "start": "2026-10-25T14:30",
+              "end": "2026-10-25T15:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-11",
+              "title": "Wedding dinner",
+              "start": "2026-10-25T18:00",
+              "end": "2026-10-25T19:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-12",
+              "title": "Haircut (can move)",
+              "start": "2026-10-25T12:00",
+              "end": "2026-10-25T13:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-13",
+              "title": "Kids' swimming lesson",
+              "start": "2026-10-31T16:30",
+              "end": "2026-10-31T18:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-14",
+              "title": "Kids' swimming lesson",
+              "start": "2026-10-31T15:00",
+              "end": "2026-10-31T16:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-15",
+              "title": "Church service",
+              "start": "2026-10-31T18:30",
+              "end": "2026-10-31T19:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-16",
+              "title": "Grocery run",
+              "start": "2026-10-31T12:30",
+              "end": "2026-10-31T14:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-17",
+              "title": "Kids' swimming lesson",
+              "start": "2026-10-31T10:30",
+              "end": "2026-10-31T11:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-18",
+              "title": "Kids' football practice",
+              "start": "2026-11-01T14:30",
+              "end": "2026-11-01T15:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-19",
+              "title": "Physiotherapy at Lotus Clinic",
+              "start": "2026-11-01T09:30",
+              "end": "2026-11-01T10:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-20",
+              "title": "Tuition drop-off",
+              "start": "2026-11-01T17:00",
+              "end": "2026-11-01T18:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p04-21",
+              "title": "Kids' swimming lesson",
+              "start": "2026-11-01T12:30",
+              "end": "2026-11-01T13:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p10",
+      "name": "Jia Wen Low",
+      "hours_start": "08:00",
+      "hours_end": "22:00",
+      "calendars": [
+        {
+          "name": "family",
+          "events": [
+            {
+              "id": "e-p10-22",
+              "title": "Car wash",
+              "start": "2026-10-31T12:00",
+              "end": "2026-10-31T13:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-23",
+              "title": "Parent-teacher meeting at Kingfisher Primary",
+              "start": "2026-10-31T19:00",
+              "end": "2026-10-31T19:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-24",
+              "title": "Tuition drop-off",
+              "start": "2026-10-31T16:30",
+              "end": "2026-10-31T18:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-25",
+              "title": "Kids' football practice",
+              "start": "2026-10-31T11:00",
+              "end": "2026-10-31T11:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-26",
+              "title": "Kids' swimming lesson",
+              "start": "2026-10-31T14:00",
+              "end": "2026-10-31T15:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-27",
+              "title": "Haircut (can move)",
+              "start": "2026-10-31T15:00",
+              "end": "2026-10-31T16:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-28",
+              "title": "Wedding dinner",
+              "start": "2026-10-31T10:30",
+              "end": "2026-10-31T11:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-29",
+              "title": "Grocery run",
+              "start": "2026-11-01T17:00",
+              "end": "2026-11-01T18:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-30",
+              "title": "Wedding dinner",
+              "start": "2026-11-01T12:30",
+              "end": "2026-11-01T14:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-31",
+              "title": "Tuition drop-off",
+              "start": "2026-11-01T10:30",
+              "end": "2026-11-01T11:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p10-32",
+              "title": "Wedding dinner",
+              "start": "2026-11-01T18:30",
+              "end": "2026-11-01T20:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p10-1",
+          "text": "Sundays before 1pm are out for me, every week."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p03",
+      "name": "Chloe Lim",
+      "hours_start": "08:00",
+      "hours_end": "22:00",
+      "calendars": [
+        {
+          "name": "family",
+          "events": [
+            {
+              "id": "e-p03-33",
+              "title": "Kids' swimming lesson",
+              "start": "2026-10-24T14:00",
+              "end": "2026-10-24T15:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-34",
+              "title": "Church service",
+              "start": "2026-10-24T18:30",
+              "end": "2026-10-24T19:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-35",
+              "title": "Haircut (can move)",
+              "start": "2026-10-24T15:30",
+              "end": "2026-10-24T16:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-36",
+              "title": "Tuition drop-off",
+              "start": "2026-10-24T16:30",
+              "end": "2026-10-24T18:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-37",
+              "title": "Kids' swimming lesson",
+              "start": "2026-10-24T19:30",
+              "end": "2026-10-24T20:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-38",
+              "title": "Church service",
+              "start": "2026-10-24T11:30",
+              "end": "2026-10-24T13:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-39",
+              "title": "Parent-teacher meeting at Rivervale Primary",
+              "start": "2026-10-31T12:30",
+              "end": "2026-10-31T13:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-40",
+              "title": "Lunch at Grandma's",
+              "start": "2026-10-31T09:30",
+              "end": "2026-10-31T11:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-41",
+              "title": "Kids' swimming lesson",
+              "start": "2026-10-31T15:00",
+              "end": "2026-10-31T15:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-42",
+              "title": "Haircut (can move)",
+              "start": "2026-10-31T20:30",
+              "end": "2026-10-31T21:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-43",
+              "title": "Wedding dinner",
+              "start": "2026-10-31T14:00",
+              "end": "2026-10-31T15:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-44",
+              "title": "Haircut (can move)",
+              "start": "2026-10-31T17:30",
+              "end": "2026-10-31T18:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-45",
+              "title": "Tuition drop-off",
+              "start": "2026-10-31T16:00",
+              "end": "2026-10-31T17:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-46",
+              "title": "Wedding dinner",
+              "start": "2026-11-01T20:00",
+              "end": "2026-11-01T21:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-47",
+              "title": "Lunch at Grandma's",
+              "start": "2026-11-01T10:30",
+              "end": "2026-11-01T11:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-48",
+              "title": "Car wash",
+              "start": "2026-11-01T18:30",
+              "end": "2026-11-01T20:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p03-49",
+              "title": "Wedding dinner",
+              "start": "2026-11-01T16:30",
+              "end": "2026-11-01T18:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [
+        {
+          "id": "l-p03-1",
+          "start_date": "2026-10-31",
+          "end_date": "2026-10-31",
+          "reason": "Mother's 70th birthday trip",
+          "reachable_if_urgent": false
+        }
+      ],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p01",
+      "name": "Aisha Rahman",
+      "hours_start": "08:00",
+      "hours_end": "22:00",
+      "calendars": [
+        {
+          "name": "family",
+          "events": [
+            {
+              "id": "e-p01-50",
+              "title": "Wedding dinner",
+              "start": "2026-10-24T11:30",
+              "end": "2026-10-24T13:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-51",
+              "title": "Grocery run",
+              "start": "2026-10-24T10:00",
+              "end": "2026-10-24T11:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-52",
+              "title": "Church service",
+              "start": "2026-10-24T14:00",
+              "end": "2026-10-24T14:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-53",
+              "title": "Wedding dinner",
+              "start": "2026-10-24T15:00",
+              "end": "2026-10-24T17:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-54",
+              "title": "Tuition drop-off",
+              "start": "2026-10-25T11:00",
+              "end": "2026-10-25T13:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-55",
+              "title": "Wedding dinner",
+              "start": "2026-10-25T19:00",
+              "end": "2026-10-25T20:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-56",
+              "title": "Parent-teacher meeting at Rivervale Primary",
+              "start": "2026-10-25T16:30",
+              "end": "2026-10-25T17:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p01-57",
+              "title": "Grocery run",
+              "start": "2026-10-25T14:30",
+              "end": "2026-10-25T15:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-020",
+    "organiser_id": "p04",
+    "text": "Visit to Grandpa for an hour with Dev, Jia, Chloe, Aisha over the next two weekends",
+    "duration_min": 60,
+    "start_date": "2026-10-24",
+    "end_date": "2026-11-01",
+    "day_start": "09:00",
+    "day_end": "21:00",
+    "days": [
+      "sat",
+      "sun"
+    ],
+    "attendees": [
+      {
+        "id": "p04",
+        "role": "required"
+      },
+      {
+        "id": "p10",
+        "role": "required"
+      },
+      {
+        "id": "p03",
+        "role": "required"
+      },
+      {
+        "id": "p01",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p04-1"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "14:30",
+          "end_time": "16:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p04-2"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "17:00",
+          "end_time": "18:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-3"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "12:30",
+          "end_time": "14:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-4"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "18:30",
+          "end_time": "19:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-5"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "19:00",
+          "end_time": "20:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-6"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "15:30",
+          "end_time": "16:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-7"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "10:00",
+          "end_time": "12:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-8"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "17:00",
+          "end_time": "17:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-9"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "14:30",
+          "end_time": "15:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p04-10"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "18:00",
+          "end_time": "19:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-11"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "12:00",
+          "end_time": "13:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p04-12"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "16:30",
+          "end_time": "18:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-13"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-14"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "18:30",
+          "end_time": "19:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-15"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "12:30",
+          "end_time": "14:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p04-16"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "10:30",
+          "end_time": "11:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-17"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "14:30",
+          "end_time": "15:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-18"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "09:30",
+          "end_time": "10:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-19"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "17:00",
+          "end_time": "18:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-20"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "12:30",
+          "end_time": "13:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p04-21"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "12:00",
+          "end_time": "13:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p10-22"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "19:00",
+          "end_time": "19:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-23"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "16:30",
+          "end_time": "18:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-24"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "11:00",
+          "end_time": "11:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-25"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "14:00",
+          "end_time": "15:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-26"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p10-27"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "10:30",
+          "end_time": "11:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-28"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "17:00",
+          "end_time": "18:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p10-29"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "12:30",
+          "end_time": "14:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-30"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "10:30",
+          "end_time": "11:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-31"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "18:30",
+          "end_time": "20:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p10-32"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "14:00",
+          "end_time": "15:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-33"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "18:30",
+          "end_time": "19:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-34"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "15:30",
+          "end_time": "16:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p03-35"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "16:30",
+          "end_time": "18:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-36"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "19:30",
+          "end_time": "20:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-37"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "11:30",
+          "end_time": "13:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-38"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "12:30",
+          "end_time": "13:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-39"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "09:30",
+          "end_time": "11:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-40"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "15:00",
+          "end_time": "15:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-41"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "20:30",
+          "end_time": "21:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p03-42"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "14:00",
+          "end_time": "15:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-43"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "17:30",
+          "end_time": "18:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p03-44"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "16:00",
+          "end_time": "17:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-45"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "20:00",
+          "end_time": "21:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-46"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "10:30",
+          "end_time": "11:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-47"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "18:30",
+          "end_time": "20:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p03-48"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-01",
+          "start_time": "16:30",
+          "end_time": "18:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p03-49"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "11:30",
+          "end_time": "13:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-50"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "10:00",
+          "end_time": "11:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p01-51"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "14:00",
+          "end_time": "14:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-52"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-24",
+          "start_time": "15:00",
+          "end_time": "17:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-53"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "11:00",
+          "end_time": "13:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-54"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "19:00",
+          "end_time": "20:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-55"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "16:30",
+          "end_time": "17:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p01-56"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-25",
+          "start_time": "14:30",
+          "end_time": "15:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p01-57"
+        }
+      },
+      {
+        "participant_id": "p10",
+        "rule": {
+          "type": "daily",
+          "weekdays": [
+            "sun"
+          ],
+          "start_time": "00:00",
+          "end_time": "13:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "pref-p10-1"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-31",
+          "start_time": "00:00",
+          "end_time": "23:59",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "l-p03-1"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-10-24T09:00",
+    "must_ask": [],
+    "must_lookup": [],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [
+      "Hillcrest Primary",
+      "Kingfisher Primary",
+      "Lotus Clinic",
+      "Mother's 70th birthday trip",
+      "Rivervale Primary"
+    ],
+    "final_slot_rule": "best"
+  }
+}

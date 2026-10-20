@@ -1,0 +1,1028 @@
+{
+  "id": "dev-008",
+  "split": "dev",
+  "tags": [
+    "lookup_required"
+  ],
+  "seed": 1200,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-23",
+  "participants": [
+    {
+      "id": "p14",
+      "name": "Nadia Salleh",
+      "hours_start": "09:00",
+      "hours_end": "18:00",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p14-1",
+              "title": "Vendor review",
+              "start": "2026-10-28T16:00",
+              "end": "2026-10-28T17:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p14-2",
+              "title": "Hiring panel",
+              "start": "2026-10-28T09:00",
+              "end": "2026-10-28T10:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p14-3",
+              "title": "Ops review",
+              "start": "2026-10-28T11:30",
+              "end": "2026-10-28T13:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [
+        {
+          "id": "mem-p14-1",
+          "text": "Please keep Friday afternoons clear.",
+          "source": "participant",
+          "stated_on": "2026-09-08",
+          "expires": null,
+          "scope": "persistent"
+        }
+      ],
+      "pre_consent": []
+    },
+    {
+      "id": "p07",
+      "name": "Gwen Koh",
+      "hours_start": "09:00",
+      "hours_end": "18:00",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p07-4",
+              "title": "Focus: Q4 forecast",
+              "start": "2026-10-26T09:00",
+              "end": "2026-10-26T11:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-5",
+              "title": "Focus: Q4 forecast",
+              "start": "2026-10-26T16:30",
+              "end": "2026-10-26T18:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-6",
+              "title": "Project Tamarind steering",
+              "start": "2026-10-26T15:00",
+              "end": "2026-10-26T16:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-7",
+              "title": "Focus: pricing model",
+              "start": "2026-10-27T11:00",
+              "end": "2026-10-27T13:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-8",
+              "title": "Data quality stand-up",
+              "start": "2026-10-27T13:30",
+              "end": "2026-10-27T14:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-9",
+              "title": "Client call",
+              "start": "2026-10-28T10:00",
+              "end": "2026-10-28T11:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-10",
+              "title": "Ops review",
+              "start": "2026-10-28T12:00",
+              "end": "2026-10-28T12:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-11",
+              "title": "Customer workshop",
+              "start": "2026-10-28T14:00",
+              "end": "2026-10-28T16:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-12",
+              "title": "Project Sable steering",
+              "start": "2026-10-28T12:30",
+              "end": "2026-10-28T13:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-13",
+              "title": "Focus: Q4 forecast",
+              "start": "2026-10-29T12:00",
+              "end": "2026-10-29T13:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-14",
+              "title": "Project Sable steering",
+              "start": "2026-10-29T09:00",
+              "end": "2026-10-29T09:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-15",
+              "title": "Project Peregrine steering",
+              "start": "2026-10-29T09:30",
+              "end": "2026-10-29T11:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-16",
+              "title": "Vendor review",
+              "start": "2026-10-30T17:00",
+              "end": "2026-10-30T18:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-17",
+              "title": "Project Sable steering",
+              "start": "2026-10-30T14:30",
+              "end": "2026-10-30T15:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-18",
+              "title": "Focus: pricing model",
+              "start": "2026-10-30T10:00",
+              "end": "2026-10-30T11:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p07-19",
+              "title": "Budget check-in",
+              "start": "2026-10-30T09:00",
+              "end": "2026-10-30T10:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [
+        {
+          "id": "mem-p07-1",
+          "text": "For the budget review only: not before 11.",
+          "source": "participant",
+          "stated_on": "2026-09-08",
+          "expires": null,
+          "scope": "meeting:r-0900"
+        }
+      ],
+      "pre_consent": []
+    },
+    {
+      "id": "p02",
+      "name": "Ben Tan",
+      "hours_start": "09:00",
+      "hours_end": "18:00",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p02-20",
+              "title": "1:1 with manager",
+              "start": "2026-10-26T11:30",
+              "end": "2026-10-26T13:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-21",
+              "title": "Vendor review",
+              "start": "2026-10-26T10:30",
+              "end": "2026-10-26T11:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-22",
+              "title": "Focus: Q4 forecast",
+              "start": "2026-10-26T16:00",
+              "end": "2026-10-26T17:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-23",
+              "title": "Focus: board memo",
+              "start": "2026-10-26T14:00",
+              "end": "2026-10-26T15:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-24",
+              "title": "Focus: board memo",
+              "start": "2026-10-27T11:30",
+              "end": "2026-10-27T12:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-25",
+              "title": "Focus: board memo",
+              "start": "2026-10-27T12:30",
+              "end": "2026-10-27T13:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-26",
+              "title": "Vendor review",
+              "start": "2026-10-27T17:00",
+              "end": "2026-10-27T17:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-27",
+              "title": "Hiring panel",
+              "start": "2026-10-27T10:00",
+              "end": "2026-10-27T11:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-28",
+              "title": "Data quality stand-up",
+              "start": "2026-10-28T16:00",
+              "end": "2026-10-28T17:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-29",
+              "title": "Focus: board memo",
+              "start": "2026-10-28T13:30",
+              "end": "2026-10-28T14:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-30",
+              "title": "Focus: board memo",
+              "start": "2026-10-28T11:30",
+              "end": "2026-10-28T12:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-31",
+              "title": "Sprint planning",
+              "start": "2026-10-28T12:30",
+              "end": "2026-10-28T13:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-32",
+              "title": "Client call",
+              "start": "2026-10-29T11:30",
+              "end": "2026-10-29T12:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-33",
+              "title": "Client call",
+              "start": "2026-10-29T14:30",
+              "end": "2026-10-29T15:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-34",
+              "title": "Focus: Q4 forecast",
+              "start": "2026-10-29T13:30",
+              "end": "2026-10-29T14:00",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            },
+            {
+              "id": "e-p02-35",
+              "title": "Ops review",
+              "start": "2026-10-29T15:30",
+              "end": "2026-10-29T17:30",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p12",
+      "name": "Li Na Yeo",
+      "hours_start": "09:00",
+      "hours_end": "18:00",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p12-36",
+              "title": "Customer workshop",
+              "start": "2026-10-26T15:00",
+              "end": "2026-10-26T16:30",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p12-37",
+              "title": "Vendor review",
+              "start": "2026-10-26T11:30",
+              "end": "2026-10-26T13:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            },
+            {
+              "id": "e-p12-38",
+              "title": "1:1 with manager",
+              "start": "2026-10-26T09:30",
+              "end": "2026-10-26T10:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            },
+            {
+              "id": "e-p12-39",
+              "title": "Focus: pricing model",
+              "start": "2026-10-26T13:30",
+              "end": "2026-10-26T14:30",
+              "movable": true,
+              "priority": "low",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p12-1",
+          "text": "I'm at CloudOps Forum on Tuesday."
+        }
+      ],
+      "memory": [
+        {
+          "id": "mem-p12-1",
+          "text": "For the budget review only: not before 11.",
+          "source": "participant",
+          "stated_on": "2026-09-08",
+          "expires": null,
+          "scope": "meeting:r-0900"
+        }
+      ],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-dev-008",
+    "organiser_id": "p14",
+    "text": "60-minute planning meeting with Nadia, Gwen, Ben, Li next week",
+    "duration_min": 60,
+    "start_date": "2026-10-26",
+    "end_date": "2026-10-30",
+    "day_start": "09:00",
+    "day_end": "18:00",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p14",
+        "role": "required"
+      },
+      {
+        "id": "p07",
+        "role": "required"
+      },
+      {
+        "id": "p02",
+        "role": "required"
+      },
+      {
+        "id": "p12",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-cloudops-forum-2026",
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p14",
+        "rule": {
+          "type": "daily",
+          "weekdays": [
+            "fri"
+          ],
+          "start_time": "13:00",
+          "end_time": "18:00",
+          "kind": "soft",
+          "weight": 0.8,
+          "ref": "mem-p14-1"
+        }
+      },
+      {
+        "participant_id": "p14",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "16:00",
+          "end_time": "17:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p14-1"
+        }
+      },
+      {
+        "participant_id": "p14",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "09:00",
+          "end_time": "10:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p14-2"
+        }
+      },
+      {
+        "participant_id": "p14",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "11:30",
+          "end_time": "13:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p14-3"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "09:00",
+          "end_time": "11:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p07-4"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "16:30",
+          "end_time": "18:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p07-5"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-6"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "11:00",
+          "end_time": "13:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p07-7"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "13:30",
+          "end_time": "14:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-8"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-9"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "12:00",
+          "end_time": "12:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-10"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "14:00",
+          "end_time": "16:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-11"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "12:30",
+          "end_time": "13:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-12"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "12:00",
+          "end_time": "13:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p07-13"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "09:00",
+          "end_time": "09:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-14"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "09:30",
+          "end_time": "11:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-15"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-30",
+          "start_time": "17:00",
+          "end_time": "18:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-16"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-30",
+          "start_time": "14:30",
+          "end_time": "15:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-17"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-30",
+          "start_time": "10:00",
+          "end_time": "11:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p07-18"
+        }
+      },
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-30",
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p07-19"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "11:30",
+          "end_time": "13:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-20"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "10:30",
+          "end_time": "11:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-21"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "16:00",
+          "end_time": "17:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p02-22"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "14:00",
+          "end_time": "15:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p02-23"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "11:30",
+          "end_time": "12:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p02-24"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "12:30",
+          "end_time": "13:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p02-25"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "17:00",
+          "end_time": "17:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-26"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "10:00",
+          "end_time": "11:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-27"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "16:00",
+          "end_time": "17:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-28"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "13:30",
+          "end_time": "14:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p02-29"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "11:30",
+          "end_time": "12:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p02-30"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-28",
+          "start_time": "12:30",
+          "end_time": "13:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-31"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "11:30",
+          "end_time": "12:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-32"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "14:30",
+          "end_time": "15:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-33"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "13:30",
+          "end_time": "14:00",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p02-34"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "15:30",
+          "end_time": "17:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-35"
+        }
+      },
+      {
+        "participant_id": "p12",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "15:00",
+          "end_time": "16:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p12-36"
+        }
+      },
+      {
+        "participant_id": "p12",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "11:30",
+          "end_time": "13:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p12-37"
+        }
+      },
+      {
+        "participant_id": "p12",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "09:30",
+          "end_time": "10:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p12-38"
+        }
+      },
+      {
+        "participant_id": "p12",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-26",
+          "start_time": "13:30",
+          "end_time": "14:30",
+          "kind": "movable",
+          "weight": 0.0,
+          "ref": "e-p12-39"
+        }
+      },
+      {
+        "participant_id": "p12",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "09:00",
+          "end_time": "17:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "doc-cloudops-forum-2026"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-10-30T11:30",
+    "must_ask": [],
+    "must_lookup": [
+      "doc-cloudops-forum-2026"
+    ],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [
+      "Project Peregrine",
+      "Project Sable",
+      "Project Tamarind"
+    ],
+    "final_slot_rule": "best"
+  }
+}
