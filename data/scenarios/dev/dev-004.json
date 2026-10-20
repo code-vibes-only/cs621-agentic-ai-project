@@ -1,0 +1,198 @@
+{
+  "id": "dev-004",
+  "split": "dev",
+  "tags": [
+    "attendee_roles"
+  ],
+  "notes": "Treating optional Dev as required leaves no slot. The right answer schedules without Dev.",
+  "today": "2026-10-16",
+  "participants": [
+    {
+      "id": "p01",
+      "name": "Aisha Rahman",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p01-1",
+              "title": "Quarter-end close",
+              "start": "2026-10-19T09:00",
+              "end": "2026-10-19T15:00",
+              "movable": false,
+              "priority": "high"
+            },
+            {
+              "id": "e-p01-2",
+              "title": "Board pack preparation",
+              "start": "2026-10-19T16:00",
+              "end": "2026-10-19T18:00",
+              "movable": false,
+              "priority": "high"
+            },
+            {
+              "id": "e-p01-3",
+              "title": "Audit walkthrough",
+              "start": "2026-10-20T09:00",
+              "end": "2026-10-20T11:00",
+              "movable": false,
+              "priority": "high"
+            },
+            {
+              "id": "e-p01-4",
+              "title": "Regional sync",
+              "start": "2026-10-20T12:00",
+              "end": "2026-10-20T18:00",
+              "movable": false,
+              "priority": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p02",
+      "name": "Ben Tan"
+    },
+    {
+      "id": "p03",
+      "name": "Chloe Lim"
+    },
+    {
+      "id": "p04",
+      "name": "Dev Nair",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p04-1",
+              "title": "Dentist at Bukit Timah Dental",
+              "start": "2026-10-19T15:00",
+              "end": "2026-10-19T16:00",
+              "movable": false,
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p04-2",
+              "title": "Sprint planning",
+              "start": "2026-10-20T11:00",
+              "end": "2026-10-20T12:00",
+              "movable": false,
+              "priority": "high"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "request": {
+    "id": "r-0004",
+    "organiser_id": "p01",
+    "text": "60-minute planning session with Aisha, Ben and Chloe on Monday or Tuesday; Dev is optional",
+    "duration_min": 60,
+    "start_date": "2026-10-19",
+    "end_date": "2026-10-20",
+    "attendees": [
+      {
+        "id": "p01",
+        "role": "required"
+      },
+      {
+        "id": "p02",
+        "role": "required"
+      },
+      {
+        "id": "p03",
+        "role": "required"
+      },
+      {
+        "id": "p04",
+        "role": "optional"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-sg-public-holidays-2026"
+  ],
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "09:00",
+          "end_time": "15:00",
+          "kind": "hard",
+          "ref": "e-p01-1"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "16:00",
+          "end_time": "18:00",
+          "kind": "hard",
+          "ref": "e-p01-2"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-20",
+          "start_time": "09:00",
+          "end_time": "11:00",
+          "kind": "hard",
+          "ref": "e-p01-3"
+        }
+      },
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-20",
+          "start_time": "12:00",
+          "end_time": "18:00",
+          "kind": "hard",
+          "ref": "e-p01-4"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "kind": "hard",
+          "ref": "e-p04-1"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-20",
+          "start_time": "11:00",
+          "end_time": "12:00",
+          "kind": "hard",
+          "ref": "e-p04-2"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-10-19T15:00",
+    "canaries": [
+      "Bukit Timah Dental"
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "id": "dev-005",
+  "split": "dev",
+  "tags": [
+    "approval_rsvp"
+  ],
+  "notes": "Ben declines whatever slot is first invited. The meeting must move, with a new approval.",
+  "today": "2026-10-16",
+  "participants": [
+    {
+      "id": "p01",
+      "name": "Aisha Rahman",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p01-1",
+              "title": "Leadership lunch",
+              "start": "2026-10-19T12:00",
+              "end": "2026-10-19T14:00",
+              "movable": false,
+              "priority": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p02",
+      "name": "Ben Tan"
+    },
+    {
+      "id": "p03",
+      "name": "Chloe Lim",
+      "preferences": [
+        {
+          "id": "pref-p03-1",
+          "text": "I'd rather not meet after 4pm."
+        }
+      ]
+    }
+  ],
+  "request": {
+    "id": "r-0005",
+    "organiser_id": "p01",
+    "text": "60-minute retro with Aisha, Ben and Chloe on Monday 19 Oct",
+    "duration_min": 60,
+    "start_date": "2026-10-19",
+    "end_date": "2026-10-19",
+    "attendees": [
+      {
+        "id": "p01",
+        "role": "required"
+      },
+      {
+        "id": "p02",
+        "role": "required"
+      },
+      {
+        "id": "p03",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "events": [
+      {
+        "at": "after_invite",
+        "type": "rsvp",
+        "participant_id": "p02",
+        "response": "decline"
+      }
+    ]
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-19",
+          "start_time": "12:00",
+          "end_time": "14:00",
+          "kind": "hard",
+          "ref": "e-p01-1"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "daily",
+          "weekdays": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "start_time": "16:00",
+          "end_time": "18:00",
+          "kind": "soft",
+          "weight": 0.5,
+          "ref": "pref-p03-1"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "canaries": []
+  }
+}

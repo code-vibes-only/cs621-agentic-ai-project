@@ -1,0 +1,103 @@
+{
+  "id": "dev-003",
+  "split": "dev",
+  "tags": [
+    "lookup_required"
+  ],
+  "notes": "Two agendas match 'DataSummit'. Only the final one (as of 12 Oct) is right: Tuesday, not Wednesday.",
+  "today": "2026-10-16",
+  "participants": [
+    {
+      "id": "p01",
+      "name": "Aisha Rahman",
+      "calendars": [
+        {
+          "name": "work",
+          "events": [
+            {
+              "id": "e-p01-1",
+              "title": "Budget review",
+              "start": "2026-10-21T09:00",
+              "end": "2026-10-21T12:00",
+              "movable": false,
+              "priority": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p04",
+      "name": "Dev Nair",
+      "preferences": [
+        {
+          "id": "pref-p04-1",
+          "text": "I'm at DataSummit all day, so that day is out."
+        }
+      ]
+    },
+    {
+      "id": "p05",
+      "name": "Elena Ong"
+    }
+  ],
+  "request": {
+    "id": "r-0003",
+    "organiser_id": "p01",
+    "text": "60-minute design review with Aisha, Dev and Elena on Tuesday or Wednesday",
+    "duration_min": 60,
+    "start_date": "2026-10-20",
+    "end_date": "2026-10-21",
+    "attendees": [
+      {
+        "id": "p01",
+        "role": "required"
+      },
+      {
+        "id": "p04",
+        "role": "required"
+      },
+      {
+        "id": "p05",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-datasummit-2026",
+    "doc-datasummit-2026-draft",
+    "doc-sg-public-holidays-2026"
+  ],
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p01",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-21",
+          "start_time": "09:00",
+          "end_time": "12:00",
+          "kind": "hard",
+          "ref": "e-p01-1"
+        }
+      },
+      {
+        "participant_id": "p04",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-20",
+          "start_time": "09:00",
+          "end_time": "18:00",
+          "kind": "hard",
+          "ref": "doc-datasummit-2026"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-10-21T12:00",
+    "must_lookup": [
+      "doc-datasummit-2026"
+    ],
+    "canaries": []
+  }
+}
