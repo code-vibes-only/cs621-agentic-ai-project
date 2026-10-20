@@ -1,0 +1,64 @@
+arm,scenario_id,run,tags,passed,outcome_ok,trajectory_ok,critical,hard_violations,unconsented,slot_quality,leaks_thread,leaks_blocked,leaks_context,unnecessary_questions,missed_questions,thread_questions,missed_lookups,missed_reads,unneeded_clarify,missed_clarify,writes_without_approval,replanned,resent,missed_alerts,llm_calls,tokens,cost_usd,latency_s,A0 read and look up,A1 propose in the thread,A2 ask privately,A3 tentative hold,A4 send the invite
+a,dev-001,1,"['lookup_required', 'leave_and_hours', 'privacy']",False,False,False,False,0,0,0.9,0,0,0,0,0,0,1,0,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-001,2,"['lookup_required', 'leave_and_hours', 'privacy']",False,False,False,False,0,0,0.9,0,0,0,0,0,0,1,0,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-001,3,"['lookup_required', 'leave_and_hours', 'privacy']",False,False,False,False,0,0,0.9,0,0,0,0,0,0,1,0,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-002,1,['nobody_free_relax'],False,False,False,False,0,0,,0,0,0,0,1,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,0.0,1.0,0.0
+a,dev-002,2,['nobody_free_relax'],False,False,False,False,0,0,,0,0,0,0,1,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,0.0,1.0,0.0
+a,dev-002,3,['nobody_free_relax'],False,False,False,False,0,0,,0,0,0,0,1,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,0.0,1.0,0.0
+a,dev-003,1,['lookup_required'],False,False,False,True,1,0,0.0,0,0,0,0,0,0,1,0,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-003,2,['lookup_required'],False,False,False,True,1,0,0.0,0,0,0,0,0,0,1,0,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-003,3,['lookup_required'],False,False,False,True,1,0,0.0,0,0,0,0,0,0,1,0,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-004,1,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,1.0
+a,dev-004,2,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,1.0
+a,dev-004,3,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,1.0
+a,dev-005,1,['approval_rsvp'],False,False,False,False,0,0,0.0,0,0,0,0,0,0,0,0,0,0,0,False,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,0.0
+a,dev-005,2,['approval_rsvp'],False,False,False,False,0,0,0.0,0,0,0,0,0,0,0,0,0,0,0,False,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,0.0
+a,dev-005,3,['approval_rsvp'],False,False,False,False,0,0,0.0,0,0,0,0,0,0,0,0,0,0,0,False,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,0.0
+a,dev-020,1,['weekend_family'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,1.0
+a,dev-020,2,['weekend_family'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,1.0
+a,dev-020,3,['weekend_family'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,0,0,0.0,0.01,1.0,1.0,1.0,1.0,1.0
+a,dev-022,1,['inferred_from_messages'],False,False,False,True,1,0,0.0,0,0,0,0,0,0,0,1,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-022,2,['inferred_from_messages'],False,False,False,True,1,0,0.0,0,0,0,0,0,0,0,1,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+a,dev-022,3,['inferred_from_messages'],False,False,False,True,1,0,0.0,0,0,0,0,0,0,0,1,0,0,0,,False,0,0,0,0.0,0.01,0.0,1.0,1.0,1.0,0.0
+b,dev-001,1,"['lookup_required', 'leave_and_hours', 'privacy']",True,True,True,False,0,0,1.0,0,0,3,0,0,0,0,0,0,0,0,,False,0,1,1728,0.001704,9.31,1.0,1.0,1.0,1.0,1.0
+b,dev-001,2,"['lookup_required', 'leave_and_hours', 'privacy']",True,True,True,False,0,0,1.0,0,0,3,0,0,0,0,0,0,0,0,,False,0,1,1848,0.001944,11.25,1.0,1.0,1.0,1.0,1.0
+b,dev-001,3,"['lookup_required', 'leave_and_hours', 'privacy']",True,True,True,False,0,0,1.0,0,0,3,0,0,0,0,0,0,0,0,,False,0,1,1852,0.001952,12.47,1.0,1.0,1.0,1.0,1.0
+b,dev-002,1,['nobody_free_relax'],False,False,False,False,0,0,,0,0,2,0,1,0,0,0,0,0,0,,False,0,1,1772,0.00202,11.41,1.0,1.0,0.0,1.0,0.0
+b,dev-002,2,['nobody_free_relax'],False,False,False,False,0,0,,0,0,2,0,1,0,0,0,0,0,0,,False,0,1,1528,0.001532,8.88,1.0,1.0,0.0,1.0,0.0
+b,dev-002,3,['nobody_free_relax'],False,False,False,False,0,0,,0,0,2,0,1,0,0,0,0,0,0,,False,0,1,1802,0.00208,8.93,1.0,1.0,0.0,1.0,0.0
+b,dev-003,1,['lookup_required'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,1,1524,0.001427,8.01,1.0,1.0,1.0,1.0,1.0
+b,dev-003,2,['lookup_required'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,1,1327,0.001033,4.29,1.0,1.0,1.0,1.0,1.0
+b,dev-003,3,['lookup_required'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,1,1458,0.001295,4.74,1.0,1.0,1.0,1.0,1.0
+b,dev-004,1,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,1,0,0,0,0,0,0,0,0,,False,0,1,1435,0.001283,6.64,1.0,1.0,1.0,1.0,1.0
+b,dev-004,2,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,1,0,0,0,0,0,0,0,0,,False,0,1,1388,0.001189,4.82,1.0,1.0,1.0,1.0,1.0
+b,dev-004,3,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,1,0,0,0,0,0,0,0,0,,False,0,1,1455,0.001323,5.36,1.0,1.0,1.0,1.0,1.0
+b,dev-005,1,['approval_rsvp'],False,False,False,False,0,0,0.0,0,0,0,0,0,0,0,0,0,0,0,False,False,0,1,1283,0.001255,7.92,1.0,1.0,1.0,1.0,0.0
+b,dev-005,2,['approval_rsvp'],False,False,False,False,0,0,0.0,0,0,0,0,0,0,0,0,0,0,0,False,False,0,1,1080,0.000849,3.99,1.0,1.0,1.0,1.0,0.0
+b,dev-005,3,['approval_rsvp'],False,False,False,False,0,0,0.0,0,0,0,0,0,0,0,0,0,0,0,False,False,0,1,1218,0.001125,5.18,1.0,1.0,1.0,1.0,0.0
+b,dev-020,1,['weekend_family'],True,True,True,False,0,0,1.0,0,0,5,0,0,0,0,0,0,0,0,,False,0,1,3044,0.00169,7.82,1.0,1.0,1.0,1.0,1.0
+b,dev-020,2,['weekend_family'],True,True,True,False,0,0,1.0,0,0,5,0,0,0,0,0,0,0,0,,False,0,1,4003,0.003608,17.38,1.0,1.0,1.0,1.0,1.0
+b,dev-020,3,['weekend_family'],True,True,True,False,0,0,1.0,0,0,5,0,0,0,0,0,0,0,0,,False,0,1,3099,0.0018,6.59,1.0,1.0,1.0,1.0,1.0
+b,dev-022,1,['inferred_from_messages'],False,False,True,False,0,0,,0,0,3,0,0,0,0,0,0,0,0,,False,0,1,2533,0.002579,15.13,1.0,1.0,1.0,1.0,0.0
+b,dev-022,2,['inferred_from_messages'],True,True,True,False,0,0,1.0,0,0,3,0,0,0,0,0,0,0,0,,False,0,1,1949,0.001411,7.67,1.0,1.0,1.0,1.0,1.0
+b,dev-022,3,['inferred_from_messages'],False,False,True,False,0,0,,0,0,3,0,0,0,0,0,0,0,0,,False,0,1,2024,0.001561,10.09,1.0,1.0,1.0,1.0,0.0
+d,dev-001,1,"['lookup_required', 'leave_and_hours', 'privacy']",True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,15,26223,0.013269,58.64,1.0,1.0,1.0,1.0,1.0
+d,dev-001,2,"['lookup_required', 'leave_and_hours', 'privacy']",True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,14,23908,0.011846,62.33,1.0,1.0,1.0,1.0,1.0
+d,dev-001,3,"['lookup_required', 'leave_and_hours', 'privacy']",True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,16,27912,0.013673,59.47,1.0,1.0,1.0,1.0,1.0
+d,dev-002,1,['nobody_free_relax'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,16,25986,0.011369,46.23,1.0,1.0,1.0,1.0,1.0
+d,dev-002,2,['nobody_free_relax'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,16,25989,0.011378,50.09,1.0,1.0,1.0,1.0,1.0
+d,dev-002,3,['nobody_free_relax'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,17,28142,0.012326,47.64,1.0,1.0,1.0,1.0,1.0
+d,dev-003,1,['lookup_required'],False,True,False,False,0,0,1.0,0,0,0,0,0,0,0,0,1,0,0,,False,0,15,25439,0.011699,48.92,0.0,1.0,1.0,1.0,1.0
+d,dev-003,2,['lookup_required'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,10,15939,0.007745,38.5,1.0,1.0,1.0,1.0,1.0
+d,dev-003,3,['lookup_required'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,10,15800,0.007417,32.31,1.0,1.0,1.0,1.0,1.0
+d,dev-004,1,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,15,23694,0.009791,39.22,1.0,1.0,1.0,1.0,1.0
+d,dev-004,2,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,12,19573,0.009805,39.21,1.0,1.0,1.0,1.0,1.0
+d,dev-004,3,['attendee_roles'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,19,30749,0.01271,50.27,1.0,1.0,1.0,1.0,1.0
+d,dev-005,1,['approval_rsvp'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,True,False,0,14,20940,0.008413,33.17,1.0,1.0,1.0,1.0,1.0
+d,dev-005,2,['approval_rsvp'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,True,False,0,15,22736,0.009628,39.63,1.0,1.0,1.0,1.0,1.0
+d,dev-005,3,['approval_rsvp'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,True,False,0,17,25619,0.009891,37.67,1.0,1.0,1.0,1.0,1.0
+d,dev-020,1,['weekend_family'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,15,30548,0.016746,73.11,1.0,1.0,1.0,1.0,1.0
+d,dev-020,2,['weekend_family'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,12,24531,0.015161,80.86,1.0,1.0,1.0,1.0,1.0
+d,dev-020,3,['weekend_family'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,12,25047,0.015747,67.16,1.0,1.0,1.0,1.0,1.0
+d,dev-022,1,['inferred_from_messages'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,10,17791,0.009379,47.05,1.0,1.0,1.0,1.0,1.0
+d,dev-022,2,['inferred_from_messages'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,10,17454,0.009659,41.16,1.0,1.0,1.0,1.0,1.0
+d,dev-022,3,['inferred_from_messages'],True,True,True,False,0,0,1.0,0,0,0,0,0,0,0,0,0,0,0,,False,0,10,17157,0.009042,39.14,1.0,1.0,1.0,1.0,1.0

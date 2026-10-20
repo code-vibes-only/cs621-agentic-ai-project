@@ -1,7 +1,8 @@
 """One command per job:
 
-    uv run python -m scheduler.eval --arm a --split dev --scenarios dev-001,dev-002 --runs 3 --tag dev-try
+    uv run python -m scheduler.eval --arm d --split dev --scenarios dev-001,dev-002 --runs 3 --tag dev-try
     uv run python -m scheduler.eval --check-model
+    uv run python -m scheduler.eval --report dev-try
 
 Each episode writes one result file under results/<tag>/<arm>/<scenario>/run<k>.json and prints
 the checker's verdict on one line."""
@@ -15,6 +16,7 @@ from scheduler.contracts.scenario import load_split
 from scheduler.eval.arms import ARMS
 from scheduler.eval.checker import grade
 from scheduler.eval.episode import run_episode
+from scheduler.eval.metrics import report
 
 
 def main(argv=None) -> int:
@@ -25,6 +27,7 @@ def main(argv=None) -> int:
     p.add_argument("--runs", type=int, default=1)
     p.add_argument("--tag", default="scratch", help="names the sweep; results go to results/<tag>/")
     p.add_argument("--check-model", action="store_true", help="one tiny call: is the model available, what does it cost?")
+    p.add_argument("--report", metavar="TAG", help="grade every result under results/TAG/ and write report.md")
     args = p.parse_args(argv)
     settings = load_settings()
 
@@ -34,6 +37,9 @@ def main(argv=None) -> int:
                          fake=lambda m: AIMessage(content="ready"))
         print(f"{settings.model} (effort {settings.reasoning_effort}): {reply.content!r}; "
               f"{llm.USAGE['input_tokens']} in / {llm.USAGE['output_tokens']} out tokens; USD {llm.cost_usd():.6f}")
+        return 0
+    if args.report:
+        print(report(settings, args.report))
         return 0
     if not args.arm:
         p.error("--arm is required")

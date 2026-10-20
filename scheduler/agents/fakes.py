@@ -55,3 +55,16 @@ def coordinator(team):
             return reply(("request_approval", {"start": hold["start"], "end": hold["end"]}))
         return reply(("find_slots", {}))
     return fake
+
+
+def single(scenario):
+    """The single call's decision: the best slot that needs nobody's consent, or hand back."""
+    from scheduler.eval.truth import compute
+
+    def fake(messages):
+        truth = compute(scenario)
+        if not truth.free:
+            return reply(("decide", {"hand_back": True, "thread_message": "No slot works for everyone."}))
+        best = max(truth.free, key=lambda s: (truth.utility[s], -truth.free.index(s)))
+        return reply(("decide", {"start": best, "end": truth.ends[best], "thread_message": f"Proposed: {best}."}))
+    return fake
