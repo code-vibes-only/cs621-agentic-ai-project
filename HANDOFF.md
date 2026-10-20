@@ -3,9 +3,10 @@
 The shared state of the project, for team members and for AI agent sessions (Claude Code,
 Codex, Cursor and similar). Read it at the start of a session; update it at the end.
 
-Last updated: **18 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.6. The build is
-one guided solution in 16 steps (proposed, pending team): written, checked and released
-to the team's private guide repo; Kenneth replays it into this repo from step 01.**
+Last updated: **21 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.7. The whole
+build is in this repo, one commit per step (18), tagged `v0.1.0`–`v0.3.0`: a general-purpose
+scheduler with Week 8 guardrails, attack cases, a frozen held-out set and a demo page. Next: the
+team reviews by lane, then runs the held-out sweep (Tue 27 Oct).**
 
 ## How to use this file
 
@@ -40,27 +41,37 @@ to the team's private guide repo; Kenneth replays it into this repo from step 01
 
 ## Current state
 
-- **Repo:** contains `brief.md` (draft v0.6), `work-plan.md` (proposed), `issue-review.md`, `.gitignore`, this file and `AGENTS.md` /
-  `CLAUDE.md`. There is no code, `pyproject.toml` or data yet: they arrive step by step from the
-  guided build (one branch and PR per step).
-- **Build approach (proposed, pending team):**
-  - the steps and a tested reference solution live in a private guide repo,
-    `code-vibes-only/cs621-scheduler-guide` (every team member is invited as a collaborator);
-  - Kenneth replays them here;
-  - each lane owner reviews their steps' PRs.
+- **Repo:** the project docs, plus the full build, one commit per step on `main` (`a4b5578` …
+  `2269de6`), tags `v0.1.0` (step 07), `v0.2.0` (13) and `v0.3.0` (16). 62 tests pass from a clean
+  clone (`uv sync --group demo && uv run pytest`); the Docker image runs the same commands.
+- **Build approach (20 Oct):** built end to end and committed step by step; nobody replays it. The
+  steps (learning material, one per commit, with real outputs) are in the private guide repo
+  `code-vibes-only/cs621-scheduler-guide`. Lane owners review their steps next to the commits; the
+  team improves the product by PR or issue. See [work-plan.md](work-plan.md).
+- **Topic (agreed, reframed 20 Oct):** a general-purpose Agentic Natural Language Scheduler: any
+  number of named calendars per participant, messages as a source the personal agent infers from,
+  slots on any weekday. Scenarios cover work, evenings out and family weekends (about half outside
+  work). Brief v0.7 §0–§3, §16.
+- **Data:** 26 dev scenarios (5 hand-checked) and 33 held-out (frozen at `v0.3.0`, including three
+  privacy probes and three attack cases). Nobody has run an agent on the held-out set.
+- **Week 8 (guardrails):** every check in code records its verdict; caps on calls, tokens, USD and
+  seconds; attack cases graded inverted; `docs/security-review.md`.
+- **Demo:** `uv run --group demo python -m streamlit run scheduler/demo/app.py` replays a saved
+  episode pane by pane (a real dev-022 episode is in `results/demo/`), or runs one live with you
+  approving.
+- **Results so far (dev, real `gpt-5-mini`, mean ± sample SD over 3 runs; files under `results/`):**
+  - seven dev scenarios (`results/dev7/`): our design (d) 0.95 ± 0.08, single call (b)
+    0.62 ± 0.08, free/busy (a) 0.29 ± 0.00; (d) costs about USD 0.011 and 49 s per episode;
+  - privacy, dev-001 and the dev probe (`results/privacy-dev/`): no leak from either arm; the
+    shared-context arm (c) passed 0.33 ± 0.29 against (d)'s 0.83 ± 0.29, failing mostly on
+    over-asking;
+  - attacks, three dev cases (`results/attack-dev/`): no attack worked on either arm; in one run (c)
+    obeyed an injected message and drafted a post of everyone's calendar entries, which the privacy
+    filter blocked.
 
-  See [work-plan.md](work-plan.md).
-- **Topic (agreed):** Agentic Natural Language Scheduler. Workplace meetings are the primary
-  domain; social groups are a small generalisation family.
-- **Design status:** agreed at the team sync on Sat 17 Oct. Every brief §16 row is agreed or
-  overturned; changes need the team's agreement and a new §16 row.
-- **Scope changes at the sync:** no meeting rooms (time slots only); a personal calendar per
-  participant; required/optional attendees; leave reachable if urgent; pre-given consent; RSVP
-  decline handling; a Dockerfile in the skeleton. Stretch: backups, RSVP tentative/no response,
-  multi-timezone.
-- **Provider and budget:** OpenAI, one key per team member, capped at USD 10 per calendar month.
-  No API calls have been made yet and no money has been spent.
-- **Results:** none. Nothing has been measured.
+  These are dev numbers; the deck reports the held-out sweep.
+- **Spend:** building the solution used about USD 1.35 of Kenneth's key (cap USD 2). No team key
+  has been used.
 
 ## Milestones
 
@@ -71,11 +82,11 @@ From brief §14. Internal completion target **Fri 30 Oct**; submission and prese
 |---|---|---|
 | Fri 16 Oct (night) | Team members have read the brief and replied on scope and the open questions | Done: replies came as GitHub issues #1–#8; §15 questions answered at the 17 Oct sync |
 | Sat 17 Oct | Brief and scope agreed; work plan (swimlanes, owners, reviewers) agreed; build starts | Partly done: brief and scope agreed at the 17 Oct sync (brief v0.5); work plan moved to Sun 18 Oct |
-| Mon 19 Oct | Project skeleton with Dockerfile; availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline; first measured cost per episode | Not started |
-| Thu 22 Oct | End to end on the dev set; checker; single-call baseline | Not started |
-| Sat 24 Oct | Held-out set frozen; shared-context ablation; privacy probes | Not started |
+| Mon 19 Oct | Project skeleton with Dockerfile; availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline; first measured cost per episode | Done late (21 Oct), rebuilt for the 20 Oct reframe: tag `v0.1.0` |
+| Thu 22 Oct | End to end on the dev set; checker; single-call baseline | Done early (21 Oct): tag `v0.2.0` |
+| Sat 24 Oct | Held-out set frozen; shared-context ablation; privacy probes | Done early (21 Oct), with guardrails and attack cases: tag `v0.3.0`. The team confirms the promotion threshold and reviews by lane by Sat 24 Oct |
 | Tue 27 Oct | All arms × 3 runs on held-out (split across keys); failure analysis | Not started |
-| Thu 29 Oct | Deck draft (12 slides); demo recorded | Not started |
+| Thu 29 Oct | Deck draft (12 slides); demo recorded | Not started; the demo page is built (step 18) |
 | Fri 30 Oct | Complete | Not started |
 | 31 Oct – 2 Nov | Buffer | — |
 | Tue 3 Nov | Submit and present | — |
@@ -89,21 +100,21 @@ The work plan is in [work-plan.md](work-plan.md). It covers:
 - the gates G1–G3 with tags `v0.1.0` to `v0.3.0`;
 - the budget and the deck slides.
 
-It is **proposed** until the team agrees it and every lane has an owner. Owners are recorded
-there, not here.
+Lanes were assigned at random on 18 Oct; the final pairing, after any swaps, is recorded there,
+not here.
 
 ## Next actions
 
 | # | Action | Owner | Due |
 |---|---|---|---|
-| 1 | Everyone accepts their repo invites: this repo (still pending for zexellew2024, huongiangbui, Andreojk) and the guide repo (sent 18 Oct) | All | Mon 19 Oct morning |
-| 3 | Close issues #1–#8, each with a link to the brief v0.5 commit | Kenneth | After the v0.5 commit |
-| 4 | Agree the new build approach and the A0–A4 rename (brief v0.6 §16), and claim a review lane in the team chat; Kenneth records the owners in work-plan.md | All | Mon 19 Oct morning |
-| 5 | Done 18 Oct: the guide's real-run examples are filled, and the private guide repo is released with the team invited (write access, since the owner is a personal account; `main` protected, so changes come as issues) | Kenneth | Sun 18 Oct |
-| 6 | Replay steps 01–07 (skeleton, contracts, scenarios, sandbox, enumerator, checker, runner and Docker); lane owners review each PR | Kenneth; L1–L5 reviewers | Mon 19 Oct (G1, tag `v0.1.0`) |
-| 7 | Replay steps 08–13 (personal agent, privacy filter, approval gate, coordinator agent, generator, metrics and arm b; the dev sweep) | Kenneth; L3, L4, L2, L5 reviewers | Thu 22 Oct (G2, tag `v0.2.0`) |
-| 8 | Replay steps 14–16 (shared-context arm, held-out freeze, sweep rehearsal) | Kenneth; L5, L2, L3, L1 reviewers | Sat 24 Oct (G3, tag `v0.3.0`) |
-| 9 | When the Week 8 (safety, oversight, governance) lecture is released on 20 Oct, update the brief's §11 Week 8 row | Kenneth | Wed 21 Oct |
+| 1 | Everyone accepts their repo invites: this repo (still pending for zexellew2024, huongiangbui, Andreojk) and the guide repo | All | Thu 22 Oct |
+| 2 | Confirm your assigned review lane or report a swap; Kenneth records the final owners in work-plan.md | All | Thu 22 Oct |
+| 3 | Close issues #1–#8, each with a link to the brief v0.5 commit | Kenneth | Thu 22 Oct |
+| 4 | Review your lane's steps against their commits (guide repo); raise changes as PRs or issues here | L1–L5 owners | Sat 24 Oct |
+| 5 | Confirm the promotion threshold (mean − 1 SD ≥ 90%, zero critical) or agree a change with dev evidence; object to the A0–A4 rename or the reframe if you disagree (brief v0.7 §16) | All | Sat 24 Oct |
+| 6 | Optional: the full dev run (23 × 3 runs × arms b, d, about USD 1; guide step 13 §5) | Any one member | Sat 24 Oct |
+| 7 | Held-out sweep: each member runs `--sweep N --tag heldout-final` on their own key (7 scenarios, about 63 episodes, about USD 0.6, about an hour) and commits the results; anyone runs arm (a) once | All | Tue 27 Oct |
+| 8 | Record the demo: replay `results/demo/` (and an arm (c) run) on the demo page | Kenneth | Thu 29 Oct |
 
 ## Risks and blockers
 
@@ -111,12 +122,10 @@ there, not here.
   Cap model calls per episode and log tokens from the first run.
 - **The model may be deprecated.** OpenAI's page shows a "Deprecated" label on `gpt-5-mini`
   (checked 15 Oct). Confirm availability before freezing the model.
-- **Tight timeline.** It is 12 days to the internal target. Stretch goals are dropped first.
-  Then, in this order if needed: the Streamlit UI (keep the CLI), then the social-group family.
-  Meeting rooms are already out.
-- **More MVP scope since the sync.** Attendee roles, pre-given consent, reachable-if-urgent leave
-  and RSVP declines each need ground truth, scripted events and checker support before the
-  held-out set is frozen on Sat 24 Oct.
+- **The held-out set is frozen.** A change to prompts, code or the threshold now needs dev evidence,
+  a §16 row and a full held-out rerun. Keep changes before the sweep small.
+- **Sweep time.** About an hour per member (our design takes 50–70 s an episode). Start early on
+  Tue 27 Oct.
 - **Public repo.** No keys, no course PDFs or slides, and no real personal data.
 
 ## Comms log
@@ -127,6 +136,7 @@ Messages sent to the team or the instructors. Log a message once it has actually
 |---|---|---|---|
 | 2026-10-15 | Team (all team members) | Team chat | Shared brief v0.4 with a summary. Asked everyone to read it (start with §0), reply on scope and §15 (esp. report vs. deck) and accept the repo invite by Fri 16 Oct night. Brief locked and work split on Sat 17 Oct; build starts that weekend. House rules: public repo, keys in local `.env`; AI tools read AGENTS.md and update HANDOFF.md |
 | 2026-10-17 | Team (all team members) | WhatsApp | Shared the link to `issue-review.md` (issues #1–#8 with suggested defaults). Asked everyone to go through the issues today, and proposed a quick sync tonight (around 23:00) to close them out. After that, Kenneth updates the brief to v0.5, closes the issues and drafts the work plan |
+| 2026-10-18 | Team (all team members) | WhatsApp | Change of plan: one guided solution in 16 steps, which Kenneth replays into the repo one PR per step; lanes are now review ownership. Linked `work-plan.md` and the private guide repo, and asked people to raise changes as issues or PR comments, not pushes. Review lanes randomly assigned (L1 huongiangbui, L2 Andreojk, L3 zexellew2024, L4 Kenneth, L5 NJYao); team may swap among themselves and report the final pairing. By Mon 19 Oct morning: accept both invites (nudged zexellew2024, huongiangbui, Andreojk on the pending project-repo invite), confirm lanes, raise objections to the approach or the A0–A4 rename. G1 Mon 19 Oct |
 
 ## Session log
 
@@ -140,3 +150,5 @@ Newest last. One row per working session, human or agent.
 | 2026-10-18 | Kenneth + Claude Code | Team sync (Sat 17 Oct night) resolved D1–D9 and §15 Q1, Q3–Q7; Kenneth filled in `issue-review.md`. Brief v0.5 records them: 12-slide deck; no meeting rooms; personal calendar per participant; required/optional attendees; leave reachable if urgent; pre-given consent and an acting-agent column in §6; RSVP decline handling; Dockerfile in the skeleton; promotion threshold mean − 1 SD ≥ 90%. Older §16 rows agreed, except environment, highest action and report/deck, which the sync overturned | brief v0.5 (this commit) | Close issues #1–#8 (next action 3); draft the work plan (next action 4) |
 | 2026-10-18 | Kenneth + Claude Code | Committed and pushed brief v0.5. Drafted `work-plan.md` (proposed): five lanes with Consumes/Produces, first tasks and reviewer lanes; contracts C1–C5 frozen at G1; gates G1–G5; budget by lane; 12-slide deck map. Owners left blank for the team to claim. Brief §13 and HANDOFF now point to it | `dad3b3d` brief v0.5; work plan (this commit) | Team claims lanes by Mon 19 Oct morning (next action 4); close issues #1–#8 (next action 3) |
 | 2026-10-18 | Kenneth + Claude Code | Switched the build to one guided solution (`/guided-task`). The steps, contracts and a tested solution live in a private guide repo, not here. The solution is complete: 47 tests pass, the 16 steps align with it exactly, and every example output comes from a real run (about USD 0.48). On the five hand-checked scenarios, 3 runs: our design 1.00 ± 0.00, single call 0.60, free/busy 0.20. Brief v0.6 adds the build-approach row and the A0–A4 rename (both proposed, pending team); work-plan.md is reframed as review ownership | guide released to `code-vibes-only/cs621-scheduler-guide`; brief v0.6 (this commit) | Team agrees the approach and claims review lanes (next action 4); everyone accepts the invites (1); Kenneth replays from step 01 (6) |
+| 2026-10-21 | Kenneth + Claude Code | The team reframed the scheduler as general-purpose (20 Oct). Built end to end: named calendars, messages, any weekday, three settings and three new scenario families; Week 8 guardrails (verdict record, four caps, attack cases graded inverted, security review); a demo page. 18 steps aligned with real outputs; landed here one commit per step with tags `v0.1.0`–`v0.3.0`. Brief v0.7, `work-plan.md` and `AGENTS.md` updated. Real runs about USD 0.87 this session (USD 1.35 in all) | `a4b5578`…`2269de6`; tags; docs (this commit) | Team review by lane and threshold confirmation by Sat 24 Oct (next actions 2, 4, 5); held-out sweep Tue 27 Oct (7) |
+

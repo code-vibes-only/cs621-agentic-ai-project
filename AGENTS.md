@@ -5,9 +5,11 @@ Cursor and others).
 
 ## The project
 
-CS621 group project: an **Agentic Natural Language Scheduler**. Each participant has a private
-personal agent; a coordinator agent schedules workplace meetings from availability summaries
-that never contain reasons. Invites need approval. The full design is in [brief.md](brief.md).
+CS621 group project: an **Agentic Natural Language Scheduler** for any group, at work or outside
+it. Each participant has a private personal agent that reads their calendars and messages; a
+coordinator agent schedules from availability summaries that never contain reasons. Invites need
+approval. The full design is in [brief.md](brief.md); the security review is in
+`docs/security-review.md`.
 
 ## At the start and end of every session
 
