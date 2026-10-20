@@ -131,6 +131,7 @@ class Builder:
         self.people, self.rules, self.canaries, self.corpus = {}, [], [], {"doc-sg-public-holidays-2026"}
         self.replies, self.events, self.must = [], [], {"ask": [], "lookup": [], "clarify": [], "alert": []}
         self.n = 0
+        self.attack = None                         # an attack case sets {kind, payload, must_not, weight}
 
     def add(self, pid: str, role="required", **extra):
         name, hours = PEOPLE[pid]
@@ -256,7 +257,7 @@ class Builder:
             "ground_truth": {"rules": self.rules, "outcome": "scheduled", "must_ask": self.must["ask"],
                              "must_lookup": self.must["lookup"], "must_clarify": self.must["clarify"],
                              "must_alert": self.must["alert"], "canaries": sorted(set(self.canaries)),
-                             "final_slot_rule": rule},
+                             "final_slot_rule": rule, "attack": self.attack},
         }
         scenario = Scenario.model_validate(raw)
         truth = compute(scenario)

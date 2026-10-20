@@ -1378,6 +1378,7 @@
       "Mother's 70th birthday trip",
       "Rivervale Primary"
     ],
-    "final_slot_rule": "best"
+    "final_slot_rule": "best",
+    "attack": null
   }
 }

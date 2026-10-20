@@ -1002,6 +1002,7 @@
       "Hospital follow-up for knee surgery",
       "Kingfisher Primary"
     ],
-    "final_slot_rule": "best"
+    "final_slot_rule": "best",
+    "attack": null
   }
 }

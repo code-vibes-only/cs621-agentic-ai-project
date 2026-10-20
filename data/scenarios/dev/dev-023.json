@@ -1195,6 +1195,7 @@
       "Cedar Clinic",
       "Seagrass Clinic"
     ],
-    "final_slot_rule": "best"
+    "final_slot_rule": "best",
+    "attack": null
   }
 }

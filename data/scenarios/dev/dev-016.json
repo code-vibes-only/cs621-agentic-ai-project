@@ -514,6 +514,7 @@
       "Hospital follow-up for knee surgery",
       "Project Peregrine"
     ],
-    "final_slot_rule": "best"
+    "final_slot_rule": "best",
+    "attack": null
   }
 }

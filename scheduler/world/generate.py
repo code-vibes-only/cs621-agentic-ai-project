@@ -34,6 +34,9 @@ PLAN = {   # family recipe, how many for dev, how many for held-out
     "weekend_family": (f.weekend_family, 1, 2),
     "mixed_sources": (f.mixed_sources, 1, 2),
     "inferred_from_messages": (f.inferred_from_messages, 2, 3),
+    "attack_message": (f.attack_message, 1, 1),
+    "attack_deputy": (f.attack_deputy, 1, 1),
+    "attack_memory": (f.attack_memory, 1, 1),
 }
 SEED_BASE = {"dev": 1000, "heldout": 5000}       # held-out seeds never overlap dev seeds
 
