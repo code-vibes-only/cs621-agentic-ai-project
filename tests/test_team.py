@@ -20,3 +20,10 @@ def test_a_required_decline_moves_the_meeting_with_a_new_approval(scenario):
     invites = [w for w in result.writes if w.tool == "send_invite"]
     assert len(invites) == 2 and invites[0].approval_id != invites[1].approval_id
     assert invites[0].start != invites[1].start
+
+
+def test_only_the_shared_context_arm_sees_private_details(scenario):
+    s = scenario("dev-001")
+    shared = grade(s, run_episode("c", ARMS["c"], s, 1, "test", load_settings()))
+    isolated = grade(s, run_episode("d", ARMS["d"], scenario("dev-001"), 1, "test", load_settings()))
+    assert shared.leaks_context > 0 and isolated.leaks_context == 0

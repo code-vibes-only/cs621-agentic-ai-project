@@ -68,3 +68,22 @@ def single(scenario):
         best = max(truth.free, key=lambda s: (truth.utility[s], -truth.free.index(s)))
         return reply(("decide", {"start": best, "end": truth.ends[best], "thread_message": f"Proposed: {best}."}))
     return fake
+
+
+def shared(scenario):
+    """The shared-context agent: read everyone, look up what the ground truth needed, submit everyone's rules."""
+    gt = scenario.ground_truth
+    ids = [a.id for a in scenario.request.attendees]
+
+    def fake(messages):
+        if not any(isinstance(m, AIMessage) for m in messages):
+            calls = [c for pid in ids for c in [("read_calendar", {"participant_id": pid}), ("get_leave", {"participant_id": pid}),
+                                                ("read_messages", {"participant_id": pid})]]
+            docs = sorted({t.rule.ref for t in gt.rules if (t.rule.ref or "").startswith("doc-")} & set(world.CORPUS))
+            calls += [("search_schedules", {"query": "public holidays"})] + [("search_schedules", {"query": world.CORPUS[d].title}) for d in docs]
+            calls += [("ask_participant", {"participant_id": pid, "question": "Which hours do you mean?"}) for pid in gt.must_clarify]
+            return reply(*calls)
+        return reply(*[("submit_constraints", {"participant_id": pid, "unknown": [],
+                                               "rules": [t.rule.model_dump() for t in gt.rules if t.participant_id == pid]})
+                       for pid in ids])
+    return fake
