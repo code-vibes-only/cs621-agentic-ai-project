@@ -3,7 +3,7 @@
 They let the tests run the whole pipeline (tools, summaries, privacy filter, graph, approval
 gate, checker) at no cost. They read the scenario's ground truth, so a fake run measures the
 plumbing, never the model: no fake result is ever reported as a result."""
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
 from scheduler.sandbox import world
 
@@ -28,4 +28,30 @@ def personal(scenario, pid: str):
                 calls.append(("ask_my_participant", {"question": "Which hours do you mean?"}))
             return reply(*calls)
         return reply(("submit_constraints", {"rules": rules, "unknown": []}))
+    return fake
+
+
+def coordinator(team):
+    """Find slots; propose the top free one; ask the named blockers; replan on refusal or decline."""
+    def fake(messages):
+        last = messages[-1]
+        if isinstance(last, HumanMessage) and "Finish by calling" in last.content:
+            return reply(("hand_back", {"message": "No slot works for everyone in this window."}))
+        if not isinstance(last, ToolMessage):
+            return reply(("find_slots", {}))
+        if last.name == "find_slots":
+            for c in team.candidates:
+                if c.feasible:
+                    return reply(("post_to_thread", {"message": f"Proposed: {c.start} to {c.end[11:]}."}),
+                                 ("place_hold", {"start": c.start, "end": c.end}))
+                waiting = [p for p in c.blockers if team.asked.get(p, 0) == 0]
+                if waiting:
+                    return reply(*[("ask_privately", {"participant_id": p, "start": c.start, "end": c.end,
+                                                      "question": f"Could you free {c.start} to {c.end[11:]}?"})
+                                   for p in waiting])
+            return reply(("hand_back", {"message": "No slot works for everyone in this window."}))
+        if last.name == "place_hold":
+            hold = next(iter(world.HOLDS.values()))
+            return reply(("request_approval", {"start": hold["start"], "end": hold["end"]}))
+        return reply(("find_slots", {}))
     return fake
