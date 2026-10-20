@@ -3,6 +3,7 @@ happened into a result file. The world is reset first, so run 2 never inherits r
 import subprocess
 import time
 
+from scheduler import llm
 from scheduler.config import ROOT, Settings
 from scheduler.contracts.result import EpisodeResult, Outcome
 from scheduler.contracts.scenario import Scenario
@@ -18,14 +19,17 @@ def code_version() -> str:
 
 
 def begin(scenario: Scenario, settings: Settings) -> float:
-    """A fresh sandbox for one episode; returns the start time."""
+    """A fresh sandbox and usage count for one episode; returns the start time."""
     world.reset(scenario, settings.data_dir / "corpus")
+    llm.reset_usage()
     return time.perf_counter()
 
 
 def collect(arm: str, scenario: Scenario, run: int, run_tag: str, settings: Settings, outcome: Outcome,
             started: float, error: str | None = None) -> EpisodeResult:
     """Everything the sandbox recorded during the episode, as one result."""
+    world.guard("budget", "runtime", f"{llm.USAGE['calls']} calls, {llm.USAGE['input_tokens'] + llm.USAGE['output_tokens']} "
+                f"tokens, USD {llm.cost_usd():.4f}", outcome.status != "budget", outcome.message if outcome.status == "budget" else "")
     return EpisodeResult(
         arm=arm, scenario_id=scenario.id, run=run, run_tag=run_tag, model=settings.model,
         reasoning_effort=settings.reasoning_effort, fake_llm=settings.fake_llm,
@@ -33,8 +37,9 @@ def collect(arm: str, scenario: Scenario, run: int, run_tag: str, settings: Sett
         blocked_messages=list(world.BLOCKED), questions=list(world.QUESTIONS),
         summaries=list(world.SUMMARIES), calls=list(world.CALLS), writes=list(world.WRITES),
         timeline=list(world.TIMELINE), guardrails=list(world.GUARDRAILS),
-        coordinator_context="\n".join(world.CONTEXT),
-        latency_s=round(time.perf_counter() - started, 2), error=error)
+        coordinator_context="\n".join(world.CONTEXT), llm_calls=llm.USAGE["calls"],
+        input_tokens=llm.USAGE["input_tokens"], output_tokens=llm.USAGE["output_tokens"],
+        cost_usd=llm.cost_usd(), latency_s=round(time.perf_counter() - started, 2), error=error)
 
 
 def run_episode(arm: str, arm_fn, scenario: Scenario, run: int, run_tag: str, settings: Settings) -> EpisodeResult:
@@ -42,6 +47,8 @@ def run_episode(arm: str, arm_fn, scenario: Scenario, run: int, run_tag: str, se
     error = None
     try:
         outcome = arm_fn(scenario)
+    except llm.BudgetExceeded as e:              # the cap stopped it: a failed episode, on purpose
+        outcome = Outcome(status="budget", message=str(e))
     except Exception as e:                       # the harness must not stop: a crash is a failed episode
         outcome, error = Outcome(status="error", message=str(e)), f"{type(e).__name__}: {e}"
     return collect(arm, scenario, run, run_tag, settings, outcome, started, error)
