@@ -1,0 +1,187 @@
+{
+  "id": "ho-023",
+  "split": "heldout",
+  "tags": [
+    "social"
+  ],
+  "seed": 6602,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-30",
+  "participants": [
+    {
+      "id": "p10",
+      "name": "Jia Wen Low",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p05",
+      "name": "Elena Ong",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p05-1",
+          "text": "I never miss a Harbourside FC home match."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p03",
+      "name": "Chloe Lim",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p03-1",
+          "text": "Tuesdays are out for me."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p02",
+      "name": "Ben Tan",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p02-1",
+              "title": "Choir practice",
+              "start": "2026-11-03T19:00",
+              "end": "2026-11-03T21:00",
+              "movable": false,
+              "priority": "normal",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-ho-023",
+    "organiser_id": "p10",
+    "text": "Dinner for 2 hours one evening next week with Jia, Elena, Chloe, Ben",
+    "duration_min": 120,
+    "start_date": "2026-11-02",
+    "end_date": "2026-11-06",
+    "day_start": "18:00",
+    "day_end": "22:30",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p10",
+        "role": "required"
+      },
+      {
+        "id": "p05",
+        "role": "required"
+      },
+      {
+        "id": "p03",
+        "role": "required"
+      },
+      {
+        "id": "p02",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-harbourside-fixtures-2026",
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p05",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-04",
+          "start_time": "19:30",
+          "end_time": "21:30",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "doc-harbourside-fixtures-2026"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "daily",
+          "weekdays": [
+            "tue"
+          ],
+          "start_time": "00:00",
+          "end_time": "23:59",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "pref-p03-1"
+        }
+      },
+      {
+        "participant_id": "p02",
+        "rule": {
+          "type": "window",
+          "date": "2026-11-03",
+          "start_time": "19:00",
+          "end_time": "21:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p02-1"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-11-02T18:00",
+    "must_ask": [],
+    "must_lookup": [
+      "doc-harbourside-fixtures-2026"
+    ],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [],
+    "final_slot_rule": "best",
+    "attack": null
+  }
+}

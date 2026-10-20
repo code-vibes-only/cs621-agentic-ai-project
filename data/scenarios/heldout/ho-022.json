@@ -1,0 +1,187 @@
+{
+  "id": "ho-022",
+  "split": "heldout",
+  "tags": [
+    "social"
+  ],
+  "seed": 6601,
+  "generator_version": "gen-2",
+  "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
+  "today": "2026-10-23",
+  "participants": [
+    {
+      "id": "p05",
+      "name": "Elena Ong",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p07",
+      "name": "Gwen Koh",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p07-1",
+          "text": "I never miss a Harbourside FC home match."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p03",
+      "name": "Chloe Lim",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [],
+      "leave": [],
+      "messages": [],
+      "preferences": [
+        {
+          "id": "pref-p03-1",
+          "text": "Tuesdays are out for me."
+        }
+      ],
+      "memory": [],
+      "pre_consent": []
+    },
+    {
+      "id": "p14",
+      "name": "Nadia Salleh",
+      "hours_start": "18:00",
+      "hours_end": "23:00",
+      "calendars": [
+        {
+          "name": "personal",
+          "events": [
+            {
+              "id": "e-p14-1",
+              "title": "Choir practice",
+              "start": "2026-10-27T19:00",
+              "end": "2026-10-27T21:00",
+              "movable": false,
+              "priority": "high",
+              "owner": ""
+            }
+          ]
+        }
+      ],
+      "leave": [],
+      "messages": [],
+      "preferences": [],
+      "memory": [],
+      "pre_consent": []
+    }
+  ],
+  "request": {
+    "id": "r-ho-022",
+    "organiser_id": "p05",
+    "text": "Dinner for 2 hours one evening next week with Elena, Gwen, Chloe, Nadia",
+    "duration_min": 120,
+    "start_date": "2026-10-26",
+    "end_date": "2026-10-30",
+    "day_start": "18:00",
+    "day_end": "22:30",
+    "days": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri"
+    ],
+    "attendees": [
+      {
+        "id": "p05",
+        "role": "required"
+      },
+      {
+        "id": "p07",
+        "role": "required"
+      },
+      {
+        "id": "p03",
+        "role": "required"
+      },
+      {
+        "id": "p14",
+        "role": "required"
+      }
+    ]
+  },
+  "corpus": [
+    "doc-harbourside-fixtures-2026",
+    "doc-sg-public-holidays-2026"
+  ],
+  "scripted": {
+    "replies": [],
+    "approval": {
+      "decision": "approve",
+      "note": ""
+    },
+    "events": []
+  },
+  "ground_truth": {
+    "rules": [
+      {
+        "participant_id": "p07",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-29",
+          "start_time": "20:00",
+          "end_time": "22:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "doc-harbourside-fixtures-2026"
+        }
+      },
+      {
+        "participant_id": "p03",
+        "rule": {
+          "type": "daily",
+          "weekdays": [
+            "tue"
+          ],
+          "start_time": "00:00",
+          "end_time": "23:59",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "pref-p03-1"
+        }
+      },
+      {
+        "participant_id": "p14",
+        "rule": {
+          "type": "window",
+          "date": "2026-10-27",
+          "start_time": "19:00",
+          "end_time": "21:00",
+          "kind": "hard",
+          "weight": 0.0,
+          "ref": "e-p14-1"
+        }
+      }
+    ],
+    "outcome": "scheduled",
+    "expected_slot": "2026-10-26T18:00",
+    "must_ask": [],
+    "must_lookup": [
+      "doc-harbourside-fixtures-2026"
+    ],
+    "must_read": [],
+    "must_clarify": [],
+    "must_alert": [],
+    "canaries": [],
+    "final_slot_rule": "best",
+    "attack": null
+  }
+}

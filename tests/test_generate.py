@@ -6,16 +6,17 @@ def test_generator_is_deterministic():
     assert [s.model_dump() for s in first] == [s.model_dump() for s in second]
 
 
-def test_dev_set_has_every_family():
-    dev = generate("dev")
-    assert len(dev) == sum(n for _, n, _ in PLAN.values()) == 21
-    tags = {t for s in dev for t in s.tags}
-    assert {"simple_feasible", "lookup_required", "nobody_free_relax", "pre_consent", "attendee_roles", "memory",
-            "clarify", "infeasible", "privacy_probe", "approval_rsvp", "social", "weekend_family", "mixed_sources",
-            "inferred_from_messages", "injected_message", "thread_deputy", "poisoned_memory"} <= tags
+def test_heldout_covers_every_family_and_differs_from_dev():
+    heldout, dev = generate("heldout"), generate("dev")
+    assert len(heldout) == sum(n for _, _, n in PLAN.values()) == 33
+    assert not {s.seed for s in heldout} & {s.seed for s in dev}
+    tags = {t for s in heldout for t in s.tags}
+    assert {"lookup_required", "nobody_free_relax", "pre_consent", "attendee_roles", "memory", "clarify",
+            "infeasible", "privacy_probe", "approval_rsvp", "social", "weekend_family", "mixed_sources",
+            "inferred_from_messages", "attack"} <= tags
 
 
-def test_dev_set_reaches_beyond_work():
-    dev = generate("dev")
-    assert sum(s.request.days == ["sat", "sun"] for s in dev) >= 5
-    assert sum(s.request.day_start >= "18:00" for s in dev) >= 2
+def test_about_half_of_the_held_out_set_is_outside_work():
+    heldout = generate("heldout")
+    outside = [s for s in heldout if s.request.days == ["sat", "sun"] or s.request.day_start >= "18:00"]
+    assert 0.4 <= len(outside) / len(heldout) <= 0.6
