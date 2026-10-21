@@ -1,0 +1,17 @@
+{
+  "note": "Demo logins for scheduler/demo/app.py only. The people are fictional and these passwords guard nothing: never reuse them anywhere real.",
+  "users": [
+    {"username": "part_time_student1", "password": "aisha-demo-26", "role": "participant", "participant_id": "u01",
+     "about": "Aisha Rahman: part-time student, data analyst by day"},
+    {"username": "part_time_student2", "password": "daniel-demo-26", "role": "participant", "participant_id": "u02",
+     "about": "Daniel Lim: part-time student, shift lead, parent"},
+    {"username": "part_time_student3", "password": "meiling-demo-26", "role": "participant", "participant_id": "u03",
+     "about": "Mei Ling Chua: part-time student, cares for her mother"},
+    {"username": "full_time_student1", "password": "ravi-demo-26", "role": "participant", "participant_id": "u04",
+     "about": "Ravi Kumar: full-time student, part-time barista"},
+    {"username": "lecturer1", "password": "grace-demo-26", "role": "participant", "participant_id": "u05",
+     "about": "Grace Ho: lecturer"},
+    {"username": "demo_admin", "password": "admin-demo-26", "role": "admin", "participant_id": null,
+     "about": "Sees every view and the full trace"}
+  ]
+}
