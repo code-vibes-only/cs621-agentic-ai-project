@@ -56,11 +56,15 @@ uv run python -m scheduler.eval --report heldout-final
 
 ### Demo
 
-A page that replays a saved episode step by step (the request thread, what the coordinator
-sees, what each participant's agent did privately, and every guardrail verdict), or runs one
-live with you as the organiser. It offers dev scenarios only.
+A page that replays a saved episode step by step, or runs one live with the organiser
+approving. Sign in as one of the fictional demo people (logins in `data/demo/users.json`) to see
+only what they would see: the request thread and their private questions, their own calendars
+next to the availability summary their agent shared, and their tasks. Sign in as `demo_admin`
+for everyone's views, the dev scenarios and the full trace (timeline, guardrails, tool calls,
+writes and the leak check). It offers dev and demo scenarios only.
 
 ```sh
+uv run python -m scheduler.demo.seed --runs     # the demo requests, and scripted runs to replay
 uv run --group demo python -m streamlit run scheduler/demo/app.py
 ```
 
