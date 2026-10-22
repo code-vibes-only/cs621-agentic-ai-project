@@ -1,17 +1,15 @@
 {
   "note": "Demo logins for scheduler/demo/app.py only. The people are fictional. Each password is the same as the username and guards nothing.",
   "users": [
-    {"username": "part_time_student1", "password": "part_time_student1", "role": "participant", "participant_id": "u01",
-     "about": "Aisha Rahman: part-time student, data analyst by day"},
-    {"username": "part_time_student2", "password": "part_time_student2", "role": "participant", "participant_id": "u02",
-     "about": "Daniel Lim: part-time student, shift lead, parent"},
-    {"username": "part_time_student3", "password": "part_time_student3", "role": "participant", "participant_id": "u03",
-     "about": "Mei Ling Chua: part-time student, cares for her mother"},
-    {"username": "full_time_student1", "password": "full_time_student1", "role": "participant", "participant_id": "u04",
-     "about": "Ravi Kumar: full-time student, part-time barista"},
-    {"username": "lecturer1", "password": "lecturer1", "role": "participant", "participant_id": "u05",
-     "about": "Grace Ho: lecturer"},
-    {"username": "demo_admin", "password": "demo_admin", "role": "admin", "participant_id": null,
-     "about": "Sees every view and the full trace"}
+    {"username": "alice", "password": "alice", "role": "participant", "participant_id": "alice"},
+    {"username": "bob", "password": "bob", "role": "participant", "participant_id": "bob"},
+    {"username": "charlie", "password": "charlie", "role": "participant", "participant_id": "charlie"},
+    {"username": "damian", "password": "damian", "role": "participant", "participant_id": "damian"},
+    {"username": "eve", "password": "eve", "role": "participant", "participant_id": "eve"},
+    {"username": "felicia", "password": "felicia", "role": "participant", "participant_id": "felicia"},
+    {"username": "george", "password": "george", "role": "participant", "participant_id": "george"},
+    {"username": "hannah", "password": "hannah", "role": "participant", "participant_id": "hannah"},
+    {"username": "ignatius", "password": "ignatius", "role": "participant", "participant_id": "ignatius"},
+    {"username": "jack", "password": "jack", "role": "participant", "participant_id": "jack"}
   ]
 }

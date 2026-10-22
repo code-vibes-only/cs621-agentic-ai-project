@@ -1,189 +1,154 @@
-"""Demo data: five fictional people who log in to the demo page, and three requests between them.
+"""The demo app's starting world: ten fictional people, their calendars and their groups.
 
-    uv run python -m scheduler.demo.seed            # writes data/demo/scenarios/*.json
-    uv run python -m scheduler.demo.seed --runs     # also saves scripted (fake-model) runs to replay
+Alice is in all three circles: her CS621 project group (Bob, Charlie, Damian, Eve), her data
+team at work (Felicia, George), and her friends and family (Hannah, Ignatius, Jack). Everything
+here is invented; the logins are in data/demo/users.json. `store.reset()` loads this world.
 
-Everything here is invented. The scenarios live in data/demo, outside data/scenarios, so the
-evaluation never sees them; the demo page is their only reader. The logins are in
-data/demo/users.json. Ground truth is derived from each person's own data by the rules the
-hand-checked scenarios follow: a fixed event or time away is hard, a movable event needs
-consent, a preference is soft, and a message gives the rules written next to it."""
-import argparse
-import json
-import os
+The week of Mon 26 Oct is set up so the academic demo has a story: every weekday evening is
+blocked for someone, and Wednesday works only if Charlie swaps a cafe shift he marked "ask me first", so the
+coordinator has to ask him privately. The group has met on the last two Wednesdays, Charlie swapped that shift
+once before, and Bob asked his agent to check with him before accepting anything."""
+from datetime import datetime, timedelta
 
-from scheduler.config import load_settings
-from scheduler.contracts.scenario import Scenario
-from scheduler.eval.truth import compute
 from scheduler.timegrid import horizon_days
 
-PEOPLE = {   # id: name, usual hours
-    "u01": ("Aisha Rahman", "08:00", "23:00"),     # part-time student, data analyst by day
-    "u02": ("Daniel Lim", "07:00", "21:00"),       # part-time student, shift lead, parent of Ethan
-    "u03": ("Mei Ling Chua", "08:00", "22:30"),    # part-time student, cares for her mother
-    "u04": ("Ravi Kumar", "09:00", "23:30"),       # full-time student, part-time barista
-    "u05": ("Grace Ho", "08:30", "18:30"),         # lecturer
+CORPUS = ["doc-sg-public-holidays-2026"]   # what the personal agents may look up
+
+PEOPLE = {   # id: name, usual hours, who they are
+    "alice": ("Alice Tan", "08:00", "23:00", "Part-time student, data analyst by day"),
+    "bob": ("Bob Lee", "07:00", "23:00", "Part-time student, logistics shift lead"),
+    "charlie": ("Charlie Ng", "09:00", "23:30", "Full-time student, part-time barista"),
+    "damian": ("Damian Koh", "07:00", "21:00", "Part-time student, parent of Ethan"),
+    "eve": ("Eve Lim", "08:00", "22:30", "Part-time student, cares for her mother"),
+    "felicia": ("Felicia Wong", "08:30", "18:30", "Alice's manager"),
+    "george": ("George Ong", "09:00", "18:00", "Alice's colleague"),
+    "hannah": ("Hannah Tan", "08:00", "22:00", "Alice's sister, a nurse"),
+    "ignatius": ("Ignatius Chua", "09:00", "23:00", "Alice's friend"),
+    "jack": ("Jack Lim", "09:00", "23:00", "Alice's friend"),
 }
-CORPUS = ["doc-sg-public-holidays-2026"]
+
+# person: [(calendar kind, title, start, end, flexibility 0-3: see store.FLEX)]
+EVENTS = {
+    "alice": [("work", "Quarterly data review", "2026-10-26T09:00", "2026-10-26T11:00", 0),
+              ("academic", "Data visualisation seminar", "2026-10-27T19:00", "2026-10-27T22:00", 0),
+              ("personal", "Gym", "2026-10-29T07:00", "2026-10-29T08:00", 2),
+              ("family", "Mum's birthday lunch", "2026-11-01T12:00", "2026-11-01T15:00", 0)],
+    "bob": [("work", "Late shift at the depot", "2026-10-26T14:00", "2026-10-26T22:00", 0),
+            ("personal", "Futsal", "2026-10-31T09:00", "2026-10-31T11:00", 1)],
+    "charlie": [("work", "Cafe shift", "2026-10-28T18:00", "2026-10-28T21:00", 1),
+                ("personal", "Visa interview prep", "2026-10-27T18:00", "2026-10-27T19:30", 0)],
+    "damian": [("family", "Ethan's tuition pick-up", "2026-10-29T18:30", "2026-10-29T19:30", 0),
+               ("family", "Ethan's swimming lesson", "2026-10-31T09:00", "2026-10-31T11:00", 0)],
+    "eve": [("personal", "Away: hospital follow-up with my mother", "2026-10-29T00:00", "2026-10-29T23:59", 0),
+            ("personal", "Away: hospital follow-up with my mother", "2026-10-30T00:00", "2026-10-30T23:59", 0)],
+    "felicia": [("work", "Leadership offsite", "2026-10-29T09:00", "2026-10-29T18:00", 0),
+                ("work", "Budget review with finance", "2026-10-27T12:00", "2026-10-27T13:30", 0)],
+    "george": [("work", "Client workshop", "2026-10-28T09:00", "2026-10-28T13:00", 0),
+               ("personal", "Dentist", "2026-10-26T12:30", "2026-10-26T13:30", 0)],
+    "hannah": [("family", "Kids' piano recital", "2026-10-31T10:00", "2026-10-31T12:00", 0),
+               ("work", "Night shift", "2026-10-30T19:00", "2026-10-30T23:59", 0)],
+    "ignatius": [("club", "Football league match", "2026-10-31T16:00", "2026-10-31T18:00", 0)],
+    "jack": [("work", "Weekend shift", "2026-11-01T10:00", "2026-11-01T18:00", 0),
+             ("personal", "Movie night (flexible)", "2026-10-31T19:00", "2026-10-31T22:00", 3)],
+}
+
+# person: [(calendar kind, title, weekdays, start, end)], for the two weeks from Mon 26 Oct
+ROUTINES = {
+    "alice": [("work", "Office (data team)", "mon tue wed thu fri", "09:00", "12:00"),
+              ("work", "Office (data team)", "mon tue wed thu fri", "14:00", "18:00")],
+    "bob": [("work", "Early shift at the depot", "tue wed thu fri", "07:00", "15:00")],
+    "charlie": [("academic", "Lecture: Machine Learning", "mon wed", "10:00", "12:00"),
+                ("academic", "Lab: Data Engineering", "tue", "14:00", "17:00")],
+    "damian": [("work", "Office", "mon tue wed thu fri", "09:00", "17:00")],
+    "eve": [("work", "Clinic admin shift", "mon tue wed", "09:00", "17:30")],
+    "felicia": [("work", "Leadership sync", "mon", "09:00", "10:00")],
+    "george": [("work", "Stand-up", "mon tue wed thu fri", "09:30", "10:00")],
+    "hannah": [("work", "Ward shift", "mon tue wed thu", "07:00", "19:00")],
+    "ignatius": [("work", "Office", "mon tue wed thu fri", "09:00", "18:00")],
+    "jack": [("work", "Office", "mon tue wed thu", "10:00", "19:00")],
+}
+
+# person: [(what they told their agent, weekdays, start, end, weight)]. The words name the exact days and
+# hours, so their agent never has to ask what they meant. Their agent keeps these as
+# memory notes and turns them into soft rules: the coordinator sees only "prefer not" on those
+# slots, never why, and ranks them below free ones. Weight 0.3 mild, 0.5 normal, 0.8 strong.
+PREFERENCES = {
+    "alice": [("Any day, I'd rather not have meetings after 21:30: I start work early", "mon tue wed thu fri sat sun",
+               "21:30", "23:59", 0.3)],
+    "bob": [("Saturday and Sunday mornings, 08:00 to 12:00, are for futsal: I'd rather not meet then", "sat sun",
+             "08:00", "12:00", 0.5)],
+    "charlie": [("Any day, I'd rather not meet before 10:00: I'm not a morning person", "mon tue wed thu fri sat sun",
+                 "00:00", "10:00", 0.3)],
+    "damian": [("Saturdays and Sundays, all day, are family time with Ethan: only if it really can't be helped", "sat sun",
+                "00:00", "23:59", 0.8)],
+    "eve": [("Sundays, all day, I'm with my mother: I'd rather keep them free", "sun", "00:00", "23:59", 0.8)],
+    "hannah": [("Monday to Thursday after 19:00 I've just finished a ward shift: I'd rather not meet then",
+                "mon tue wed thu", "19:00", "23:59", 0.5)],
+}
+
+# person: what they told their agent once, kept as a memory note: facts, not times.
+NOTES = {
+    "charlie": ["On Wed 14 Oct I swapped my cafe shift with Sam so I could make the CS621 meeting."],
+}
+
+# Who asked their agent never to accept a meeting without checking with them first. Kept in code: their
+# agent tells the coordinator that every time needs their yes, and asks them about the exact time.
+CHECK_FIRST = {"bob": "Don't accept anything without checking with me first."}
+
+# Meetings a group already had: (chat, title, starts, minutes), on every member's Meetings calendar.
+PAST = [("chat-cs621", "CS621 project meeting", ["2026-10-14T19:00", "2026-10-21T19:00"], 90)]
+
+GROUPS = [
+    {"id": "chat-cs621", "title": "CS621 project group", "kind": "group", "tags": ["academic"],
+     "members": ["alice", "bob", "charlie", "damian", "eve"],
+     "messages": [("alice", "Hi all, the deck is due Fri 30 Oct. We should meet next week to split the slides."),
+                  ("charlie", "Evenings work best for me, I'm on campus most days."),
+                  ("damian", "Weeknights are tricky with Ethan, but I'll make it work."),
+                  ("eve", "Earlier in the week is better for me."),
+                  ("bob", "Same, anything but Monday.")]},
+    {"id": "chat-data-team", "title": "Data team", "kind": "group", "tags": ["work"],
+     "members": ["alice", "felicia", "george"],
+     "messages": [("felicia", "Let's do a 30-minute sync on the Q4 dashboard next week."),
+                  ("george", "Lunchtime works for me, mornings are packed."),
+                  ("alice", "I'll get my agent to find a slot.")]},
+    {"id": "chat-friends", "title": "Friends & family", "kind": "group", "tags": ["family"],
+     "members": ["alice", "hannah", "ignatius", "jack"],
+     "messages": [("hannah", "Dinner this weekend? It's been ages."),
+                  ("jack", "I'm in. Sunday I work till 6 though."),
+                  ("ignatius", "Saturday afternoon I have a match, evening is fine.")]},
+    {"id": "chat-alice-bob", "title": "", "kind": "dm", "tags": ["academic"], "members": ["alice", "bob"],
+     "messages": [("bob", "Did you finish the metrics section?"), ("alice", "Almost, I'll push it tonight.")]},
+    {"id": "chat-alice-hannah", "title": "", "kind": "dm", "tags": ["family"], "members": ["alice", "hannah"],
+     "messages": [("hannah", "Don't forget Mum's birthday lunch on Sunday 1 Nov, 12 to 3!"),
+                  ("alice", "Wouldn't miss it.")]},
+    {"id": "chat-badminton", "title": "Badminton kakis", "kind": "group", "tags": ["others"],
+     "members": ["alice", "charlie", "jack"],
+     "messages": [("jack", "Court's booked for next Thursday 8pm, who's coming?")]},
+]
 
 
-def ev(pid: str, n: int, title: str, start: str, end: str, movable: bool = False, priority: str = "normal") -> dict:
-    return {"id": f"e-{pid}-{n}", "title": title, "start": start, "end": end, "movable": movable,
-            "priority": priority, "owner": ""}
-
-
-def window(date: str, start: str, end: str, kind: str = "hard", weight: float = 0.0) -> dict:
-    return {"type": "window", "date": date, "start_time": start, "end_time": end, "kind": kind, "weight": weight}
-
-
-def daily(weekdays: list[str], start: str, end: str, kind: str = "soft", weight: float = 0.0) -> dict:
-    return {"type": "daily", "weekdays": weekdays, "start_time": start, "end_time": end, "kind": kind, "weight": weight}
-
-
-def person(pid: str, calendars: dict[str, list[dict]] | None = None, leave: list[dict] | None = None,
-           messages: list[tuple[dict, list[dict]]] | None = None,
-           preferences: list[tuple[dict, dict]] | None = None) -> tuple[dict, list[dict]]:
-    """A participant's data, and the ground-truth rules it gives."""
-    name, hours_start, hours_end = PEOPLE[pid]
-    rules = []
-    for events in (calendars or {}).values():
-        for e in events:
-            rules.append(window(e["start"][:10], e["start"][11:], e["end"][11:], "movable" if e["movable"] else "hard") | {"ref": e["id"]})
-    for l in leave or []:
-        rules += [window(d, "00:00", "23:59") | {"ref": l["id"]} for d in horizon_days(l["start_date"], l["end_date"])]
-    for m, given in messages or []:
-        rules += [r | {"ref": m["id"]} for r in given]
-    for p, rule in preferences or []:
-        rules.append(rule | {"ref": p["id"]})
-    data = {"id": pid, "name": name, "hours_start": hours_start, "hours_end": hours_end,
-            "calendars": [{"name": n, "events": e} for n, e in (calendars or {}).items()],
-            "leave": leave or [], "messages": [m for m, _ in messages or []],
-            "preferences": [p for p, _ in preferences or []], "memory": [], "pre_consent": []}
-    return data, [{"participant_id": pid, "rule": r} for r in rules]
-
-
-def scenario(sid: str, tags: list[str], notes: str, people: list[tuple[dict, list[dict]]], request: dict,
-             replies: list[dict], canaries: list[str], must_read: list[str] | None = None) -> dict:
-    """Assemble one scenario; the expected slot is the earliest best one the rules give."""
-    s = {"id": sid, "split": "dev", "tags": ["demo"] + tags, "generator_version": "demo-seed", "notes": notes,
-         "today": "2026-10-23", "participants": [p for p, _ in people], "request": request, "corpus": CORPUS,
-         "scripted": {"replies": replies, "approval": {"decision": "approve", "note": ""}, "events": []},
-         "ground_truth": {"rules": [r for _, rs in people for r in rs], "outcome": "hand_back",
-                          "canaries": canaries, "must_read": must_read or []}}
-    truth = compute(Scenario.model_validate(s))
-    if truth.expected:
-        best = next(x for x in truth.expected if truth.utility[x] == truth.best)
-        s["ground_truth"] |= {"outcome": "scheduled", "expected_slot": best,
-                              "must_ask": [] if truth.free else truth.needs[best]}
-    return s
-
-
-def evening_project_meeting() -> dict:
-    """No slot is free for all four; Ravi can swap his Wednesday cafe shift if asked privately."""
-    return scenario(
-        "demo-001", ["evenings", "needs_consent"],
-        "Four part-time students on weekday evenings. Every evening is blocked for someone; Wednesday works "
-        "only if Ravi swaps a movable cafe shift, so the coordinator must ask him privately.",
-        [person("u01", {"work": [ev("u01", 1, "Quarterly data review", "2026-10-26T09:00", "2026-10-26T11:00")],
-                        "school": [ev("u01", 2, "Data visualisation seminar", "2026-10-27T19:00", "2026-10-27T22:00", priority="high")],
-                        "personal": [ev("u01", 3, "Gym", "2026-10-29T07:00", "2026-10-29T08:00", movable=True, priority="low")]}),
-         person("u02", {"work": [ev("u02", 1, "Late shift at the depot", "2026-10-26T14:00", "2026-10-26T22:00")],
-                        "family": [ev("u02", 2, "Ethan's tuition pick-up", "2026-10-29T18:30", "2026-10-29T19:30")]}),
-         person("u03", leave=[{"id": "l-u03-1", "start_date": "2026-10-29", "end_date": "2026-10-30",
-                               "reason": "Hospital follow-up with my mother", "reachable_if_urgent": False}],
-                preferences=[({"id": "pref-u03-1", "text": "On weeknights I'd rather finish by 21:30."},
-                              daily(["mon", "tue", "wed", "thu", "fri"], "21:30", "22:30", "soft", 0.3))]),
-         person("u04", {"work": [ev("u04", 1, "Cafe shift (can swap with Sam)", "2026-10-28T18:00", "2026-10-28T21:00", movable=True, priority="low")],
-                        "personal": [ev("u04", 2, "Visa interview prep with an agent", "2026-10-27T18:00", "2026-10-27T19:30")]})],
-        {"id": "r-demo-001", "organiser_id": "u01",
-         "text": "90-minute group project meeting with Daniel, Mei Ling and Ravi on a weekday evening next week",
-         "duration_min": 90, "start_date": "2026-10-26", "end_date": "2026-10-30", "day_start": "19:00",
-         "day_end": "22:30", "days": ["mon", "tue", "wed", "thu", "fri"],
-         "attendees": [{"id": p, "role": "required"} for p in ("u01", "u02", "u03", "u04")]},
-        [{"participant_id": "u04", "about": "e-u04-1", "answer": "Yes, I can swap that shift with Sam.", "consent": True}],
-        ["Hospital follow-up", "Visa interview", "tuition pick-up"])
-
-
-def weekend_revision() -> dict:
-    """Daniel's Sunday is decided by a message from his wife, not by his calendar."""
-    sat_sun = ["sat", "sun"]
-    return scenario(
-        "demo-002", ["weekends", "inferred_from_messages"],
-        "A weekend revision session over two weekends. Sunday 1 Nov looks free for Daniel on his calendars, "
-        "but a message says he has no car until 2pm, so the answer moves to Sunday 8 Nov.",
-        [person("u01", {"family": [ev("u01", 4, "Cousin's wedding", "2026-10-31T12:00", "2026-10-31T18:00"),
-                                   ev("u01", 5, "Grandma's 80th birthday lunch", "2026-11-08T11:00", "2026-11-08T15:00")]},
-                preferences=[({"id": "pref-u01-1", "text": "On weekends I prefer afternoons."},
-                              daily(sat_sun, "09:00", "12:00", "soft", 0.5))]),
-         person("u02", {"family": [ev("u02", 3, "Family day at Sentosa", "2026-11-07T09:00", "2026-11-07T18:00")]},
-                messages=[({"id": "msg-u02-1", "sender": "Priya", "received": "2026-10-22",
-                            "text": "Reminder: you're taking Ethan to swimming on Saturday 31 Oct, 9 to 11. "
-                                    "And I need the car on Sunday 1 Nov until 2pm."},
-                           [window("2026-10-31", "09:00", "11:00"), window("2026-11-01", "09:00", "14:00")])]),
-         person("u03", {"personal": [ev("u03", 1, "Church", "2026-11-01T09:00", "2026-11-01T11:30"),
-                                     ev("u03", 2, "Church", "2026-11-08T09:00", "2026-11-08T11:30")]}),
-         person("u04", {"work": [ev("u04", 3, "Cafe shift", "2026-10-31T08:00", "2026-10-31T13:00"),
-                                 ev("u04", 4, "Cafe shift", "2026-11-07T08:00", "2026-11-07T13:00")],
-                        "club": [ev("u04", 5, "Harbourside futsal league match", "2026-11-01T15:00", "2026-11-01T17:00")]})],
-        {"id": "r-demo-002", "organiser_id": "u03",
-         "text": "2-hour exam revision session with Aisha, Daniel and Ravi over the next two weekends",
-         "duration_min": 120, "start_date": "2026-10-31", "end_date": "2026-11-08", "day_start": "09:00",
-         "day_end": "18:00", "days": sat_sun,
-         "attendees": [{"id": p, "role": "required"} for p in ("u03", "u01", "u02", "u04")]},
-        [], ["swimming", "Grandma's 80th", "Cousin's wedding"], must_read=["u02"])
-
-
-def lunchtime_consultation() -> dict:
-    """A lecturer at work, a student with a confidential meeting, and an optional attendee."""
-    weekdays = ["mon", "tue", "wed", "thu", "fri"]
-    return scenario(
-        "demo-003", ["work", "optional_attendee"],
-        "A 30-minute consultation over lunch. Wednesday 13:30 suits everyone; Thursday 13:30 would miss "
-        "Ravi, who is optional.",
-        [person("u01", {"work": [ev("u01", 6, "Project Heron steering meeting (confidential)", "2026-10-26T12:00", "2026-10-26T13:00", priority="high"),
-                                 ev("u01", 7, "Team lunch", "2026-10-28T12:00", "2026-10-28T13:30", movable=True, priority="low")]}),
-         person("u05", {"work": [ev("u05", 1, "Thesis supervision", "2026-10-26T13:00", "2026-10-26T14:00"),
-                                 ev("u05", 2, "Faculty board", "2026-10-27T12:00", "2026-10-27T14:00", priority="high"),
-                                 ev("u05", 3, "Lunch with the visiting examiner", "2026-10-29T12:00", "2026-10-29T13:30")]},
-                leave=[{"id": "l-u05-1", "start_date": "2026-10-30", "end_date": "2026-10-30",
-                        "reason": "Conference trip to Melbourne", "reachable_if_urgent": True}],
-                preferences=[({"id": "pref-u05-1", "text": "Not 12:00 to 12:30 if possible, that's my lunch."},
-                              daily(weekdays, "12:00", "12:30", "soft", 0.5))]),
-         person("u04", {"school": [ev("u04", 6, "Statistics tutorial", "2026-10-29T12:00", "2026-10-29T14:00")]})],
-        {"id": "r-demo-003", "organiser_id": "u01",
-         "text": "30-minute project consultation with Prof Ho over lunch next week; Ravi joins if he can",
-         "duration_min": 30, "start_date": "2026-10-26", "end_date": "2026-10-30", "day_start": "12:00",
-         "day_end": "14:00", "days": weekdays,
-         "attendees": [{"id": "u01", "role": "required"}, {"id": "u05", "role": "required"}, {"id": "u04", "role": "optional"}]},
-        [], ["Project Heron", "Melbourne"])
-
-
-SCENARIOS = [evening_project_meeting, weekend_revision, lunchtime_consultation]
-
-
-def main() -> None:
-    p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    p.add_argument("--runs", action="store_true", help="also save fake-model runs of arms (c) and (d) to replay")
-    args = p.parse_args()
-    settings = load_settings()
-    out = settings.data_dir / "demo" / "scenarios"
-    out.mkdir(parents=True, exist_ok=True)
-    built = [Scenario.model_validate(make()) for make in SCENARIOS]
-    for s in built:
-        (out / f"{s.id}.json").write_text(s.model_dump_json(indent=2) + "\n")
-        print(f"{s.id}: {s.ground_truth.outcome} {s.ground_truth.expected_slot or ''}")
-    if args.runs:
-        os.environ["SCHEDULER_FAKE_LLM"] = "1"          # scripted runs only: no key, no cost
-        from scheduler.agents.shared import shared_team
-        from scheduler.contracts.result import save_result
-        from scheduler.eval.arms import team
-        from scheduler.eval.episode import run_episode
-        settings = load_settings()
-        for s in built:
-            for arm, fn in (("d", team), ("c", shared_team)):
-                r = run_episode(arm, fn, s, 1, "demo-seed", settings)
-                print(f"  arm {arm}: {r.outcome.status} {r.outcome.start or ''} -> {save_result(settings.results_dir, r)}")
-
-
-if __name__ == "__main__":
-    main()
+def world_data() -> dict:
+    """Everyone's calendars, events and groups, ready for store.reset()."""
+    from scheduler.demo.store import KINDS
+    people = [{"id": pid, "name": n, "hours_start": hs, "hours_end": he} for pid, (n, hs, he, _) in PEOPLE.items()]
+    calendars = [{"id": f"cal-{pid}-{kind}", "owner": pid, "name": KINDS[kind][0], "kind": kind, "color": KINDS[kind][1]}
+                 for pid in PEOPLE for kind in ("work", "family", "academic", "personal", "meetings")]
+    calendars += [{"id": "cal-ignatius-club", "owner": "ignatius", "name": KINDS["club"][0], "kind": "club",
+                   "color": KINDS["club"][1]}]
+    events = []
+    for pid, items in EVENTS.items():
+        for i, (kind, title, start, end, flex) in enumerate(items):
+            events.append({"id": f"e-{pid}-{i}", "calendar_id": f"cal-{pid}-{kind}", "title": title,
+                           "start": start, "end": end, "flex": int(flex)})
+    for pid, routines in ROUTINES.items():
+        for i, (kind, title, days, start, end) in enumerate(routines):
+            for d in horizon_days("2026-10-26", "2026-11-06", days.split()):
+                events.append({"id": f"e-{pid}-r{i}-{d}", "calendar_id": f"cal-{pid}-{kind}", "title": title,
+                               "start": f"{d}T{start}", "end": f"{d}T{end}", "flex": 0})
+    members = {g["id"]: g["members"] for g in GROUPS}
+    for chat, title, starts, minutes in PAST:
+        for start in starts:
+            end = (datetime.fromisoformat(start) + timedelta(minutes=minutes)).isoformat(timespec="minutes")
+            events += [{"id": f"e-{pid}-past-{start}", "calendar_id": f"cal-{pid}-meetings", "title": title,
+                        "start": start, "end": end, "flex": 0} for pid in members[chat]]
+    return {"people": people, "calendars": calendars, "events": events, "chats": GROUPS, "check_first": list(CHECK_FIRST)}

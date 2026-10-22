@@ -13,6 +13,7 @@ dependencies = [
 [dependency-groups]
 demo = [
     "streamlit==1.65.0",
+    "streamlit-calendar==1.4.0",
 ]
 dev = [
     "pytest==9.1.1",
