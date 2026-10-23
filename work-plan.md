@@ -79,8 +79,8 @@ weekdays, the timeline and the guardrail record).
 |---|---|---|---|
 | G1 | Thu 22 Oct (slipped from Mon 19) | `v0.1.0` | Steps 01–07: contracts frozen; tests and the Docker run pass from a clean clone; 5 hand-checked scenarios; the free/busy baseline and checker agree with the hand-written answers; `gpt-5-mini` checked and a first cost measured |
 | G2 | Thu 22 Oct | `v0.2.0` | Steps 08–13: personal agents + coordinator agent end to end on dev, inside and outside work; every metric reported as mean ± sample SD over 3 runs; the single-call baseline runs |
-| G3 | Thu 22 Oct (lands); review before the sweep | `v0.3.0` | Steps 14–16: the shared-context ablation; guardrails and attack cases; held-out set frozen with the probes and attacks; promotion threshold confirmed by the team before the sweep (done 23 Oct) |
-| Sweep | Tue 27 Oct | — | Step 17 in: each team member runs their held-out subset (`--sweep N`, see README) on their own key and commits the results |
+| G3 | Thu 22 Oct (lands) | `v0.3.0` | Steps 14–16: the shared-context ablation; guardrails and attack cases; held-out set frozen with the probes and attacks; promotion threshold confirmed by the team before the sweep (done 23 Oct) |
+| Sweep | Sat 24 Oct (brought forward from Tue 27 Oct) | — | Step 17 in: each team member runs their held-out subset (README "Held-out sweep": N per member, `--sweep N`) on their own key and opens a pull request with the results; failure analysis by Tue 27 Oct |
 | Done | Fri 30 Oct | — | Deck and demo complete; 31 Oct – 2 Nov is buffer |
 
 **If we slip:** stretch items go first, then the Streamlit UI (keep the CLI), then the social-group

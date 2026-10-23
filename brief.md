@@ -665,8 +665,8 @@ Work back from the internal target of **Fri 30 Oct**, leaving 31 Oct–2 Nov as 
 | Sun 18 Oct | Work plan (lanes, owners, reviewers) agreed; build starts |
 | ~~Mon 19 Oct~~ | Skeleton, contracts, 5 hand-checked scenarios, free/busy baseline (G1). Slipped: rebuilt for the 20 Oct reframe and landed with everything below |
 | Thu 22 Oct | The whole build committed, one commit per step: G1 (`v0.1.0`), G2 (`v0.2.0`: end to end on dev, checker, single-call baseline) and G3 (`v0.3.0`: shared-context ablation, guardrails and attacks, held-out set frozen) |
-| Sat 24 Oct | Team review of the steps by lane done; promotion threshold confirmed (the freeze stands unless the team changes the threshold before the sweep) |
-| Tue 27 Oct | All arms × 3 runs on the held-out set (split across keys); failure analysis done |
+| Sat 24 Oct | Promotion threshold confirmed (done 23 Oct); all arms × 3 runs on the held-out set, split across keys (brought forward from Tue 27 Oct) |
+| Tue 27 Oct | Failure analysis done; lane review of the steps feeds it and the deck |
 | Thu 29 Oct | Deck draft; demo recorded on the demo app (our design; the ablation is on the evaluation slides) |
 | **Fri 30 Oct** | **Complete**: final deck and demo |
 | Sat 31 Oct – Mon 2 Nov | Buffer for contingencies (November caps available for reruns) |
@@ -722,4 +722,5 @@ older row is marked *Overturned*.
 | 2026-10-20 | A demo page (Streamlit, its own dependency group), built last, for the UX recording: it replays a saved episode pane by pane, or runs one live with a person approving. Not part of the evaluation | Overturned on 23 Oct (the demo app); see the 2026-10-23 row. "Own dependency group" and "not part of the evaluation" stand |
 | 2026-10-20 | Build: the solution is built end to end and committed to this repo one commit per step, with tags at the gates; no replay. The steps stay as learning material and the map for lane review; the team improves the finished product by PR or issue. The repo is version history, not the submission | Decided by Kenneth (lead), 20 Oct |
 | 2026-10-23 | The demo is the live demo app from PR #10 (zexellew2024): ten fictional people, group chats, a private agent chat, calendars and a trace replay; a request runs our design, and the organiser approves. It replaces the step-18 page | Agreed (Kenneth, lead; PR #10 merged 23 Oct) |
+| 2026-10-23 | The held-out sweep moves from Tue 27 Oct to Sat 24 Oct, as soon as the threshold was confirmed; the README "Held-out sweep" section is the runbook (member N to subset mapping, pull request per member). Lane review now follows the sweep and feeds the failure analysis; a change it finds needs a full held-out rerun, so it goes to future work unless critical | Decided by Kenneth (lead), 23 Oct |
 | 2026-10-23 | The shared-context ablation (arm (c)) is shown on the deck's evaluation slides, as the result table and the blocked post from the attack runs, not in the demo recording | Decided by Kenneth (lead), 23 Oct |

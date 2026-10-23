@@ -7,7 +7,7 @@ Last updated: **23 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.
 build is in this repo, one commit per step (18), tagged `v0.1.0`–`v0.3.0`: a general-purpose
 scheduler with Week 8 guardrails, attack cases and a frozen held-out set. The demo is now the live
 demo app (PR #10). The threshold and the A0–A4 rename are agreed. Next: lane review (owners to be
-confirmed), the held-out sweep (Tue 27 Oct), then the deck and the recording.**
+confirmed), the held-out sweep (brought forward to Sat 24 Oct), then the deck and the recording.**
 
 ## How to use this file
 
@@ -94,7 +94,7 @@ From brief §14. Internal completion target **Fri 30 Oct**; submission and prese
 | Mon 19 Oct | Project skeleton with Dockerfile; availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline; first measured cost per episode | Done late (21 Oct), rebuilt for the 20 Oct reframe: tag `v0.1.0` |
 | Thu 22 Oct | End to end on the dev set; checker; single-call baseline | Done early (21 Oct): tag `v0.2.0` |
 | Sat 24 Oct | Held-out set frozen; shared-context ablation; privacy probes | Done early (21 Oct), with guardrails and attack cases: tag `v0.3.0`. Threshold reconfirmed by the team (23 Oct); lane review waits for lane owners |
-| Tue 27 Oct | All arms × 3 runs on held-out (split across keys); failure analysis | Not started |
+| Tue 27 Oct | All arms × 3 runs on held-out (split across keys); failure analysis | Sweep brought forward to Sat 24 Oct (runbook: README "Held-out sweep"); failure analysis by Tue 27 Oct |
 | Thu 29 Oct | Deck draft (12 slides); demo recorded | Not started; the demo app is merged (PR #10) |
 | Fri 30 Oct | Complete | Not started |
 | 31 Oct – 2 Nov | Buffer | — |
@@ -118,9 +118,9 @@ not here.
 |---|---|---|---|
 | 1 | Confirm review lanes (or report swaps); Kenneth records the final owners in work-plan.md | All | To be set |
 | 2 | Close issues #1–#8, each with a link to the brief v0.5 commit; close #9 with a link to PR #10 | Kenneth | Sat 24 Oct |
-| 3 | Review your lane's steps against their commits (guide repo); raise changes as PRs or issues here | L1–L5 owners | After lanes are confirmed, before Tue 27 Oct |
+| 3 | Review your lane's steps against their commits (guide repo); raise findings as issues here. After the sweep, findings feed the failure analysis and the deck; a code change would need a full held-out rerun | L1–L5 owners | After lanes are confirmed, by Tue 27 Oct |
 | 4 | Optional: the full dev run (23 × 3 runs × arms b, d, about USD 1; guide step 13 §5) | Any one member | Sun 25 Oct |
-| 5 | Held-out sweep: each member runs `--sweep N --tag heldout-final` on their own key (7 scenarios, about 63 episodes, about USD 0.6, about an hour) and commits the results; anyone runs arm (a) once | All | Tue 27 Oct |
+| 5 | Held-out sweep: each member follows README "Held-out sweep" (their N is in its table): `--sweep N --tag heldout-final` on their own key (about 63 episodes, USD 0.6, an hour), results by pull request from `sweep/N`; Kenneth (member 4) also runs arm (a). Then anyone runs `--report heldout-final` | All | Sat 24 Oct |
 | 6 | Demo follow-ups (small, before the recording): a `.streamlit/config.toml` with `server.address = "localhost"`, so a plain `streamlit run` also stays off the network (the passwords are the usernames); decide whether a real-model request needs a higher call cap than 40; the app patches coordinator internals (`run_tools`, graph state), so re-run the demo tests after any coordinator change | zexellew2024 | Wed 28 Oct |
 | 7 | Record the demo on the demo app (our design, scripted or real model) | Kenneth, zexellew2024 | Thu 29 Oct |
 | 8 | Evaluation slides: the arm (c) vs (d) table from `results/privacy-dev/` and `results/attack-dev/`, and a screenshot of the post arm (c) drafted and the privacy filter blocked (dev-024) | Kenneth | Thu 29 Oct |
@@ -134,7 +134,7 @@ not here.
 - **The held-out set is frozen.** A change to prompts, code or the threshold now needs dev evidence,
   a §16 row and a full held-out rerun. Keep changes before the sweep small.
 - **Sweep time.** About an hour per member (our design takes 50–70 s an episode). Start early on
-  Tue 27 Oct.
+  Sat 24 Oct. A rerun restarts the whole subset and costs the full amount again.
 - **Public repo.** No keys, no course PDFs or slides, and no real personal data.
 
 ## Comms log
@@ -164,3 +164,4 @@ Newest last. One row per working session, human or agent.
 | 2026-10-21 | zexellew2024 + Claude Code | On local branch `feat/demo-tabs`: the demo page gets a sign-in (five fictional people plus `demo_admin`, logins in `data/demo/users.json`) and role-based tabs: chat (the thread, private questions, organiser-only steps), calendars (each person's private calendar next to the availability summary their agent shared, and a group overlap grid for the organiser), tasks, private data, and an admin trace (timeline, guardrails, tool calls, writes, leak check). `scheduler/demo/seed.py` writes three demo requests (evenings with a private consent question, weekends decided by a message, a lunchtime with an optional attendee) to `data/demo/`, outside the evaluation sets, and scripted fake-model runs to `results/demo-seed/`. 66 tests pass. No model spend | (this commit) | Propose it to Kenneth as an issue before a PR (the demo is L1's and the lead's) |
 | 2026-10-23 | zexellew2024 + Claude Code | Still local on `feat/demo-tabs`: the demo becomes one live, shared world (`scheduler/demo/`: `store.py` SQLite state, `seed.py` ten people and three circles, `engine.py` a request as a real run, `analyse.py` Add and analyse, `app.py` Groups and Calendar). A private message to your agent is read (dates from the group chat), sent to the coordinator agent, which acknowledges it; personal agents answer from their calendars and ask their person only what they need: a yes/maybe/no on an "ask me first" item (a 0-3 flexibility scale), "I'll check and get back to you", or a time suggested instead (inside the window it steers the ranking; outside, the search restarts with it and everyone's availability decides). "Check with me before accepting" is enforced in code. Questions asked together run in parallel; the organiser sees who has answered, never why; a run lost in a server restart stops cleanly. When nothing fits, the host's agent widens the search once. Trace adds a timeline (who called which tool, when). Two core changes, to flag to Kenneth: `world.scripted_reply` and `ask_my_participant` pass the agent's question through (no behaviour change for the scripts). The old saved demo scenarios and `results/demo-seed/` are removed. 89 tests pass. Real-model checks about USD 0.05 in all, plus the person's own browser runs | (this commit) | Propose it to Kenneth as an issue before a PR; ideas for him: round 2 re-reads every calendar (a shared board would save about half its calls), and the demo can hit the 40-call cap |
 | 2026-10-23 | Kenneth + Claude Code | Kenneth merged PR #10 (zexellew2024's demo app), so the two rows above are out of date: it is on `main`, not a local branch. Reviewed it: it runs our design through the real agents, and the approval gate still rechecks a time the organiser picks instead; the core change is additive. Checked: 89 tests pass; fake-mode grades on all dev scenarios for arms a–d are the same before and after (only latency differs); a `--no-dev` install has no demo packages. Brief v0.8: A0–A4 agreed, threshold reconfirmed, the demo is the demo app (the 20 Oct demo row overturned), the ablation goes on the evaluation slides. Logged the 21 Oct team message. No model spend | (this commit) | Lanes confirmed (1); sweep Tue 27 Oct (5); demo follow-ups (6); recording and slides Thu 29 Oct (7, 8) |
+| 2026-10-23 | Kenneth + Claude Code | Held-out sweep brought forward to Sat 24 Oct (brief §14, §16). README "Held-out sweep" rewritten as the runbook: member N to subset table (lane order; Kenneth is 4 and also runs arm (a)), key via `uv run --env-file .env`, `--check-model`, a free fake rehearsal, the real run, results by pull request from `sweep/N`, the report; rehearsed in fake mode. Closed issues #1–#8 (decisions in brief §16) and #9 (PR #10). No model spend | (this commit) | Sweep Sat 24 Oct (5); lanes (1); failure analysis Tue 27 Oct |
