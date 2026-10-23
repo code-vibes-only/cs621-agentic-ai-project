@@ -4,7 +4,7 @@ CS621 Agentic AI for Intelligent Autonomy, group project.
 Final deck (12 slides) and presentation: **Tue 3 Nov 2026** (assumed). Internal completion
 target: **Fri 30 Oct 2026**.
 
-Status: **draft v0.7, 21 Oct 2026.** v0.5 recorded the decisions from the team sync on Sat 17
+Status: **draft v0.8, 23 Oct 2026.** v0.5 recorded the decisions from the team sync on Sat 17
 Oct, which settled GitHub issues #1–#8 and the open questions (discussion in
 [issue-review.md](issue-review.md)). v0.6 proposed one guided build and the A0–A4 rename. v0.7
 records the team's decisions of 20 Oct (§16):
@@ -13,6 +13,11 @@ records the team's decisions of 20 Oct (§16):
 - Week 8 (guardrails) is in scope where time allows (§6, §8, §11), and a demo page is built last
   (§12);
 - the solution is built end to end and committed step by step, with no replay (§13).
+
+v0.8 records the team's answers of 23 Oct and the merged demo app (§16): the A0–A4 rename is
+agreed, the promotion threshold is reconfirmed before the sweep, the demo is the live demo app
+from PR #10 (our design only, §3, §12), and the shared-context ablation is shown on the deck's
+evaluation slides rather than in the recording.
 
 Every other row in the [decision log](#16-decision-log) is agreed or overturned. Changing a decision needs the team's agreement and a new row in the
 decision log. Put anything unresolved in [open questions](#15-open-questions). Terms are defined
@@ -187,7 +192,8 @@ measured):
   agreed, the personal agent only alerts its participant. If the participant declines the
   meeting themselves, that is an RSVP decline, handled as above.
 - A simulated request thread plus one private pane per participant: the CLI, and a Streamlit demo
-  page built last (§12).
+  app (§12) where fictional people chat in groups, ask their own agent privately and answer its
+  questions.
 - Three settings in the scenarios: work (weekdays), evenings out, family weekends.
 - **Guardrails (Week 8), where time allows:** every check in code records its verdict; caps on
   model calls, tokens, cost and time; attack cases graded inverted; a written security review.
@@ -558,9 +564,12 @@ Change one thing at a time between arms: same model, settings, corpus, enumerato
 - **OpenAI** as the LLM provider, using the course-provided keys.
 - JSON sandbox: named calendars, time away, messages, holds, invites, a write log, a timeline
   and a guardrail record.
-- A CLI first, and a Streamlit demo page built last, in its own dependency group: one pane per
-  participant plus the request thread, the coordinator's view and the guardrails. It replays a
-  saved episode for the UX recording, or runs one live with a person approving.
+- A CLI first, and a Streamlit demo app built last, in its own dependency group (PR #10): ten
+  fictional people in three circles, with group chats, a private "My agent" chat per group,
+  calendars, actions and a trace page that replays any request step by step. A request is a
+  real run of our design (personal agents and coordinator agent); people answer their own
+  agent's questions and the organiser approves the time. Scripted agents by default, at no cost;
+  the real model on the person's own key when turned on. Not part of the evaluation.
 - API keys live in each team member's local `.env` and are **never committed**. This repo is
   public.
 
@@ -658,7 +667,7 @@ Work back from the internal target of **Fri 30 Oct**, leaving 31 Oct–2 Nov as 
 | Thu 22 Oct | The whole build committed, one commit per step: G1 (`v0.1.0`), G2 (`v0.2.0`: end to end on dev, checker, single-call baseline) and G3 (`v0.3.0`: shared-context ablation, guardrails and attacks, held-out set frozen) |
 | Sat 24 Oct | Team review of the steps by lane done; promotion threshold confirmed (the freeze stands unless the team changes the threshold before the sweep) |
 | Tue 27 Oct | All arms × 3 runs on the held-out set (split across keys); failure analysis done |
-| Thu 29 Oct | Deck draft; demo recorded (replay of a saved real episode) |
+| Thu 29 Oct | Deck draft; demo recorded on the demo app (our design; the ablation is on the evaluation slides) |
 | **Fri 30 Oct** | **Complete**: final deck and demo |
 | Sat 31 Oct – Mon 2 Nov | Buffer for contingencies (November caps available for reruns) |
 | Tue 3 Nov | Submit and present |
@@ -703,12 +712,14 @@ older row is marked *Overturned*.
 | 2026-10-17 | Multi-timezone meetings are out of the MVP; a stretch goal after Sat 24 Oct, only if ahead of plan (D9, issue #8) | Agreed by team (17 Oct sync) |
 | 2026-10-17 | External schedules are synthetic; calendars change during an episode through scripted events; easy, stable real sources (e.g. Singapore public holidays) are used as dated snapshots (Q3) | Agreed by team (17 Oct sync) |
 | 2026-10-17 | The coordinator agent sees each participant's availability summary, not only per-slot counts (Q4) | Agreed by team (17 Oct sync) |
-| 2026-10-17 | Promotion threshold for an action class: mean − 1 SD ≥ 90% pass rate and zero critical violations; tunable until the held-out set is frozen (Q5) | Agreed by team (17 Oct sync) |
+| 2026-10-17 | Promotion threshold for an action class: mean − 1 SD ≥ 90% pass rate and zero critical violations; tunable until the held-out set is frozen (Q5) | Agreed by team (17 Oct sync); reconfirmed 23 Oct, before the sweep |
 | 2026-10-17 | User-experience claims are described, not measured (Q6) | Agreed by team (17 Oct sync) |
 | 2026-10-17 | No meeting rooms in the MVP; time slots only (Q7) | Agreed by team (17 Oct sync) |
 | 2026-10-18 | Build: one guided solution in 16 steps, replayed by Kenneth into this repo (one branch and PR per step, tags at the gates); lanes become review ownership of sections of the steps; the team reviews centrally | Superseded on 20 Oct (no replay); see the 2026-10-20 row |
-| 2026-10-18 | The action classes in §6 are renamed A0–A4, mapped to the course's autonomy levels, so they are not confused with week 1's L1–L5 | Proposed (Kenneth), pending team |
+| 2026-10-18 | The action classes in §6 are renamed A0–A4, mapped to the course's autonomy levels, so they are not confused with week 1's L1–L5 | Agreed by team (23 Oct, no objections) |
 | 2026-10-20 | The scheduler is general-purpose, not workplace-first: any number of named calendars per participant (work is one), messages as a source the personal agent infers availability from (synthetic and sandboxed), slots on any weekday the request allows, usual hours instead of working hours, time away instead of leave. Scenarios cover work, evenings out and family weekends, about half outside work. The architecture and the availability summary are unchanged | Agreed by team (20 Oct) |
 | 2026-10-20 | Week 8 (guardrails) is in scope where time allows, with weeks 1–7 the focus: every check in code records its verdict; caps on model calls, tokens, cost and time; attack cases graded inverted, run 5 times in the held-out sweep; a written security review | Agreed by team (20 Oct) |
-| 2026-10-20 | A demo page (Streamlit, its own dependency group), built last, for the UX recording: it replays a saved episode pane by pane, or runs one live with a person approving. Not part of the evaluation | Agreed by team (20 Oct) |
+| 2026-10-20 | A demo page (Streamlit, its own dependency group), built last, for the UX recording: it replays a saved episode pane by pane, or runs one live with a person approving. Not part of the evaluation | Overturned on 23 Oct (the demo app); see the 2026-10-23 row. "Own dependency group" and "not part of the evaluation" stand |
 | 2026-10-20 | Build: the solution is built end to end and committed to this repo one commit per step, with tags at the gates; no replay. The steps stay as learning material and the map for lane review; the team improves the finished product by PR or issue. The repo is version history, not the submission | Decided by Kenneth (lead), 20 Oct |
+| 2026-10-23 | The demo is the live demo app from PR #10 (zexellew2024): ten fictional people, group chats, a private agent chat, calendars and a trace replay; a request runs our design, and the organiser approves. It replaces the step-18 page | Agreed (Kenneth, lead; PR #10 merged 23 Oct) |
+| 2026-10-23 | The shared-context ablation (arm (c)) is shown on the deck's evaluation slides, as the result table and the blocked post from the attack runs, not in the demo recording | Decided by Kenneth (lead), 23 Oct |

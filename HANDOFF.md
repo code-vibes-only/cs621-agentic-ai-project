@@ -3,10 +3,11 @@
 The shared state of the project, for team members and for AI agent sessions (Claude Code,
 Codex, Cursor and similar). Read it at the start of a session; update it at the end.
 
-Last updated: **21 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.7. The whole
+Last updated: **23 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.8. The whole
 build is in this repo, one commit per step (18), tagged `v0.1.0`–`v0.3.0`: a general-purpose
-scheduler with Week 8 guardrails, attack cases, a frozen held-out set and a demo page. Next: the
-team reviews by lane, then runs the held-out sweep (Tue 27 Oct).**
+scheduler with Week 8 guardrails, attack cases and a frozen held-out set. The demo is now the live
+demo app (PR #10). The threshold and the A0–A4 rename are agreed. Next: lane review (owners to be
+confirmed), the held-out sweep (Tue 27 Oct), then the deck and the recording.**
 
 ## How to use this file
 
@@ -42,12 +43,14 @@ team reviews by lane, then runs the held-out sweep (Tue 27 Oct).**
 ## Current state
 
 - **Repo:** the project docs, plus the full build, one commit per step on `main` (`a4b5578` …
-  `2269de6`), tags `v0.1.0` (step 07), `v0.2.0` (13) and `v0.3.0` (16). 62 tests pass from a clean
-  clone (`uv sync --group demo && uv run pytest`); the Docker image runs the same commands.
+  `2269de6`), tags `v0.1.0` (step 07), `v0.2.0` (13) and `v0.3.0` (16), then PR #10 (the demo app,
+  merge `b40d476`). 89 tests pass (`uv sync --group demo && SCHEDULER_FAKE_LLM=1 uv run pytest`); the
+  Docker image runs the same commands and installs no demo packages.
 - **Build approach (20 Oct):** built end to end and committed step by step; nobody replays it. The
   steps (learning material, one per commit, with real outputs) are in the private guide repo
   `code-vibes-only/cs621-scheduler-guide`. Lane owners review their steps next to the commits; the
-  team improves the product by PR or issue. See [work-plan.md](work-plan.md).
+  team improves the product by PR or issue. The guide stays at the hand-over state (step 18);
+  changes since then, such as PR #10, are recorded in this repo only. See [work-plan.md](work-plan.md).
 - **Topic (agreed, reframed 20 Oct):** a general-purpose Agentic Natural Language Scheduler: any
   number of named calendars per participant, messages as a source the personal agent infers from,
   slots on any weekday. Scenarios cover work, evenings out and family weekends (about half outside
@@ -56,13 +59,15 @@ team reviews by lane, then runs the held-out sweep (Tue 27 Oct).**
   privacy probes and three attack cases). Nobody has run an agent on the held-out set.
 - **Week 8 (guardrails):** every check in code records its verdict; caps on calls, tokens, USD and
   seconds; attack cases graded inverted; `docs/security-review.md`.
-- **Demo:** `uv run --group demo python -m streamlit run scheduler/demo/app.py` replays a saved
-  episode pane by pane (a real dev-022 episode is in `results/demo/`), or runs one live with you
-  approving. On branch `feat/demo-tabs` (local, not yet proposed to the team): a live, shared demo
-  world instead (`run-demo.bat`, or the command above): ten fictional people in three circles,
-  group chats with a private "My agent" chat each, calendars, Actions, and a trace with a
-  timeline. A request runs the real personal agents and coordinator agent; people answer their
-  own agent's questions. "Enable model calls" is off by default (scripted agents, no cost).
+- **Demo (PR #10 by zexellew2024, merged 23 Oct):** the demo app (README "Demo"; `run-demo.bat`
+  on Windows). Ten fictional people in three circles, with group chats, a private "My agent" chat
+  each, calendars, Actions, and a trace page that replays any request with a timeline. A request
+  runs our design (the real personal agents and coordinator agent); people answer their own
+  agent's questions, and the organiser approves through the same approval gate. "Enable model
+  calls" is off by default (scripted agents, no cost). It shows our design only: the
+  shared-context ablation goes on the evaluation slides. The step-18 replay page is gone;
+  `results/demo/` (a real dev-022 episode) stays as evidence. Checked on 23 Oct: the evaluation
+  grades the same before and after the PR (fake mode, all dev scenarios, arms a–d).
 - **Results so far (dev, real `gpt-5-mini`, mean ± sample SD over 3 runs; files under `results/`):**
   - seven dev scenarios (`results/dev7/`): our design (d) 0.95 ± 0.08, single call (b)
     0.62 ± 0.08, free/busy (a) 0.29 ± 0.00; (d) costs about USD 0.011 and 49 s per episode;
@@ -88,9 +93,9 @@ From brief §14. Internal completion target **Fri 30 Oct**; submission and prese
 | Sat 17 Oct | Brief and scope agreed; work plan (swimlanes, owners, reviewers) agreed; build starts | Partly done: brief and scope agreed at the 17 Oct sync (brief v0.5); work plan moved to Sun 18 Oct |
 | Mon 19 Oct | Project skeleton with Dockerfile; availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline; first measured cost per episode | Done late (21 Oct), rebuilt for the 20 Oct reframe: tag `v0.1.0` |
 | Thu 22 Oct | End to end on the dev set; checker; single-call baseline | Done early (21 Oct): tag `v0.2.0` |
-| Sat 24 Oct | Held-out set frozen; shared-context ablation; privacy probes | Done early (21 Oct), with guardrails and attack cases: tag `v0.3.0`. The team confirms the promotion threshold and reviews by lane by Sat 24 Oct |
+| Sat 24 Oct | Held-out set frozen; shared-context ablation; privacy probes | Done early (21 Oct), with guardrails and attack cases: tag `v0.3.0`. Threshold reconfirmed by the team (23 Oct); lane review waits for lane owners |
 | Tue 27 Oct | All arms × 3 runs on held-out (split across keys); failure analysis | Not started |
-| Thu 29 Oct | Deck draft (12 slides); demo recorded | Not started; the demo page is built (step 18) |
+| Thu 29 Oct | Deck draft (12 slides); demo recorded | Not started; the demo app is merged (PR #10) |
 | Fri 30 Oct | Complete | Not started |
 | 31 Oct – 2 Nov | Buffer | — |
 | Tue 3 Nov | Submit and present | — |
@@ -111,14 +116,14 @@ not here.
 
 | # | Action | Owner | Due |
 |---|---|---|---|
-| 1 | Everyone accepts their repo invites: this repo (still pending for zexellew2024, huongiangbui, Andreojk) and the guide repo | All | Thu 22 Oct |
-| 2 | Confirm your assigned review lane or report a swap; Kenneth records the final owners in work-plan.md | All | Thu 22 Oct |
-| 3 | Close issues #1–#8, each with a link to the brief v0.5 commit | Kenneth | Thu 22 Oct |
-| 4 | Review your lane's steps against their commits (guide repo); raise changes as PRs or issues here | L1–L5 owners | Sat 24 Oct |
-| 5 | Confirm the promotion threshold (mean − 1 SD ≥ 90%, zero critical) or agree a change with dev evidence; object to the A0–A4 rename or the reframe if you disagree (brief v0.7 §16) | All | Sat 24 Oct |
-| 6 | Optional: the full dev run (23 × 3 runs × arms b, d, about USD 1; guide step 13 §5) | Any one member | Sat 24 Oct |
-| 7 | Held-out sweep: each member runs `--sweep N --tag heldout-final` on their own key (7 scenarios, about 63 episodes, about USD 0.6, about an hour) and commits the results; anyone runs arm (a) once | All | Tue 27 Oct |
-| 8 | Record the demo: replay `results/demo/` (and an arm (c) run) on the demo page | Kenneth | Thu 29 Oct |
+| 1 | Confirm review lanes (or report swaps); Kenneth records the final owners in work-plan.md | All | To be set |
+| 2 | Close issues #1–#8, each with a link to the brief v0.5 commit; close #9 with a link to PR #10 | Kenneth | Sat 24 Oct |
+| 3 | Review your lane's steps against their commits (guide repo); raise changes as PRs or issues here | L1–L5 owners | After lanes are confirmed, before Tue 27 Oct |
+| 4 | Optional: the full dev run (23 × 3 runs × arms b, d, about USD 1; guide step 13 §5) | Any one member | Sun 25 Oct |
+| 5 | Held-out sweep: each member runs `--sweep N --tag heldout-final` on their own key (7 scenarios, about 63 episodes, about USD 0.6, about an hour) and commits the results; anyone runs arm (a) once | All | Tue 27 Oct |
+| 6 | Demo follow-ups (small, before the recording): a `.streamlit/config.toml` with `server.address = "localhost"`, so a plain `streamlit run` also stays off the network (the passwords are the usernames); decide whether a real-model request needs a higher call cap than 40; the app patches coordinator internals (`run_tools`, graph state), so re-run the demo tests after any coordinator change | zexellew2024 | Wed 28 Oct |
+| 7 | Record the demo on the demo app (our design, scripted or real model) | Kenneth, zexellew2024 | Thu 29 Oct |
+| 8 | Evaluation slides: the arm (c) vs (d) table from `results/privacy-dev/` and `results/attack-dev/`, and a screenshot of the post arm (c) drafted and the privacy filter blocked (dev-024) | Kenneth | Thu 29 Oct |
 
 ## Risks and blockers
 
@@ -141,6 +146,7 @@ Messages sent to the team or the instructors. Log a message once it has actually
 | 2026-10-15 | Team (all team members) | Team chat | Shared brief v0.4 with a summary. Asked everyone to read it (start with §0), reply on scope and §15 (esp. report vs. deck) and accept the repo invite by Fri 16 Oct night. Brief locked and work split on Sat 17 Oct; build starts that weekend. House rules: public repo, keys in local `.env`; AI tools read AGENTS.md and update HANDOFF.md |
 | 2026-10-17 | Team (all team members) | WhatsApp | Shared the link to `issue-review.md` (issues #1–#8 with suggested defaults). Asked everyone to go through the issues today, and proposed a quick sync tonight (around 23:00) to close them out. After that, Kenneth updates the brief to v0.5, closes the issues and drafts the work plan |
 | 2026-10-18 | Team (all team members) | WhatsApp | Change of plan: one guided solution in 16 steps, which Kenneth replays into the repo one PR per step; lanes are now review ownership. Linked `work-plan.md` and the private guide repo, and asked people to raise changes as issues or PR comments, not pushes. Review lanes randomly assigned (L1 huongiangbui, L2 Andreojk, L3 zexellew2024, L4 Kenneth, L5 NJYao); team may swap among themselves and report the final pairing. By Mon 19 Oct morning: accept both invites (nudged zexellew2024, huongiangbui, Andreojk on the pending project-repo invite), confirm lanes, raise objections to the approach or the A0–A4 rename. G1 Mon 19 Oct |
+| 2026-10-21 | Team (all team members) | WhatsApp | The whole build is in the repo, one commit per step, tags `v0.1.0`–`v0.3.0`; nobody replays. Summarised the general-purpose reframe, Week 8 guardrails and the demo page; linked the repo and the guide. Asked: accept both invites and confirm lanes by Thu 22 Oct; review lanes, confirm the threshold and object to the A0–A4 rename by Sat 24 Oct; the held-out sweep on Tue 27 Oct. Replies by 23 Oct: invites accepted, threshold agreed, no objection to A0–A4; lanes to be confirmed later |
 
 ## Session log
 
@@ -157,3 +163,4 @@ Newest last. One row per working session, human or agent.
 | 2026-10-21 | Kenneth + Claude Code | The team reframed the scheduler as general-purpose (20 Oct). Built end to end: named calendars, messages, any weekday, three settings and three new scenario families; Week 8 guardrails (verdict record, four caps, attack cases graded inverted, security review); a demo page. 18 steps aligned with real outputs; landed here one commit per step with tags `v0.1.0`–`v0.3.0`. Brief v0.7, `work-plan.md` and `AGENTS.md` updated. Real runs about USD 0.87 this session (USD 1.35 in all) | `a4b5578`…`2269de6`; tags; docs (this commit) | Team review by lane and threshold confirmation by Sat 24 Oct (next actions 2, 4, 5); held-out sweep Tue 27 Oct (7) |
 | 2026-10-21 | zexellew2024 + Claude Code | On local branch `feat/demo-tabs`: the demo page gets a sign-in (five fictional people plus `demo_admin`, logins in `data/demo/users.json`) and role-based tabs: chat (the thread, private questions, organiser-only steps), calendars (each person's private calendar next to the availability summary their agent shared, and a group overlap grid for the organiser), tasks, private data, and an admin trace (timeline, guardrails, tool calls, writes, leak check). `scheduler/demo/seed.py` writes three demo requests (evenings with a private consent question, weekends decided by a message, a lunchtime with an optional attendee) to `data/demo/`, outside the evaluation sets, and scripted fake-model runs to `results/demo-seed/`. 66 tests pass. No model spend | (this commit) | Propose it to Kenneth as an issue before a PR (the demo is L1's and the lead's) |
 | 2026-10-23 | zexellew2024 + Claude Code | Still local on `feat/demo-tabs`: the demo becomes one live, shared world (`scheduler/demo/`: `store.py` SQLite state, `seed.py` ten people and three circles, `engine.py` a request as a real run, `analyse.py` Add and analyse, `app.py` Groups and Calendar). A private message to your agent is read (dates from the group chat), sent to the coordinator agent, which acknowledges it; personal agents answer from their calendars and ask their person only what they need: a yes/maybe/no on an "ask me first" item (a 0-3 flexibility scale), "I'll check and get back to you", or a time suggested instead (inside the window it steers the ranking; outside, the search restarts with it and everyone's availability decides). "Check with me before accepting" is enforced in code. Questions asked together run in parallel; the organiser sees who has answered, never why; a run lost in a server restart stops cleanly. When nothing fits, the host's agent widens the search once. Trace adds a timeline (who called which tool, when). Two core changes, to flag to Kenneth: `world.scripted_reply` and `ask_my_participant` pass the agent's question through (no behaviour change for the scripts). The old saved demo scenarios and `results/demo-seed/` are removed. 89 tests pass. Real-model checks about USD 0.05 in all, plus the person's own browser runs | (this commit) | Propose it to Kenneth as an issue before a PR; ideas for him: round 2 re-reads every calendar (a shared board would save about half its calls), and the demo can hit the 40-call cap |
+| 2026-10-23 | Kenneth + Claude Code | Kenneth merged PR #10 (zexellew2024's demo app), so the two rows above are out of date: it is on `main`, not a local branch. Reviewed it: it runs our design through the real agents, and the approval gate still rechecks a time the organiser picks instead; the core change is additive. Checked: 89 tests pass; fake-mode grades on all dev scenarios for arms a–d are the same before and after (only latency differs); a `--no-dev` install has no demo packages. Brief v0.8: A0–A4 agreed, threshold reconfirmed, the demo is the demo app (the 20 Oct demo row overturned), the ablation goes on the evaluation slides. Logged the 21 Oct team message. No model spend | (this commit) | Lanes confirmed (1); sweep Tue 27 Oct (5); demo follow-ups (6); recording and slides Thu 29 Oct (7, 8) |

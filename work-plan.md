@@ -1,9 +1,10 @@
 # Work plan
 
-Status: **updated 21 Oct 2026** for the team's 20 Oct decisions (brief v0.7 §16): the scheduler
-is general-purpose, Week 8 guardrails are in, a demo page is built last, and the build lands as
-one commit per step with no replay. It replaced the 18 Oct draft that had each lane build its own
-part in parallel.
+Status: **updated 23 Oct 2026** (brief v0.8 §16). The 20 Oct decisions stand: the scheduler is
+general-purpose, Week 8 guardrails are in, and the build landed as one commit per step with no
+replay. Since then: the demo is the live demo app from PR #10 (zexellew2024); the threshold and
+the A0–A4 rename are agreed; lane owners are still to be confirmed. It replaced the 18 Oct draft
+that had each lane build its own part in parallel.
 
 **Why it changed.** Most of the build depends on the step before it:
 - the contracts come first;
@@ -38,6 +39,7 @@ state and next actions are in [HANDOFF.md](HANDOFF.md).
 | L4 Coordinator and control | The enumerator, the approval gate, the coordinator agent, the caps and guardrails | 05 Enumerator · 10 Approval gate · 11 Coordinator agent · 15 (caps, guardrails) | Kenneth |
 | L5 Evaluation and baselines | The checker, the baselines and ablation, the metrics and attack report, the sweep results | 06 Checker and free/busy · 13 Metrics and single-call baseline · 14 Shared-context ablation | NJYao (assigned) |
 | Lead (Kenneth, on top of L4) | Lands the build, runs the gates, assembles the deck and the demo recording | all · 18 (what the demo shows) | Kenneth |
+| Demo app (after hand-over) | The demo app from PR #10: `scheduler/demo/` (engine, store, pages), its tests and `run-demo.bat`. Not in the guide: review it from the PR | PR #10 | zexellew2024 (author), with Kenneth for the recording |
 
 ## How a review works
 
@@ -77,8 +79,8 @@ weekdays, the timeline and the guardrail record).
 |---|---|---|---|
 | G1 | Thu 22 Oct (slipped from Mon 19) | `v0.1.0` | Steps 01–07: contracts frozen; tests and the Docker run pass from a clean clone; 5 hand-checked scenarios; the free/busy baseline and checker agree with the hand-written answers; `gpt-5-mini` checked and a first cost measured |
 | G2 | Thu 22 Oct | `v0.2.0` | Steps 08–13: personal agents + coordinator agent end to end on dev, inside and outside work; every metric reported as mean ± sample SD over 3 runs; the single-call baseline runs |
-| G3 | Thu 22 Oct (lands); review by Sat 24 Oct | `v0.3.0` | Steps 14–16: the shared-context ablation; guardrails and attack cases; held-out set frozen with the probes and attacks; promotion threshold confirmed by the team before the sweep |
-| Sweep | Tue 27 Oct | — | Steps 17–18 in: each team member runs their held-out subset (`--sweep N`, see README) on their own key and commits the results |
+| G3 | Thu 22 Oct (lands); review before the sweep | `v0.3.0` | Steps 14–16: the shared-context ablation; guardrails and attack cases; held-out set frozen with the probes and attacks; promotion threshold confirmed by the team before the sweep (done 23 Oct) |
+| Sweep | Tue 27 Oct | — | Step 17 in: each team member runs their held-out subset (`--sweep N`, see README) on their own key and commits the results |
 | Done | Fri 30 Oct | — | Deck and demo complete; 31 Oct – 2 Nov is buffer |
 
 **If we slip:** stretch items go first, then the Streamlit UI (keep the CLI), then the social-group
@@ -115,7 +117,7 @@ Each lane supplies the slides for its section, and Kenneth assembles them.
 | 6 | Eval sets and metrics | L5 |
 | 7 | Baselines and ablation | L5 |
 | 8 | Results: slot quality and pass rate against the baselines | L5 |
-| 9 | Results: privacy and attacks, isolation against shared context (the trifecta) | L3, L5 |
+| 9 | Results: privacy and attacks, isolation against shared context (the trifecta). The ablation lives here, not in the recording: the arm (c) vs (d) table and a screenshot of the post arm (c) drafted and the privacy filter blocked | L3, L5 |
 | 10 | Autonomy evidence: which action classes clear the threshold; approvals asked and refused | L4, L5 |
-| 11 | User experience: the demo recording; how participants' and organisers' work changes | Lead, L3 |
+| 11 | User experience: the demo recording on the demo app (our design); how participants' and organisers' work changes | Lead, zexellew2024 |
 | 12 | Failure modes, gaps, how we handled them, and future work | All |
