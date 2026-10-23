@@ -28,3 +28,6 @@ Thumbs.db
 data/demo/*.db
 data/demo/*.db-*
 results/demo-live/
+
+# Central sweep logs (the result files are what is committed)
+sweep-*.log

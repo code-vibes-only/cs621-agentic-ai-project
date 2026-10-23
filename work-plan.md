@@ -80,7 +80,7 @@ weekdays, the timeline and the guardrail record).
 | G1 | Thu 22 Oct (slipped from Mon 19) | `v0.1.0` | Steps 01–07: contracts frozen; tests and the Docker run pass from a clean clone; 5 hand-checked scenarios; the free/busy baseline and checker agree with the hand-written answers; `gpt-5-mini` checked and a first cost measured |
 | G2 | Thu 22 Oct | `v0.2.0` | Steps 08–13: personal agents + coordinator agent end to end on dev, inside and outside work; every metric reported as mean ± sample SD over 3 runs; the single-call baseline runs |
 | G3 | Thu 22 Oct (lands) | `v0.3.0` | Steps 14–16: the shared-context ablation; guardrails and attack cases; held-out set frozen with the probes and attacks; promotion threshold confirmed by the team before the sweep (done 23 Oct) |
-| Sweep | Sat 24 Oct (brought forward from Tue 27 Oct) | — | Step 17 in: each team member runs their held-out subset (README "Held-out sweep": N per member, `--sweep N`) on their own key and opens a pull request with the results; failure analysis by Tue 27 Oct |
+| Sweep | Sat 24 Oct (brought forward from Tue 27 Oct) | — | Step 17 in: the five held-out subsets run centrally on Kenneth's machine and key (README "Held-out sweep"); results by pull request from `sweep/heldout-final`; failure analysis by Tue 27 Oct |
 | Done | Fri 30 Oct | — | Deck and demo complete; 31 Oct – 2 Nov is buffer |
 
 **If we slip:** stretch items go first, then the Streamlit UI (keep the CLI), then the social-group
@@ -90,8 +90,7 @@ family. A slipped gate moves the work that depends on it, not the dates promised
 
 - Building the guided solution spends at most USD 2 of Kenneth's key.
 - There is no replay. Re-running a step's real commands is optional, and each states its cost first.
-- The held-out sweep is split by scenario subset: every team member runs their 7 scenarios × arms
-  b, c and d × 3 runs, attack cases 5 runs (about 63 episodes, under USD 1) on their own key.
+- The held-out sweep runs centrally on Kenneth's key, with the team sharing the cost (23 Oct): five subsets of 7 scenarios × arms b, c and d × 3 runs, attack cases 5 runs, about USD 3 in all.
 
 ## Deck (12 slides)
 

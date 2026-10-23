@@ -665,7 +665,7 @@ Work back from the internal target of **Fri 30 Oct**, leaving 31 Oct–2 Nov as 
 | Sun 18 Oct | Work plan (lanes, owners, reviewers) agreed; build starts |
 | ~~Mon 19 Oct~~ | Skeleton, contracts, 5 hand-checked scenarios, free/busy baseline (G1). Slipped: rebuilt for the 20 Oct reframe and landed with everything below |
 | Thu 22 Oct | The whole build committed, one commit per step: G1 (`v0.1.0`), G2 (`v0.2.0`: end to end on dev, checker, single-call baseline) and G3 (`v0.3.0`: shared-context ablation, guardrails and attacks, held-out set frozen) |
-| Sat 24 Oct | Promotion threshold confirmed (done 23 Oct); all arms × 3 runs on the held-out set, split across keys (brought forward from Tue 27 Oct) |
+| Sat 24 Oct | Promotion threshold confirmed (done 23 Oct); all arms × 3 runs on the held-out set, run centrally on Kenneth's key (brought forward from Tue 27 Oct) |
 | Tue 27 Oct | Failure analysis done; lane review of the steps feeds it and the deck |
 | Thu 29 Oct | Deck draft; demo recorded on the demo app (our design; the ablation is on the evaluation slides) |
 | **Fri 30 Oct** | **Complete**: final deck and demo |
@@ -695,7 +695,7 @@ older row is marked *Overturned*.
 | 2026-10-15 | Default model `gpt-5-mini`, same for all arms | Agreed by team (17 Oct sync), subject to the availability check on Mon 19 Oct |
 | 2026-10-15 | Naming: *participant* (end user), *team member* (us); *personal agent*, *coordinator agent*, *availability summary* | Agreed by team (17 Oct sync) |
 | 2026-10-15 | Workplace meetings are the primary domain; social groups are a small generalisation family. Sports is only an example of an external schedule | Overturned on 20 Oct (general-purpose); see the 2026-10-20 row |
-| 2026-10-15 | Held-out sweep split across keys by scenario subset (6 scenarios per team member, all LLM arms) | Agreed by team (17 Oct sync); now 7 per member with 33 held-out scenarios (2026-10-20 rows) |
+| 2026-10-15 | Held-out sweep split across keys by scenario subset (6 scenarios per team member, all LLM arms) | Overturned on 23 Oct (run centrally); see the second 2026-10-23 sweep row. The five subsets stand as the way the run is split |
 | 2026-10-15 | The agent never moves, declines or shortens a participant's existing commitments; it only asks | Agreed by team (17 Oct sync); confirmed by D7 and D8 below |
 | 2026-10-15 | Environment: uv with a committed lockfile; Docker optional later, built from the same lockfile; code follows the "keep it portable" rules in §12 | Overturned at the 17 Oct sync (D3); see the 2026-10-17 row |
 | 2026-10-15 | Brief and scope are confirmed first (replies by Fri 16 Oct night); swimlanes, owners and reviewers are planned from the agreed brief on Sat 17 Oct | Agreed by team (17 Oct sync); work plan moved to Sun 18 Oct |
@@ -722,5 +722,6 @@ older row is marked *Overturned*.
 | 2026-10-20 | A demo page (Streamlit, its own dependency group), built last, for the UX recording: it replays a saved episode pane by pane, or runs one live with a person approving. Not part of the evaluation | Overturned on 23 Oct (the demo app); see the 2026-10-23 row. "Own dependency group" and "not part of the evaluation" stand |
 | 2026-10-20 | Build: the solution is built end to end and committed to this repo one commit per step, with tags at the gates; no replay. The steps stay as learning material and the map for lane review; the team improves the finished product by PR or issue. The repo is version history, not the submission | Decided by Kenneth (lead), 20 Oct |
 | 2026-10-23 | The demo is the live demo app from PR #10 (zexellew2024): ten fictional people, group chats, a private agent chat, calendars and a trace replay; a request runs our design, and the organiser approves. It replaces the step-18 page | Agreed (Kenneth, lead; PR #10 merged 23 Oct) |
-| 2026-10-23 | The held-out sweep moves from Tue 27 Oct to Sat 24 Oct, as soon as the threshold was confirmed; the README "Held-out sweep" section is the runbook (member N to subset mapping, pull request per member). Lane review now follows the sweep and feeds the failure analysis; a change it finds needs a full held-out rerun, so it goes to future work unless critical | Decided by Kenneth (lead), 23 Oct |
+| 2026-10-23 | The held-out sweep moves from Tue 27 Oct to Sat 24 Oct, as soon as the threshold was confirmed. Lane review now follows the sweep and feeds the failure analysis; a change it finds needs a full held-out rerun, so it goes to future work unless critical | Decided by Kenneth (lead), 23 Oct. The per-member runbook it named is replaced by the next row |
+| 2026-10-23 | The held-out sweep runs centrally on Kenneth's machine and key: the five subsets side by side (about USD 3, about an hour), results on branch `sweep/heldout-final` and a pull request into `main`. The team shares the OpenAI cost. README "Held-out sweep" is the runbook and shows what runs | Agreed by team (23 Oct) |
 | 2026-10-23 | The shared-context ablation (arm (c)) is shown on the deck's evaluation slides, as the result table and the blocked post from the attack runs, not in the demo recording | Decided by Kenneth (lead), 23 Oct |

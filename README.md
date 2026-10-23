@@ -39,82 +39,47 @@ uv run python -m scheduler.eval --report my-try
 Arms: `a` free/busy finder, `b` single grounded call, `c` one agent with shared context,
 `d` personal agents + coordinator agent (our design).
 
-### Held-out sweep (one subset per team member)
+### Held-out sweep (run centrally)
 
-The final numbers in the deck come from this run. Each team member runs every LLM arm (b, c, d)
-on their own 7 held-out scenarios, 3 runs each (attack cases 5 runs), on their own key: about 63
-episodes, about USD 0.60 and about an hour. Keys cannot be pooled, so the work is split by
-scenario, not by arm.
+The final numbers in the deck come from this run. The team agreed on 23 Oct to run it centrally
+on Kenneth's machine, with the team sharing the OpenAI cost (brief §16). The arms are (b), (c)
+and (d); the free/busy finder (a) makes no model calls and runs once.
 
-| N | Team member | Scenarios |
+**What runs.** The 33 frozen held-out scenarios in `data/scenarios/heldout/` (frozen at tag
+`v0.3.0`) are split into five subsets of 7. Each subset runs every LLM arm, 3 runs each, and
+attack cases 5 runs. That is about 63 episodes and USD 0.60 a subset, so about USD 3 in all. The
+five subsets run side by side, which takes about an hour.
+
+| Subset | Scenarios | Command |
 |---|---|---|
-| 1 | huongiangbui | ho-001 to ho-007 |
-| 2 | Andreojk | ho-008 to ho-014 |
-| 3 | zexellew2024 | ho-015 to ho-021 |
-| 4 | Kenneth | ho-022 to ho-028, plus arm (a) on all 33 (no model, no cost) |
-| 5 | NJYao | ho-029 to ho-033 |
-
-**1. Get the latest code and your key in place.**
+| 1 | ho-001 to ho-007 | `--sweep 1` |
+| 2 | ho-008 to ho-014 | `--sweep 2` |
+| 3 | ho-015 to ho-021 | `--sweep 3` |
+| 4 | ho-022 to ho-028 | `--sweep 4` |
+| 5 | ho-029 to ho-033 | `--sweep 5` |
 
 ```sh
-git switch main && git pull
-uv sync
-cp .env.example .env          # Windows: copy .env.example .env
-```
-
-Put your own `OPENAI_API_KEY` in `.env` (gitignored: never commit it). Leave the other settings
-as they are: every member must run the same model, reasoning effort and caps.
-
-**2. Check the key and the model (one tiny call, under USD 0.001).**
-
-```sh
-uv run --env-file .env python -m scheduler.eval --check-model
-```
-
-**3. Rehearse your subset for free (scripted model, a few seconds).**
-
-```sh
-SCHEDULER_FAKE_LLM=1 uv run python -m scheduler.eval --sweep N --tag rehearsal
-```
-
-On Windows PowerShell: `$env:SCHEDULER_FAKE_LLM=1; uv run python -m scheduler.eval --sweep N --tag rehearsal; Remove-Item Env:SCHEDULER_FAKE_LLM`.
-Then delete `results/rehearsal/`; it is not committed.
-
-**4. Run it for real (about an hour; keep the laptop awake).**
-
-```sh
-uv run --env-file .env python -m scheduler.eval --sweep N --tag heldout-final
-```
-
-Each episode prints one line and writes one file under `results/heldout-final/<arm>/<scenario>/`.
-A `fail` line is a result, not an error: do not rerun to get a pass. If the command itself stops
-part-way (a crash, a lost connection, the laptop sleeping), tell the team before rerunning: a
-rerun starts your subset from the beginning and costs the full amount again.
-
-Member 4 also runs the free/busy baseline, which makes no model calls:
-
-```sh
+git switch main && git pull && uv sync
+uv run --env-file .env python -m scheduler.eval --check-model                 # one tiny call
+SCHEDULER_FAKE_LLM=1 uv run python -m scheduler.eval --sweep 1 --tag rehearsal  # free rehearsal; delete results/rehearsal/ after
+for n in 1 2 3 4 5; do                                                           # the real run, five subsets side by side
+  uv run --env-file .env python -m scheduler.eval --sweep $n --tag heldout-final > sweep-$n.log 2>&1 &
+done; wait
 uv run python -m scheduler.eval --arm a --split heldout --scenarios all --runs 3 --tag heldout-final
-```
-
-**5. Hand in your results by pull request (`main` is protected).**
-
-```sh
-git switch -c sweep/N
-git add results/heldout-final
-git commit -m "Held-out sweep, member N"
-git push -u origin sweep/N
-```
-
-Open a pull request into `main`. Commit only `results/heldout-final/`: no `.env`, no
-`report.md`, no other changes. Each member's files are separate, so the pull requests do not
-clash.
-
-**6. Report (once all five are merged; anyone can run it).**
-
-```sh
 uv run python -m scheduler.eval --report heldout-final
 ```
+
+Each episode prints one line to its log and writes one file under
+`results/heldout-final/<arm>/<scenario>/run<k>.json`. A `fail` line is a result, not an error:
+nothing is rerun to get a pass. If a subset's command stops part-way, only that subset is rerun,
+from the beginning, and the rerun is noted in HANDOFF.
+
+**Where to follow it.** The results go to the branch `sweep/heldout-final` and a pull request
+into `main`, so every result file, and finally `report.md`, can be read there. The run uses `main`.
+Since the freeze (tag `v0.3.0`) the code has gained only the `--sweep` command and the demo app;
+neither changes how an agent or the checker behaves (fake-mode grades checked identical, 23 Oct).
+`scheduler/eval/__main__.py` holds the `--sweep` command; the arms are in
+`scheduler/eval/arms.py`, and the checker that grades each episode is in `scheduler/eval/checker.py`.
 
 Do not change prompts, code, data or the threshold before or during the sweep: the held-out set
 and the threshold are frozen (brief §16). Anything you notice goes in an issue for the failure
