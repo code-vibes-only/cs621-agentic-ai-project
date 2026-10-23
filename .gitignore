@@ -23,3 +23,8 @@ dist/
 .idea/
 .DS_Store
 Thumbs.db
+
+# The demo app's runtime state (rebuilt from the seed on reset)
+data/demo/*.db
+data/demo/*.db-*
+results/demo-live/

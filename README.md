@@ -56,13 +56,26 @@ uv run python -m scheduler.eval --report heldout-final
 
 ### Demo
 
-A page that replays a saved episode step by step (the request thread, what the coordinator
-sees, what each participant's agent did privately, and every guardrail verdict), or runs one
-live with you as the organiser. It offers dev scenarios only.
+A small group-chat and calendar app on top of the agents, for ten fictional people. Ask your own
+agent, privately inside a group, to set up a meeting; the others' agents answer from their own
+calendars, people answer their agent's private questions, and the organiser approves the time.
+**View trace** replays any request step by step, lane by lane. Sign in as `alice`, `bob`,
+`charlie`, `damian`, `eve` (a part-time study group), `felicia`, `george` (Alice's data team),
+`hannah`, `ignatius` or `jack` (her friends and family); each password is the username.
+
+There is no separate backend: the agents, the coordinator and the demo's SQLite store
+(`data/demo/app.db`, gitignored) all run inside the one Streamlit process. With **Enable model calls**
+off (the default, under 🧪 Demo tools in the sidebar) the agents are scripted, at no cost; turned on, the
+real model runs on the key in your `.env`, at about USD 0.01-0.04 per meeting request.
+
+On Windows, double-click `run-demo.bat`: it opens on http://localhost:8501 (the port is set at its top). Elsewhere:
 
 ```sh
-uv run --group demo python -m streamlit run scheduler/demo/app.py
+uv sync --group demo
+uv run --group demo python -m streamlit run scheduler/demo/app.py --server.address localhost --browser.gatherUsageStats false
 ```
+
+`--server.address localhost` keeps the app off your network, since the demo passwords are the usernames.
 
 ### Docker
 
@@ -83,7 +96,7 @@ docker run --rm --env-file .env -v "$PWD/results:/app/results" scheduler --arm d
 | `scheduler/engine/` | Enumerator and scorer; approval gate, write and verify |
 | `scheduler/eval/` | Arms, baselines, the episode runner, the independent checker and the metrics |
 | `scheduler/world/` | The scenario generator and its assumptions (work, evening and weekend settings; attack cases) |
-| `scheduler/demo/` | The demo page |
+| `scheduler/demo/` | The demo app: groups, private agent chats, calendars and the trace replay |
 | `docs/` | The security review |
 | `data/` | The frozen corpus and the dev and held-out scenarios |
 | `results/` | Result files from real runs; every reported number comes from one |

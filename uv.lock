@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -1717,6 +1717,7 @@ dependencies = [
 [package.dev-dependencies]
 demo = [
     { name = "streamlit" },
+    { name = "streamlit-calendar" },
 ]
 dev = [
     { name = "pytest" },
@@ -1731,7 +1732,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-demo = [{ name = "streamlit", specifier = "==1.65.0" }]
+demo = [
+    { name = "streamlit", specifier = "==1.65.0" },
+    { name = "streamlit-calendar", specifier = "==1.4.0" },
+]
 dev = [{ name = "pytest", specifier = "==9.1.1" }]
 
 [[package]]
@@ -1794,6 +1798,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/8f/61/75c550a2d2acd79402aa1f32c8068c6cf47fa621d3995883a43caafeeadc/streamlit-1.65.0.tar.gz", hash = "sha256:42acd9ebdf3576a35584977c48a044ec0b5d3e4997fa9248809b9891598ac6a0", size = 9749831, upload-time = "2026-10-02T21:40:36.584Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/fa/e3/5c9d2e88563c9974e53ac744b1523ebb1fd8f0ebb1ecc28a5f6f6bb0baea/streamlit-1.65.0-py3-none-any.whl", hash = "sha256:517a7254e223f4986d2b2e0745d02acf8ca64656943e63e422d345ce34a7495b", size = 10313469, upload-time = "2026-10-02T21:40:33.164Z" },
+]
+
+[[package]]
+name = "streamlit-calendar"
+version = "1.4.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "streamlit" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ab/da/d394612a18e8ee3410c088035a7b804e56c0318e0e9169a150158723910d/streamlit_calendar-1.4.0.tar.gz", hash = "sha256:47bd4fe839fdcbc7f334cb3aec0b83556558357562bb58c5a9fdfe11cd4e7b80", size = 1264452, upload-time = "2025-07-24T13:14:50.032Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/09/1b/76be5aa2aeacc34bf0022680e3e694bcdd6c812b93b122d617513ebdc9bc/streamlit_calendar-1.4.0-py3-none-any.whl", hash = "sha256:bba0fbd47c0910b8eb15fc3689d3f66a097bf26818da36a3c1737e00fe995966", size = 1276322, upload-time = "2025-07-24T13:14:48.629Z" },
 ]
 
 [[package]]

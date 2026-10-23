@@ -52,7 +52,7 @@ def personal_tools(pid: str) -> list:
     def ask_my_participant(question: str) -> str:
         """Ask your own participant a private clarifying question, e.g. which hours "busy most of
         Thursday" means. Use it only when the calendar and their words do not answer it."""
-        reply = world.scripted_reply(pid, "clarify", caller)
+        reply = world.scripted_reply(pid, "clarify", caller, question)
         return reply.answer if reply else "no reply"
 
     return [read_my_calendar, get_leave, read_my_messages, search_schedules, ask_my_participant]

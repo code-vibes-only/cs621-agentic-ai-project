@@ -1,0 +1,15 @@
+{
+  "note": "Demo logins for scheduler/demo/app.py only. The people are fictional. Each password is the same as the username and guards nothing.",
+  "users": [
+    {"username": "alice", "password": "alice", "role": "participant", "participant_id": "alice"},
+    {"username": "bob", "password": "bob", "role": "participant", "participant_id": "bob"},
+    {"username": "charlie", "password": "charlie", "role": "participant", "participant_id": "charlie"},
+    {"username": "damian", "password": "damian", "role": "participant", "participant_id": "damian"},
+    {"username": "eve", "password": "eve", "role": "participant", "participant_id": "eve"},
+    {"username": "felicia", "password": "felicia", "role": "participant", "participant_id": "felicia"},
+    {"username": "george", "password": "george", "role": "participant", "participant_id": "george"},
+    {"username": "hannah", "password": "hannah", "role": "participant", "participant_id": "hannah"},
+    {"username": "ignatius", "password": "ignatius", "role": "participant", "participant_id": "ignatius"},
+    {"username": "jack", "password": "jack", "role": "participant", "participant_id": "jack"}
+  ]
+}

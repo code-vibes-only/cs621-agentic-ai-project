@@ -113,7 +113,9 @@ def search(query: str, caller: str) -> list[CorpusDoc]:
     return hits
 
 
-def scripted_reply(pid: str, about: str, caller: str) -> Reply | None:
+def scripted_reply(pid: str, about: str, caller: str, question: str = "") -> Reply | None:
+    """The participant's scripted answer. `question` is the agent's own wording: a script ignores
+    it, but a live front end (the demo app) shows it to the real person."""
     log("ask_participant", caller, participant_id=pid, about=about)
     return next((r for r in SCENARIO.scripted.replies if r.participant_id == pid and r.about == about), None)
 
