@@ -3,11 +3,10 @@
 The shared state of the project, for team members and for AI agent sessions (Claude Code,
 Codex, Cursor and similar). Read it at the start of a session; update it at the end.
 
-Last updated: **23 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.8. The whole
-build is in this repo, one commit per step (18), tagged `v0.1.0`–`v0.3.0`: a general-purpose
-scheduler with Week 8 guardrails, attack cases and a frozen held-out set. The demo is now the live
-demo app (PR #10). The threshold and the A0–A4 rename are agreed. Next: lane review (owners to be
-confirmed), the held-out sweep (brought forward to Sat 24 Oct), then the deck and the recording.**
+Last updated: **28 Oct 2026**, by Kenneth (with Claude Code). Stage: **brief v0.8. The held-out
+sweep is done (28 Oct, PR #17): our design 0.84 ± 0.09 against 0.75, 0.63 and 0.36 for the
+baselines, no leak and no attack worked; the analysis is in `docs/results.md`. Next: the deck
+draft and the demo recording (Thu 29 Oct), complete Fri 30 Oct.**
 
 ## How to use this file
 
@@ -69,7 +68,12 @@ confirmed), the held-out sweep (brought forward to Sat 24 Oct), then the deck an
   shared-context ablation goes on the evaluation slides. The step-18 replay page is gone;
   `results/demo/` (a real dev-022 episode) stays as evidence. Checked on 23 Oct: the evaluation
   grades the same before and after the PR (fake mode, all dev scenarios, arms a–d).
-- **Results so far (dev, real `gpt-5-mini`, mean ± sample SD over 3 runs; files under `results/`):**
+- **Held-out results (28 Oct, `results/heldout-final/`, analysis in `docs/results.md`):** pass rate
+  (d) 0.84 ± 0.09, (c) 0.75 ± 0.03, (b) 0.63 ± 0.08, (a) 0.36 ± 0.00; (d) ends on the right time in
+  98 of 99 episodes; no leak in any arm; no attack worked (arm (c) obeyed the injected message on
+  ho-031 in 3 of 5 runs and the privacy filter blocked it). Arm (d) clears the threshold for A1–A4,
+  not for A0 (0.84 ± 0.09): its personal agents ask some questions the case does not need.
+- **Dev results (before the sweep; real `gpt-5-mini`, mean ± sample SD over 3 runs; files under `results/`):**
   - seven dev scenarios (`results/dev7/`): our design (d) 0.95 ± 0.08, single call (b)
     0.62 ± 0.08, free/busy (a) 0.29 ± 0.00; (d) costs about USD 0.011 and 49 s per episode;
   - privacy, dev-001 and the dev probe (`results/privacy-dev/`): no leak from either arm; the
@@ -79,9 +83,9 @@ confirmed), the held-out sweep (brought forward to Sat 24 Oct), then the deck an
     obeyed an injected message and drafted a post of everyone's calendar entries, which the privacy
     filter blocked.
 
-  These are dev numbers; the deck reports the held-out sweep.
-- **Spend:** building the solution used about USD 1.35 of Kenneth's key (cap USD 2). No team key
-  has been used.
+  These are dev numbers; the deck reports the held-out results above.
+- **Spend:** building the solution used about USD 1.35 of Kenneth's key (cap USD 2); the held-out
+  sweep USD 2.87 (28 Oct), shared by the team. No team key has been used.
 
 ## Milestones
 
@@ -95,8 +99,8 @@ From brief §14. Internal completion target **Fri 30 Oct**; submission and prese
 | Mon 19 Oct | Project skeleton with Dockerfile; availability summary schema and scenario format frozen; 5 hand-checked scenarios; free/busy baseline; first measured cost per episode | Done late (21 Oct), rebuilt for the 20 Oct reframe: tag `v0.1.0` |
 | Thu 22 Oct | End to end on the dev set; checker; single-call baseline | Done early (21 Oct): tag `v0.2.0` |
 | Sat 24 Oct | Held-out set frozen; shared-context ablation; privacy probes | Done early (21 Oct), with guardrails and attack cases: tag `v0.3.0`. Threshold reconfirmed by the team (23 Oct); lane review waits for lane owners |
-| Tue 27 Oct | All arms × 3 runs on held-out (split across keys); failure analysis | Sweep brought forward to Sat 24 Oct and run centrally on Kenneth's key (README "Held-out sweep"); failure analysis by Tue 27 Oct |
-| Thu 29 Oct | Deck draft (12 slides); demo recorded | Not started; the demo app is merged (PR #10) |
+| Tue 27 Oct | All arms × 3 runs on held-out (split across keys); failure analysis | Done late (28 Oct), centrally on Kenneth's key: PR #17, `docs/results.md` |
+| Thu 29 Oct | Deck draft (12 slides); demo recorded | Not started; results ready (`docs/results.md`); the demo app is merged (PR #10) |
 | Fri 30 Oct | Complete | Not started |
 | 31 Oct – 2 Nov | Buffer | — |
 | Tue 3 Nov | Submit and present | — |
@@ -121,10 +125,10 @@ not here.
 | 2 | Close issues #1–#8, each with a link to the brief v0.5 commit; close #9 with a link to PR #10 | Kenneth | Sat 24 Oct |
 | 3 | Review your lane's steps against their commits (guide repo); raise findings as issues here. After the sweep, findings feed the failure analysis and the deck; a code change would need a full held-out rerun | L1–L5 owners | After lanes are confirmed, by Tue 27 Oct |
 | 4 | Optional: the full dev run (23 × 3 runs × arms b, d, about USD 1; guide step 13 §5) | Any one member | Sun 25 Oct |
-| 5 | Held-out sweep, run centrally on Kenneth's machine and key (team shares the cost): README "Held-out sweep" (five subsets side by side, about USD 3 and an hour; then arm (a) and `--report heldout-final`). Results on branch `sweep/heldout-final` with a pull request into `main`, where the team follows it | Kenneth | Sat 24 Oct |
+| 5 | Merge PR #17 (held-out results and `docs/results.md`) | Kenneth | Wed 28 Oct |
 | 6 | Demo follow-ups (small, before the recording): a `.streamlit/config.toml` with `server.address = "localhost"`, so a plain `streamlit run` also stays off the network (the passwords are the usernames); decide whether a real-model request needs a higher call cap than 40; the app patches coordinator internals (`run_tools`, graph state), so re-run the demo tests after any coordinator change | zexellew2024 | Wed 28 Oct |
 | 7 | Record the demo on the demo app (our design, scripted or real model) | Kenneth, zexellew2024 | Thu 29 Oct |
-| 8 | Evaluation slides: the arm (c) vs (d) table from `results/privacy-dev/` and `results/attack-dev/`, and a screenshot of the post arm (c) drafted and the privacy filter blocked (dev-024) | Kenneth | Thu 29 Oct |
+| 8 | Evaluation slides from `docs/results.md`: the headline table, the action classes, the attack table with ho-031 (arm (c) obeyed, the filter blocked it; a screenshot of one blocked draft from `results/heldout-final/c/ho-031/`), and the failure analysis | Kenneth, L5 | Thu 29 Oct |
 
 ## Risks and blockers
 
@@ -170,3 +174,4 @@ Newest last. One row per working session, human or agent.
 | 2026-10-23 | Kenneth + Claude Code | Held-out sweep brought forward to Sat 24 Oct (brief §14, §16). README "Held-out sweep" rewritten as the runbook: member N to subset table (lane order; Kenneth is 4 and also runs arm (a)), key via `uv run --env-file .env`, `--check-model`, a free fake rehearsal, the real run, results by pull request from `sweep/N`, the report; rehearsed in fake mode. Closed issues #1–#8 (decisions in brief §16) and #9 (PR #10). No model spend | (this commit) | Sweep Sat 24 Oct (5); lanes (1); failure analysis Tue 27 Oct |
 | 2026-10-23 | Kenneth + Claude Code | The team chose to run the held-out sweep centrally on Kenneth's machine and key, sharing the OpenAI cost (brief §16; the split-across-keys row overturned). README "Held-out sweep" rewritten for the central run: what runs, the five subsets side by side, where to follow it (branch `sweep/heldout-final` and its pull request) and which files hold the code. Sweep logs gitignored. No model spend | (this commit) | Kenneth runs the sweep Sat 24 Oct (5) |
 | 2026-10-28 | Kenneth + Claude Code | The sweep had not run by its Sat 24 Oct date. The team's review issues #11–#16 came in on 24–26 Oct; two findings in #13 (Andreojk) were real and also in the held-out set: a consent reply naming a time when the consent covers any slot, and "next week" over a four-day window. Fixed the generator wording only and regenerated: field-by-field, only seven texts changed (dev-009, dev-011, dev-022, ho-005, ho-007, ho-028, ho-030); 90 tests pass; fake dev grades identical. Brief §16 row; tag `v0.3.1`. Logged the 23 Oct central-sweep message. No model spend | `82a6772`; (this commit) | Claude runs the central sweep now (5); results and failure analysis; issue replies; deck Thu 29 Oct |
+| 2026-10-28 | Kenneth + Claude Code | Ran the held-out sweep centrally (Claude, on Kenneth's key): 321 episodes of arms b–d in five subsets side by side in 46 minutes, plus arm (a); USD 2.87; no caps hit, nothing rerun; three arm-(c) episodes ended without a complete submission (kept as failures). Results PR #17 with `docs/results.md`: headline, settings, action classes, attacks with exposure (every attack reached the agents except the corpus page for (c) in 3 runs), failure analysis (17 of arm (d)'s 18 failures had the right outcome; questions are driven by a vague memory note and a league statement). Brief §6 now in the course's levels; web search future work; `docs/qa.md` started (#11, #12, #14) | `9be3872`; PR #17 | Merge #17 (5); deck and recording Thu 29 Oct (7, 8); issue replies; #15 and #16 small fixes |
