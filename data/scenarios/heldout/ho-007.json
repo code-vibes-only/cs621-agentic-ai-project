@@ -5,7 +5,7 @@
     "nobody_free_relax"
   ],
   "seed": 5500,
-  "generator_version": "gen-2",
+  "generator_version": "gen-3",
   "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
   "today": "2026-11-04",
   "participants": [
@@ -156,7 +156,7 @@
       {
         "participant_id": "p03",
         "about": "l-p03-1",
-        "answer": "Yes, 14:00 works.",
+        "answer": "Yes, I can join if it's needed.",
         "consent": true,
         "slot": null
       }

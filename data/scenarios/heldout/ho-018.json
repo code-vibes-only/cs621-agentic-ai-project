@@ -5,7 +5,7 @@
     "approval_rsvp"
   ],
   "seed": 6200,
-  "generator_version": "gen-2",
+  "generator_version": "gen-3",
   "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
   "today": "2026-11-18",
   "participants": [

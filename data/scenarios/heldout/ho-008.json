@@ -5,7 +5,7 @@
     "pre_consent"
   ],
   "seed": 5600,
-  "generator_version": "gen-2",
+  "generator_version": "gen-3",
   "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
   "today": "2026-10-30",
   "participants": [

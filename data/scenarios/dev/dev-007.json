@@ -5,7 +5,7 @@
     "leave_and_hours"
   ],
   "seed": 1101,
-  "generator_version": "gen-2",
+  "generator_version": "gen-3",
   "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
   "today": "2026-11-04",
   "participants": [

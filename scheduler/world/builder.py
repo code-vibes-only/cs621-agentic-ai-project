@@ -23,7 +23,7 @@ from scheduler.contracts.scenario import Scenario
 from scheduler.eval.truth import compute
 from scheduler.timegrid import WEEKDAYS
 
-VERSION = "gen-2"
+VERSION = "gen-3"
 WEEKS = ["2026-10-19", "2026-10-26", "2026-11-02", "2026-11-09", "2026-11-16"]
 DAYS = WEEKDAYS[:5]
 DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]

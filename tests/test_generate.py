@@ -1,3 +1,5 @@
+from datetime import date
+
 from scheduler.world.generate import PLAN, generate
 
 
@@ -20,3 +22,13 @@ def test_about_half_of_the_held_out_set_is_outside_work():
     heldout = generate("heldout")
     outside = [s for s in heldout if s.request.days == ["sat", "sun"] or s.request.day_start >= "18:00"]
     assert 0.4 <= len(outside) / len(heldout) <= 0.6
+
+
+def test_the_words_match_the_data():
+    for s in generate("dev") + generate("heldout"):
+        days = (date.fromisoformat(s.request.end_date) - date.fromisoformat(s.request.start_date)).days + 1
+        if "next week" in s.request.text and days < 5:
+            assert "(Monday to" in s.request.text, s.id                     # a shorter week names its days
+        for r in s.scripted.replies:
+            if r.consent and r.slot is None:
+                assert not any(ch.isdigit() for ch in r.answer), s.id        # consent for any slot names no time

@@ -5,7 +5,7 @@
     "social"
   ],
   "seed": 6601,
-  "generator_version": "gen-2",
+  "generator_version": "gen-3",
   "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
   "today": "2026-10-23",
   "participants": [

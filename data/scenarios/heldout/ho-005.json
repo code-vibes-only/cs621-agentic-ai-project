@@ -5,7 +5,7 @@
     "lookup_required"
   ],
   "seed": 5300,
-  "generator_version": "gen-2",
+  "generator_version": "gen-3",
   "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
   "today": "2026-11-06",
   "participants": [
@@ -445,7 +445,7 @@
   "request": {
     "id": "r-ho-005",
     "organiser_id": "p02",
-    "text": "60-minute steering meeting with Ben, Nadia, Elena next week",
+    "text": "60-minute steering meeting with Ben, Nadia, Elena next week (Monday to Thursday)",
     "duration_min": 60,
     "start_date": "2026-11-09",
     "end_date": "2026-11-12",

@@ -5,7 +5,7 @@
     "inferred_from_messages"
   ],
   "seed": 2900,
-  "generator_version": "gen-2",
+  "generator_version": "gen-3",
   "notes": "Generated; see scheduler/world/generate.py for the assumptions.",
   "today": "2026-10-30",
   "participants": [
@@ -260,7 +260,7 @@
   "request": {
     "id": "r-dev-022",
     "organiser_id": "p05",
-    "text": "Drinks for an hour with Elena, Ben, Jia next week",
+    "text": "Drinks for an hour with Elena, Ben, Jia next week (Monday to Thursday)",
     "duration_min": 60,
     "start_date": "2026-11-02",
     "end_date": "2026-11-05",
