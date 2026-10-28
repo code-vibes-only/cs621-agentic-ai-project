@@ -255,6 +255,8 @@ flowchart LR
     - `get_leave`: time away, including the reachable-if-urgent flag;
     - `read_my_messages`: its own participant's messages, text other people wrote;
     - `search_schedules`: the external schedule corpus;
+    - `ask_my_participant`: a private clarifying question to its own participant, when the
+      calendars and their words do not answer it;
     - the preference memory, including pre-given consent.
   - Its job: turn commitments and natural-language preferences into typed constraints, decide
     which commitments are movable (from the calendar flag or by asking its participant), and
@@ -378,12 +380,18 @@ personal agent may do only through pre-given consent. The "Never" rows hold what
 says.
 
 The action classes are labelled A0–A4 so they are not confused with the course's autonomy levels
-(week 1: L1 Operator … L5 Observer). In the course's terms:
-- A0–A3 act within limits without a person (the coordinator agent works at Consultant level for
-  A2: it consults the participant on a judgement);
-- A4 is Approver: one interrupt before the write.
+(week 1), which describe the person's role: L1 Operator, L2 Collaborator, L3 Consultant, L4
+Approver, L5 Observer. The table gives the course level for each row:
+- **Observer (L5)** for A0, A1 and A3: the agent acts on its own inside code limits; people see
+  the result and can stop it;
+- **Consultant (L3)** for A2: the agent leads but asks the participant for a judgement it cannot
+  make from their data;
+- **Approver (L4)** for A4: one interrupt before the only irreversible write;
+- **Operator (L1)** for the "Never" rows: only the person can act.
 
-*(Rename proposed, pending team.)*
+Per agent: the personal agent works at Consultant level (it asks its own participant when their
+data does not answer); the coordinator agent at Approver level (its one write needs the
+organiser's approval).
 
 Week 8 asks what evidence justifies each level (08 p. 47): Collaborator needs a pass rate on the
 cases that matter, Consultant needs evidence that it asks, Approver needs the refusal rate and
@@ -393,17 +401,17 @@ and refused, and the attack table (§8).
 
 | Class | Action | Acting agent | Autonomy | Guard |
 |---|---|---|---|---|
-| A0 | Read own participant's calendars, messages and memory, look up external schedules; read availability summaries and call the enumerator | Personal agent (calendars, messages, memory, lookups); coordinator agent (summaries, enumerator) | Autonomous | Read-only tools; a personal agent can read only its own participant's data; its only output is a typed summary, so text it reads cannot reach the thread |
-| A1 | Propose slots in the request thread | Coordinator agent | Autonomous | Privacy filter on every message in the request thread |
-| A2 | Ask a participant a private relax/clarify question | Coordinator agent, through the participant's personal agent | Autonomous within a budget (e.g. ≤ 2 questions per participant per request) | Question cap; never in the request thread |
-| A2 | Answer a relax question from pre-given consent | Personal agent | Autonomous, only for the commitment the consent names | Consent stored in preference memory, outside model text; the approval gate checks it |
-| A2 | Alert own participant about a clash with an agreed meeting | Personal agent | Autonomous, informational only | No write; the participant decides |
-| A3 | Place a tentative hold on sandbox calendars | Coordinator agent | Autonomous, reversible, auto-expires | Idempotent; released on replan |
-| A4 | Send invites | Coordinator agent | **Supervised**: the organiser approves; participants whose relaxable time is used must have consented, live or pre-given. A replan after a required decline needs a new approval | Approval stored outside model text; revalidated at commit; read-back verification |
-| — | Relax a *hard* constraint | Neither | **Never** | Enforced in the enumerator, not the prompt |
-| — | Move, decline or shorten a participant's existing commitment | Neither | **Never**: the agent only asks; the participant acts | No such write tool exists. Moving another meeting would affect people outside the request |
+| A0 | Read own participant's calendars, messages and memory, look up external schedules; read availability summaries and call the enumerator | Personal agent (calendars, messages, memory, lookups); coordinator agent (summaries, enumerator) | Observer (L5): autonomous | Read-only tools; a personal agent can read only its own participant's data; its only output is a typed summary, so text it reads cannot reach the thread |
+| A1 | Propose slots in the request thread | Coordinator agent | Observer (L5): autonomous | Privacy filter on every message in the request thread |
+| A2 | Ask a participant a private relax/clarify question | Coordinator agent, through the participant's personal agent | Consultant (L3): asks within a budget (e.g. ≤ 2 questions per participant per request) | Question cap; never in the request thread |
+| A2 | Answer a relax question from pre-given consent | Personal agent | Consultant (L3): answers alone only for the commitment the consent names | Consent stored in preference memory, outside model text; the approval gate checks it |
+| A2 | Alert own participant about a clash with an agreed meeting | Personal agent | Consultant (L3): informational only; the participant decides | No write; the participant decides |
+| A3 | Place a tentative hold on sandbox calendars | Coordinator agent | Observer (L5): autonomous, reversible, auto-expires | Idempotent; released on replan |
+| A4 | Send invites | Coordinator agent | **Approver (L4)**: the organiser approves; participants whose relaxable time is used must have consented, live or pre-given. A replan after a required decline needs a new approval | Approval stored outside model text; revalidated at commit; read-back verification |
+| — | Relax a *hard* constraint | Neither | **Never** (Operator, L1: only the participant) | Enforced in the enumerator, not the prompt |
+| — | Move, decline or shorten a participant's existing commitment | Neither | **Never** (Operator, L1): the agent only asks; the participant acts | No such write tool exists. Moving another meeting would affect people outside the request |
 
-**Defended level:** autonomous investigation and proposals, supervised commitments. The project
+**Defended level:** Observer for investigation and proposals, Consultant for private questions, Approver for commitments. The project
 spec prefers "supervised with strong evidence" to "delegated with none". An action class moves
 up a level only if two conditions hold:
 
@@ -447,8 +455,8 @@ in the presentation and deck.
   keeping each episode reproducible.
 - **Scripted participant replies.** Deterministic answers to relax and clarify questions per
   scenario. These keep evaluation reproducible; LLM-simulated participants are for the demo only.
-- **Live web search** is used for the **demo only**, behind the same tool interface, e.g. to look
-  up a real public event.
+- **Live web search** was planned for the demo only and was not built; it is future work (§16,
+  28 Oct). Lookups use the frozen corpus everywhere, the demo included.
 - **Generation assumptions to document:**
   - the three settings (work, evenings, weekends) and their windows;
   - calendar density, e.g. 40–70% of the window booked;
@@ -629,7 +637,7 @@ Keys cannot be pooled, so the team total of USD 50 only counts if the work is sp
 | One episode | ~50k input + ~8k output tokens (5 personal agents + coordinator agent) | ~USD 0.03 | — |
 | Held-out sweep | about 63 episodes per key; about 320 in total | ~USD 0.7 (measured per-episode cost, 20 Oct) | ~USD 3.5 |
 | Dev iteration | Cap | ≤ USD 5 | ≤ USD 25 |
-| Demo, including live web search | Hosted web search is USD 10 per 1,000 calls plus tokens; demo volume is small (one key) | — | < USD 2 |
+| Demo | Scripted agents by default; the real model costs about USD 0.01–0.04 per request (no web search, §16) | — | < USD 2 |
 | Reserve | Remainder of each October cap | ~USD 3 | ~USD 15 |
 
 **Cost controls.**
@@ -687,7 +695,7 @@ older row is marked *Overturned*.
 | Date | Decision | Status |
 |---|---|---|
 | 2026-10-15 | Topic: Agentic Natural Language Scheduler with private per-participant preferences | Agreed by team |
-| 2026-10-15 | Eval uses a frozen schedule corpus; live web search for the demo only | Agreed by team (17 Oct sync) |
+| 2026-10-15 | Eval uses a frozen schedule corpus; live web search for the demo only | Agreed by team (17 Oct sync); the web search part overturned on 28 Oct (not built), see the 2026-10-28 row. The frozen corpus stands |
 | 2026-10-15 | Personal agents + coordinator agent; a single shared-context agent as the ablation | Agreed by team (17 Oct sync) |
 | 2026-10-15 | Highest action: send invites + book room, gated; tentative holds autonomous | Overturned at the 17 Oct sync (no meeting rooms); see the 2026-10-17 row |
 | 2026-10-15 | Final report/deck due Tue 3 Nov; internal completion target Fri 30 Oct | Overturned at the 17 Oct sync (format decided); see the 2026-10-17 row |
@@ -726,3 +734,5 @@ older row is marked *Overturned*.
 | 2026-10-23 | The held-out sweep runs centrally on Kenneth's machine and key: the five subsets side by side (about USD 3, about an hour), results on branch `sweep/heldout-final` and a pull request into `main`. The team shares the OpenAI cost. README "Held-out sweep" is the runbook and shows what runs | Agreed by team (23 Oct) |
 | 2026-10-23 | The shared-context ablation (arm (c)) is shown on the deck's evaluation slides, as the result table and the blocked post from the attack runs, not in the demo recording | Decided by Kenneth (lead), 23 Oct |
 | 2026-10-28 | Two generated wordings fixed before any held-out run (issue #13, Andreojk): a consent reply for time away marked reachable if urgent named a time although the consent covers any slot, and "next week" requests over a four-day window now name the days. Only request and reply text changed (dev-009, dev-011, dev-022, ho-005, ho-007, ho-028, ho-030); every window, calendar, rule and expected slot is the same, so the held-out freeze stands. Tag `v0.3.1` | Decided by Kenneth (lead), 28 Oct |
+| 2026-10-28 | Autonomy is stated in the course's levels (issue #11): Observer for A0, A1 and A3; Consultant for A2; Approver for A4; Operator for the "Never" rows. Per agent: personal agent Consultant, coordinator agent Approver | Decided by Kenneth (lead), 28 Oct |
+| 2026-10-28 | Live web search was not built and is future work, as is letting a personal agent update its participant's preferences (issue #12). §4 now lists `ask_my_participant`, which was built | Decided by Kenneth (lead), 28 Oct |
