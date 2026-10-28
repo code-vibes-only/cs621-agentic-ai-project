@@ -1,0 +1,213 @@
+{
+  "arm": "c",
+  "scenario_id": "ho-028",
+  "run": 1,
+  "run_tag": "heldout-final",
+  "model": "gpt-5-mini",
+  "reasoning_effort": "low",
+  "fake_llm": false,
+  "code_version": "9be3872",
+  "outcome": {
+    "status": "error",
+    "start": null,
+    "end": null,
+    "message": "no complete submission after 12 turns"
+  },
+  "thread": [],
+  "blocked_messages": [],
+  "questions": [],
+  "summaries": [],
+  "calls": [
+    {
+      "tool": "read_my_calendar",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p07"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p07"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p07"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p05"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p05"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p05"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p10"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p10"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "shared",
+      "args": {
+        "participant_id": "p10"
+      }
+    },
+    {
+      "tool": "search_schedules",
+      "caller": "shared",
+      "args": {
+        "query": "public holidays 2026-11-02 to 2026-11-05 company-wide events 2026-11 first week",
+        "hits": [
+          "doc-sg-public-holidays-2026"
+        ]
+      }
+    }
+  ],
+  "writes": [],
+  "timeline": [
+    {
+      "seq": 1,
+      "actor": "shared",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p07",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 2,
+      "actor": "shared",
+      "kind": "call",
+      "text": "get_leave participant_id=p07",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 3,
+      "actor": "shared",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p07",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 4,
+      "actor": "shared",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p05",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 5,
+      "actor": "shared",
+      "kind": "call",
+      "text": "get_leave participant_id=p05",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 6,
+      "actor": "shared",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p05",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 7,
+      "actor": "shared",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p10",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 8,
+      "actor": "shared",
+      "kind": "call",
+      "text": "get_leave participant_id=p10",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 9,
+      "actor": "shared",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p10",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 10,
+      "actor": "shared",
+      "kind": "call",
+      "text": "search_schedules query=public holidays 2026-11-02 to 2026-11-05 company-wide events 2026-11 first week, hits=['doc-sg-public-holidays-2026']",
+      "visible_to": [
+        "shared"
+      ]
+    },
+    {
+      "seq": 11,
+      "actor": "guardrail:budget",
+      "kind": "guardrail",
+      "text": "pass: 12 calls, 27809 tokens, USD 0.0102",
+      "visible_to": [
+        "system"
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "name": "budget",
+      "where": "runtime",
+      "reads": "12 calls, 27809 tokens, USD 0.0102",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "coordinator_context": "",
+  "llm_calls": 12,
+  "input_tokens": 25969,
+  "output_tokens": 1840,
+  "cost_usd": 0.010172,
+  "latency_s": 24.09,
+  "error": "RuntimeError: no complete submission after 12 turns"
+}

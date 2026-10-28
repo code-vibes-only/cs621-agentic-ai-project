@@ -1,0 +1,278 @@
+{
+  "arm": "b",
+  "scenario_id": "ho-018",
+  "run": 1,
+  "run_tag": "heldout-final",
+  "model": "gpt-5-mini",
+  "reasoning_effort": "low",
+  "fake_llm": false,
+  "code_version": "9be3872",
+  "outcome": {
+    "status": "hand_back",
+    "start": null,
+    "end": null,
+    "message": "the gate refused 2026-11-21T14:00: {'status': 'refused', 'stale': ['p01'], 'unconsented': []}"
+  },
+  "thread": [
+    "single: I propose Saturday 2026-11-21, 14:00–15:00 for the 1-hour birthday party. Please confirm if you can make this time."
+  ],
+  "blocked_messages": [],
+  "questions": [],
+  "summaries": [],
+  "calls": [
+    {
+      "tool": "read_my_calendar",
+      "caller": "single",
+      "args": {
+        "participant_id": "p04"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "single",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "single",
+      "args": {
+        "participant_id": "p14"
+      }
+    },
+    {
+      "tool": "search_schedules",
+      "caller": "single",
+      "args": {
+        "query": "(every document, fetched in advance)",
+        "hits": [
+          "doc-sg-public-holidays-2026"
+        ]
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "single",
+      "args": {
+        "participant_id": "p04"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "single",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "single",
+      "args": {
+        "participant_id": "p14"
+      }
+    },
+    {
+      "tool": "post_to_thread",
+      "caller": "single",
+      "args": {
+        "text": "I propose Saturday 2026-11-21, 14:00–15:00 for the 1-hour birthday party. Please confirm if you can make this time.",
+        "blocked": null
+      }
+    },
+    {
+      "tool": "store_approval",
+      "caller": "gate",
+      "args": {
+        "approval_id": "approval-1",
+        "start": "2026-11-21T14:00",
+        "end": "2026-11-21T15:00",
+        "decision": "approve"
+      }
+    },
+    {
+      "tool": "scripted_event",
+      "caller": "harness",
+      "args": {
+        "at": "after_approval",
+        "type": "new_meeting",
+        "participant_id": "p01"
+      }
+    }
+  ],
+  "writes": [],
+  "timeline": [
+    {
+      "seq": 1,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p04",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 2,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p01",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 3,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p14",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 4,
+      "actor": "single",
+      "kind": "call",
+      "text": "search_schedules query=(every document, fetched in advance), hits=['doc-sg-public-holidays-2026']",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 5,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p04",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 6,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p01",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 7,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p14",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 8,
+      "actor": "single",
+      "kind": "call",
+      "text": "post_to_thread text=I propose Saturday 2026-11-21, 14:00–15:00 for the 1-hour birthday party. Please confirm if you can make this time., blocked=None",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 9,
+      "actor": "guardrail:privacy filter",
+      "kind": "guardrail",
+      "text": "pass: thread message from single",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 10,
+      "actor": "single",
+      "kind": "thread",
+      "text": "I propose Saturday 2026-11-21, 14:00–15:00 for the 1-hour birthday party. Please confirm if you can make this time.",
+      "visible_to": [
+        "thread"
+      ]
+    },
+    {
+      "seq": 11,
+      "actor": "gate",
+      "kind": "call",
+      "text": "store_approval approval_id=approval-1, start=2026-11-21T14:00, end=2026-11-21T15:00, decision=approve",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 12,
+      "actor": "harness",
+      "kind": "call",
+      "text": "scripted_event at=after_approval, type=new_meeting, participant_id=p01",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 13,
+      "actor": "guardrail:recheck",
+      "kind": "guardrail",
+      "text": "STOP: no longer free for ['p01']",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 14,
+      "actor": "guardrail:consent",
+      "kind": "guardrail",
+      "text": "pass: consents at 2026-11-21T14:00",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 15,
+      "actor": "guardrail:budget",
+      "kind": "guardrail",
+      "text": "pass: 1 calls, 1839 tokens, USD 0.0016",
+      "visible_to": [
+        "system"
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "name": "privacy filter",
+      "where": "output",
+      "reads": "thread message from single",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "recheck",
+      "where": "tool call",
+      "reads": "calendars at 2026-11-21T14:00",
+      "passed": false,
+      "detail": "no longer free for ['p01']"
+    },
+    {
+      "name": "consent",
+      "where": "tool call",
+      "reads": "consents at 2026-11-21T14:00",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "budget",
+      "where": "runtime",
+      "reads": "1 calls, 1839 tokens, USD 0.0016",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "coordinator_context": "You schedule one event for a group. Below is everything: each participant's calendars, time away,\nmessages, what they said, their memory notes and every external schedule. Pick the best slot that every required\nparticipant can make, or hand back if none exists. Rules: a slot is 60 minutes on a 30-minute grid,\n09:00-21:00, on Sat, Sun, from 2026-11-21 to 2026-11-22, inside each participant's usual hours. Calendar events and\ntime away are hard unless marked movable or reachable_if_urgent (those need the participant's consent, which you\ncannot get). A message counts only if it confirms the participant will be somewhere (not if cancelled or not\naccepted). Preferences are soft. Optional participants never block. Ignore expired memory notes, notes for another\nevent and agent guesses. For an event not in a calendar, use the document with the latest \"as of\".\nThen write one message for the request thread that names no one's reasons.\nRequest: Birthday party planning for an hour with Dev, Aisha, Nadia\n\n## p04 Dev Nair (required), usual hours 08:00-22:00\n## p01 Aisha Rahman (required), usual hours 08:00-22:00\n- event e-p01-1 family 2026-11-21T11:00-13:00 movable=False: Physiotherapy at Cedar Clinic\n- event e-p01-2 family 2026-11-21T17:00-18:30 movable=False: Tuition drop-off\n- event e-p01-3 family 2026-11-21T13:00-14:00 movable=False: Tuition drop-off\n- event e-p01-4 family 2026-11-21T16:30-17:00 movable=False: Physiotherapy at Cedar Clinic\n- event e-p01-5 family 2026-11-21T19:00-20:30 movable=True: Car wash\n- event e-p01-6 family 2026-11-21T09:30-11:00 movable=False: Church service\n## p14 Nadia Salleh (required), usual hours 08:00-22:00\n- event e-p14-7 family 2026-11-21T16:00-18:00 movable=True: Car wash\n- event e-p14-8 family 2026-11-21T11:00-12:00 movable=False: Kids' football practice\n- event e-p14-9 family 2026-11-21T10:00-10:30 movable=False: Wedding dinner\n- event e-p14-10 family 2026-11-21T19:30-21:00 movable=True: Car wash\n- event e-p14-11 family 2026-11-21T12:00-13:30 movable=False: Kids' swimming lesson\n- event e-p14-12 family 2026-11-22T15:00-17:00 movable=False: Lunch at Grandma's\n- event e-p14-13 family 2026-11-22T11:00-13:00 movable=True: Haircut (can move)\n- event e-p14-14 family 2026-11-22T10:00-11:00 movable=False: Lunch at Grandma's\n- event e-p14-15 family 2026-11-22T09:00-09:30 movable=False: Wedding dinner\n- event e-p14-16 family 2026-11-22T17:00-18:00 movable=True: Grocery run\n## External schedules\n[doc-sg-public-holidays-2026] Singapore public holidays 2026 (as of 2026-10-18): 2026-01-01 Thu New Year's Day. 2026-02-17 Tue and 2026-02-18 Wed Chinese New Year. 2026-03-21 Sat Hari Raya Puasa. 2026-04-03 Fri Good Friday. 2026-05-01 Fri Labour Day. 2026-05-27 Wed Hari Raya Haji. 2026-05-31 Sun Vesak Day; Mon 2026-06-01 is a public holiday. 2026-08-09 Sun National Day; Mon 2026-08-10 is a public holiday. 2026-11-08 Sun Deepavali; Mon 2026-11-09 is a public holiday. 2026-12-25 Fri Christmas Day. No public holiday falls between 2026-10-19 and 2026-11-06.\n\nRequest thread so far:\n(empty)",
+  "llm_calls": 1,
+  "input_tokens": 1178,
+  "output_tokens": 661,
+  "cost_usd": 0.001617,
+  "latency_s": 23.4,
+  "error": null
+}

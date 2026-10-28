@@ -1,0 +1,243 @@
+{
+  "arm": "a",
+  "scenario_id": "ho-022",
+  "run": 1,
+  "run_tag": "heldout-final",
+  "model": "gpt-5-mini",
+  "reasoning_effort": "low",
+  "fake_llm": false,
+  "code_version": "9be3872",
+  "outcome": {
+    "status": "scheduled",
+    "start": "2026-10-26T18:00",
+    "end": "2026-10-26T20:00",
+    "message": "invite sent"
+  },
+  "thread": [
+    "Proposed: 2026-10-26T18:00 to 20:00, everyone required is free."
+  ],
+  "blocked_messages": [],
+  "questions": [],
+  "summaries": [],
+  "calls": [
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p05"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p05"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p07"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p07"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p14"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p14"
+      }
+    },
+    {
+      "tool": "store_approval",
+      "caller": "gate",
+      "args": {
+        "approval_id": "approval-1",
+        "start": "2026-10-26T18:00",
+        "end": "2026-10-26T20:00",
+        "decision": "approve"
+      }
+    },
+    {
+      "tool": "send_invite",
+      "caller": "gate",
+      "args": {
+        "start": "2026-10-26T18:00",
+        "end": "2026-10-26T20:00",
+        "approval_id": "approval-1",
+        "key": "r-ho-022-2026-10-26T18:00"
+      }
+    }
+  ],
+  "writes": [
+    {
+      "tool": "send_invite",
+      "request_id": "r-ho-022",
+      "start": "2026-10-26T18:00",
+      "end": "2026-10-26T20:00",
+      "key": "r-ho-022-2026-10-26T18:00",
+      "approval_id": "approval-1"
+    }
+  ],
+  "timeline": [
+    {
+      "seq": 1,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p05",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 2,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p05",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 3,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p07",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 4,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p07",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 5,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 6,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 7,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p14",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 8,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p14",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 9,
+      "actor": "gate",
+      "kind": "call",
+      "text": "store_approval approval_id=approval-1, start=2026-10-26T18:00, end=2026-10-26T20:00, decision=approve",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 10,
+      "actor": "gate",
+      "kind": "call",
+      "text": "send_invite start=2026-10-26T18:00, end=2026-10-26T20:00, approval_id=approval-1, key=r-ho-022-2026-10-26T18:00",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 11,
+      "actor": "guardrail:stored approval",
+      "kind": "guardrail",
+      "text": "pass: approval approval-1 for 2026-10-26T18:00",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 12,
+      "actor": "guardrail:budget",
+      "kind": "guardrail",
+      "text": "pass: 0 calls, 0 tokens, USD 0.0000",
+      "visible_to": [
+        "system"
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "name": "stored approval",
+      "where": "tool call",
+      "reads": "approval approval-1 for 2026-10-26T18:00",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "budget",
+      "where": "runtime",
+      "reads": "0 calls, 0 tokens, USD 0.0000",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "coordinator_context": "",
+  "llm_calls": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "cost_usd": 0.0,
+  "latency_s": 0.01,
+  "error": null
+}

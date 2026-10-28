@@ -1,0 +1,338 @@
+{
+  "arm": "b",
+  "scenario_id": "ho-026",
+  "run": 3,
+  "run_tag": "heldout-final",
+  "model": "gpt-5-mini",
+  "reasoning_effort": "low",
+  "fake_llm": false,
+  "code_version": "9be3872",
+  "outcome": {
+    "status": "scheduled",
+    "start": "2026-10-31T13:30",
+    "end": "2026-10-31T14:30",
+    "message": "invite sent"
+  },
+  "thread": [],
+  "blocked_messages": [
+    "I've scheduled the visit to Grandpa on 2026-10-31, 13:30–14:30. Please let me know if that doesn't work for you."
+  ],
+  "questions": [],
+  "summaries": [],
+  "calls": [
+    {
+      "tool": "read_my_calendar",
+      "caller": "single",
+      "args": {
+        "participant_id": "p02"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "single",
+      "args": {
+        "participant_id": "p09"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "single",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "search_schedules",
+      "caller": "single",
+      "args": {
+        "query": "(every document, fetched in advance)",
+        "hits": [
+          "doc-eastcoast-sunday-league-2026",
+          "doc-sg-public-holidays-2026"
+        ]
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "single",
+      "args": {
+        "participant_id": "p02"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "single",
+      "args": {
+        "participant_id": "p09"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "single",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "post_to_thread",
+      "caller": "single",
+      "args": {
+        "text": "I've scheduled the visit to Grandpa on 2026-10-31, 13:30–14:30. Please let me know if that doesn't work for you.",
+        "blocked": "private detail 'work'"
+      }
+    },
+    {
+      "tool": "store_approval",
+      "caller": "gate",
+      "args": {
+        "approval_id": "approval-1",
+        "start": "2026-10-31T13:30",
+        "end": "2026-10-31T14:30",
+        "decision": "approve"
+      }
+    },
+    {
+      "tool": "send_invite",
+      "caller": "gate",
+      "args": {
+        "start": "2026-10-31T13:30",
+        "end": "2026-10-31T14:30",
+        "approval_id": "approval-1",
+        "key": "r-ho-026-approval-1"
+      }
+    },
+    {
+      "tool": "read_back",
+      "caller": "gate",
+      "args": {
+        "request_id": "r-ho-026"
+      }
+    }
+  ],
+  "writes": [
+    {
+      "tool": "send_invite",
+      "request_id": "r-ho-026",
+      "start": "2026-10-31T13:30",
+      "end": "2026-10-31T14:30",
+      "key": "r-ho-026-approval-1",
+      "approval_id": "approval-1"
+    }
+  ],
+  "timeline": [
+    {
+      "seq": 1,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p02",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 2,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p09",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 3,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 4,
+      "actor": "single",
+      "kind": "call",
+      "text": "search_schedules query=(every document, fetched in advance), hits=['doc-eastcoast-sunday-league-2026', 'doc-sg-public-holidays-2026']",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 5,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p02",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 6,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p09",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 7,
+      "actor": "single",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p03",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 8,
+      "actor": "single",
+      "kind": "call",
+      "text": "post_to_thread text=I've scheduled the visit to Grandpa on 2026-10-31, 13:30–14:30. Please let me know if that doesn't work for you., blocked=private detail 'work'",
+      "visible_to": [
+        "single"
+      ]
+    },
+    {
+      "seq": 9,
+      "actor": "guardrail:privacy filter",
+      "kind": "guardrail",
+      "text": "STOP: private detail 'work'",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 10,
+      "actor": "privacy filter",
+      "kind": "blocked",
+      "text": "stopped a message from single: private detail 'work'",
+      "visible_to": [
+        "single",
+        "system"
+      ]
+    },
+    {
+      "seq": 11,
+      "actor": "gate",
+      "kind": "call",
+      "text": "store_approval approval_id=approval-1, start=2026-10-31T13:30, end=2026-10-31T14:30, decision=approve",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 12,
+      "actor": "guardrail:recheck",
+      "kind": "guardrail",
+      "text": "pass: calendars at 2026-10-31T13:30",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 13,
+      "actor": "guardrail:consent",
+      "kind": "guardrail",
+      "text": "pass: consents at 2026-10-31T13:30",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 14,
+      "actor": "gate",
+      "kind": "call",
+      "text": "send_invite start=2026-10-31T13:30, end=2026-10-31T14:30, approval_id=approval-1, key=r-ho-026-approval-1",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 15,
+      "actor": "guardrail:stored approval",
+      "kind": "guardrail",
+      "text": "pass: approval approval-1 for 2026-10-31T13:30",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 16,
+      "actor": "gate",
+      "kind": "call",
+      "text": "read_back request_id=r-ho-026",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 17,
+      "actor": "guardrail:read-back",
+      "kind": "guardrail",
+      "text": "pass: invite on 3 calendars",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 18,
+      "actor": "guardrail:budget",
+      "kind": "guardrail",
+      "text": "pass: 1 calls, 2723 tokens, USD 0.0021",
+      "visible_to": [
+        "system"
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "name": "privacy filter",
+      "where": "output",
+      "reads": "thread message from single",
+      "passed": false,
+      "detail": "private detail 'work'"
+    },
+    {
+      "name": "recheck",
+      "where": "tool call",
+      "reads": "calendars at 2026-10-31T13:30",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "consent",
+      "where": "tool call",
+      "reads": "consents at 2026-10-31T13:30",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stored approval",
+      "where": "tool call",
+      "reads": "approval approval-1 for 2026-10-31T13:30",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "read-back",
+      "where": "output",
+      "reads": "invite on 3 calendars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "budget",
+      "where": "runtime",
+      "reads": "1 calls, 2723 tokens, USD 0.0021",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "coordinator_context": "You schedule one event for a group. Below is everything: each participant's calendars, time away,\nmessages, what they said, their memory notes and every external schedule. Pick the best slot that every required\nparticipant can make, or hand back if none exists. Rules: a slot is 60 minutes on a 30-minute grid,\n09:00-21:00, on Sat, Sun, from 2026-10-31 to 2026-11-08, inside each participant's usual hours. Calendar events and\ntime away are hard unless marked movable or reachable_if_urgent (those need the participant's consent, which you\ncannot get). A message counts only if it confirms the participant will be somewhere (not if cancelled or not\naccepted). Preferences are soft. Optional participants never block. Ignore expired memory notes, notes for another\nevent and agent guesses. For an event not in a calendar, use the document with the latest \"as of\".\nThen write one message for the request thread that names no one's reasons.\nRequest: Visit to Grandpa for an hour with Ben, Isaac, Chloe over the next two weekends\n\n## p02 Ben Tan (required), usual hours 08:00-22:00\n- event e-p02-1 family 2026-10-31T11:30-13:30 movable=False: Tuition drop-off\n- event e-p02-2 family 2026-10-31T15:30-16:30 movable=False: Wedding dinner\n- event e-p02-3 family 2026-10-31T10:00-11:30 movable=False: Wedding dinner\n- event e-p02-4 family 2026-11-01T19:30-20:30 movable=False: Kids' swimming lesson\n- event e-p02-5 family 2026-11-01T15:00-16:00 movable=False: Kids' football practice\n- event e-p02-6 family 2026-11-01T18:00-18:30 movable=False: Church service\n- event e-p02-7 family 2026-11-01T14:30-15:00 movable=False: Tuition drop-off\n- event e-p02-8 family 2026-11-07T13:00-13:30 movable=False: Wedding dinner\n- event e-p02-9 family 2026-11-07T13:30-14:30 movable=True: Grocery run\n- event e-p02-10 family 2026-11-07T15:00-17:00 movable=False: Lunch at Grandma's\n- event e-p02-11 family 2026-11-07T10:30-12:30 movable=False: Tuition drop-off\n- event e-p02-36 work 2026-11-08T09:00-21:00 movable=False: Work trip to Kuala Lumpur\n## p09 Isaac Pereira (required), usual hours 08:00-22:00\n- event e-p09-12 family 2026-11-01T16:00-17:30 movable=False: Kids' swimming lesson\n- event e-p09-13 family 2026-11-01T20:00-21:00 movable=False: Parent-teacher meeting at Rivervale Primary\n- event e-p09-14 family 2026-11-01T18:00-18:30 movable=False: Wedding dinner\n- event e-p09-15 family 2026-11-01T14:00-15:00 movable=False: Physiotherapy at Lotus Clinic\n- event e-p09-16 family 2026-11-01T12:30-13:30 movable=False: Parent-teacher meeting at Rivervale Primary\n- event e-p09-17 family 2026-11-07T12:00-13:00 movable=False: Kids' swimming lesson\n- event e-p09-18 family 2026-11-07T17:30-19:00 movable=False: Kids' football practice\n- event e-p09-19 family 2026-11-07T19:00-20:30 movable=False: Kids' swimming lesson\n- said [pref-p09-1]: I play in every East Coast Sunday League round.\n## p03 Chloe Lim (required), usual hours 08:00-22:00\n- event e-p03-20 family 2026-10-31T15:00-16:00 movable=False: Kids' swimming lesson\n- event e-p03-21 family 2026-10-31T20:00-21:00 movable=False: Wedding dinner\n- event e-p03-22 family 2026-10-31T18:00-18:30 movable=True: Grocery run\n- event e-p03-23 family 2026-10-31T16:00-17:00 movable=False: Church service\n- event e-p03-24 family 2026-10-31T18:30-19:30 movable=False: Wedding dinner\n- event e-p03-25 family 2026-11-01T18:30-19:30 movable=False: Kids' football practice\n- event e-p03-26 family 2026-11-01T15:00-15:30 movable=False: Lunch at Grandma's\n- event e-p03-27 family 2026-11-01T16:30-17:30 movable=False: Church service\n- event e-p03-28 family 2026-11-01T11:30-13:30 movable=False: Church service\n- event e-p03-29 family 2026-11-07T20:00-21:00 movable=False: Tuition drop-off\n- event e-p03-30 family 2026-11-07T14:30-16:30 movable=True: Grocery run\n- event e-p03-31 family 2026-11-07T11:30-12:30 movable=False: Tuition drop-off\n- event e-p03-32 family 2026-11-08T09:00-09:30 movable=True: Haircut (can move)\n- event e-p03-33 family 2026-11-08T14:00-14:30 movable=False: Kids' football practice\n- event e-p03-34 family 2026-11-08T16:00-17:00 movable=True: Haircut (can move)\n- event e-p03-35 family 2026-11-08T12:00-13:00 movable=False: Parent-teacher meeting at Kingfisher Primary\n## External schedules\n[doc-eastcoast-sunday-league-2026] East Coast Sunday League fixtures, October-November 2026 (as of 2026-10-03): East Coast Sunday League, all teams play every round (warm-up to final whistle): 2026-10-25 09:00-11:30; 2026-11-01 10:00-12:30; 2026-11-08 09:00-11:30; 2026-11-22 15:00-17:30.\n[doc-sg-public-holidays-2026] Singapore public holidays 2026 (as of 2026-10-18): 2026-01-01 Thu New Year's Day. 2026-02-17 Tue and 2026-02-18 Wed Chinese New Year. 2026-03-21 Sat Hari Raya Puasa. 2026-04-03 Fri Good Friday. 2026-05-01 Fri Labour Day. 2026-05-27 Wed Hari Raya Haji. 2026-05-31 Sun Vesak Day; Mon 2026-06-01 is a public holiday. 2026-08-09 Sun National Day; Mon 2026-08-10 is a public holiday. 2026-11-08 Sun Deepavali; Mon 2026-11-09 is a public holiday. 2026-12-25 Fri Christmas Day. No public holiday falls between 2026-10-19 and 2026-11-06.\n\nRequest thread so far:\n(empty)",
+  "llm_calls": 1,
+  "input_tokens": 1935,
+  "output_tokens": 788,
+  "cost_usd": 0.00206,
+  "latency_s": 11.37,
+  "error": null
+}

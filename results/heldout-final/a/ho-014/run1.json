@@ -1,0 +1,1044 @@
+{
+  "arm": "a",
+  "scenario_id": "ho-014",
+  "run": 1,
+  "run_tag": "heldout-final",
+  "model": "gpt-5-mini",
+  "reasoning_effort": "low",
+  "fake_llm": false,
+  "code_version": "9be3872",
+  "outcome": {
+    "status": "hand_back",
+    "start": null,
+    "end": null,
+    "message": "no common free slot"
+  },
+  "thread": [
+    "No slot found where everyone required is free."
+  ],
+  "blocked_messages": [],
+  "questions": [],
+  "summaries": [],
+  "calls": [
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p12"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "baseline",
+      "args": {
+        "participant_id": "p01"
+      }
+    }
+  ],
+  "writes": [],
+  "timeline": [
+    {
+      "seq": 1,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 2,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 3,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 4,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 5,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 6,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 7,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 8,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 9,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 10,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 11,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 12,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 13,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 14,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 15,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 16,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 17,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 18,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 19,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 20,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 21,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 22,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 23,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 24,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 25,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 26,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 27,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 28,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 29,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 30,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 31,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 32,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 33,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 34,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 35,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 36,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 37,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 38,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 39,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 40,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 41,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 42,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 43,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 44,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 45,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 46,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 47,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 48,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 49,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 50,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 51,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 52,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 53,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 54,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 55,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 56,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 57,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 58,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p12",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 59,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 60,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 61,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "get_leave participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 62,
+      "actor": "baseline",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p01",
+      "visible_to": [
+        "baseline"
+      ]
+    },
+    {
+      "seq": 63,
+      "actor": "guardrail:budget",
+      "kind": "guardrail",
+      "text": "pass: 0 calls, 0 tokens, USD 0.0000",
+      "visible_to": [
+        "system"
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "name": "budget",
+      "where": "runtime",
+      "reads": "0 calls, 0 tokens, USD 0.0000",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "coordinator_context": "",
+  "llm_calls": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "cost_usd": 0.0,
+  "latency_s": 0.01,
+  "error": null
+}
