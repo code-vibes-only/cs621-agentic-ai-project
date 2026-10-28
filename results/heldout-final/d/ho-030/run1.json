@@ -1,0 +1,1310 @@
+{
+  "arm": "d",
+  "scenario_id": "ho-030",
+  "run": 1,
+  "run_tag": "heldout-final",
+  "model": "gpt-5-mini",
+  "reasoning_effort": "low",
+  "fake_llm": false,
+  "code_version": "9be3872",
+  "outcome": {
+    "status": "scheduled",
+    "start": "2026-10-22T18:00",
+    "end": "2026-10-22T19:00",
+    "message": "invite sent and verified"
+  },
+  "thread": [
+    "coordinator: Proposed time: Thu 2026-10-22, 18:00–19:00 — 3 attendees can attend. Placing a tentative hold while I request approval."
+  ],
+  "blocked_messages": [],
+  "questions": [],
+  "summaries": [
+    {
+      "participant_id": "p03",
+      "request_id": "r-ho-030",
+      "slots": [
+        {
+          "start": "2026-10-19T18:00",
+          "end": "2026-10-19T19:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T18:30",
+          "end": "2026-10-19T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T19:00",
+          "end": "2026-10-19T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T19:30",
+          "end": "2026-10-19T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T20:00",
+          "end": "2026-10-19T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T20:30",
+          "end": "2026-10-19T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T21:00",
+          "end": "2026-10-19T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-19T21:30",
+          "end": "2026-10-19T22:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T18:00",
+          "end": "2026-10-20T19:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T18:30",
+          "end": "2026-10-20T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T19:00",
+          "end": "2026-10-20T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T19:30",
+          "end": "2026-10-20T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T20:00",
+          "end": "2026-10-20T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T20:30",
+          "end": "2026-10-20T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T21:00",
+          "end": "2026-10-20T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T21:30",
+          "end": "2026-10-20T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T18:00",
+          "end": "2026-10-21T19:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T18:30",
+          "end": "2026-10-21T19:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T19:00",
+          "end": "2026-10-21T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T19:30",
+          "end": "2026-10-21T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T20:00",
+          "end": "2026-10-21T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T20:30",
+          "end": "2026-10-21T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T21:00",
+          "end": "2026-10-21T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T21:30",
+          "end": "2026-10-21T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T18:00",
+          "end": "2026-10-22T19:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T18:30",
+          "end": "2026-10-22T19:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T19:00",
+          "end": "2026-10-22T20:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T19:30",
+          "end": "2026-10-22T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-22T20:00",
+          "end": "2026-10-22T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-22T20:30",
+          "end": "2026-10-22T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-22T21:00",
+          "end": "2026-10-22T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-22T21:30",
+          "end": "2026-10-22T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        }
+      ],
+      "unknown": []
+    },
+    {
+      "participant_id": "p01",
+      "request_id": "r-ho-030",
+      "slots": [
+        {
+          "start": "2026-10-19T18:00",
+          "end": "2026-10-19T19:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T18:30",
+          "end": "2026-10-19T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T19:00",
+          "end": "2026-10-19T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T19:30",
+          "end": "2026-10-19T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T20:00",
+          "end": "2026-10-19T21:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T20:30",
+          "end": "2026-10-19T21:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T21:00",
+          "end": "2026-10-19T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T21:30",
+          "end": "2026-10-19T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T18:00",
+          "end": "2026-10-20T19:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T18:30",
+          "end": "2026-10-20T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T19:00",
+          "end": "2026-10-20T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T19:30",
+          "end": "2026-10-20T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T20:00",
+          "end": "2026-10-20T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T20:30",
+          "end": "2026-10-20T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T21:00",
+          "end": "2026-10-20T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T21:30",
+          "end": "2026-10-20T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T18:00",
+          "end": "2026-10-21T19:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T18:30",
+          "end": "2026-10-21T19:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T19:00",
+          "end": "2026-10-21T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T19:30",
+          "end": "2026-10-21T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T20:00",
+          "end": "2026-10-21T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T20:30",
+          "end": "2026-10-21T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T21:00",
+          "end": "2026-10-21T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T21:30",
+          "end": "2026-10-21T22:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T18:00",
+          "end": "2026-10-22T19:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T18:30",
+          "end": "2026-10-22T19:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T19:00",
+          "end": "2026-10-22T20:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T19:30",
+          "end": "2026-10-22T20:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T20:00",
+          "end": "2026-10-22T21:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T20:30",
+          "end": "2026-10-22T21:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T21:00",
+          "end": "2026-10-22T22:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T21:30",
+          "end": "2026-10-22T22:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        }
+      ],
+      "unknown": []
+    },
+    {
+      "participant_id": "p04",
+      "request_id": "r-ho-030",
+      "slots": [
+        {
+          "start": "2026-10-19T18:00",
+          "end": "2026-10-19T19:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-19T18:30",
+          "end": "2026-10-19T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-19T19:00",
+          "end": "2026-10-19T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-19T19:30",
+          "end": "2026-10-19T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-19T20:00",
+          "end": "2026-10-19T21:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T20:30",
+          "end": "2026-10-19T21:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T21:00",
+          "end": "2026-10-19T22:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-19T21:30",
+          "end": "2026-10-19T22:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T18:00",
+          "end": "2026-10-20T19:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T18:30",
+          "end": "2026-10-20T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T19:00",
+          "end": "2026-10-20T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T19:30",
+          "end": "2026-10-20T20:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T20:00",
+          "end": "2026-10-20T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T20:30",
+          "end": "2026-10-20T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T21:00",
+          "end": "2026-10-20T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-20T21:30",
+          "end": "2026-10-20T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T18:00",
+          "end": "2026-10-21T19:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T18:30",
+          "end": "2026-10-21T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T19:00",
+          "end": "2026-10-21T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T19:30",
+          "end": "2026-10-21T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T20:00",
+          "end": "2026-10-21T21:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T20:30",
+          "end": "2026-10-21T21:30",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T21:00",
+          "end": "2026-10-21T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-21T21:30",
+          "end": "2026-10-21T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T18:00",
+          "end": "2026-10-22T19:00",
+          "status": "available",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T18:30",
+          "end": "2026-10-22T19:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T19:00",
+          "end": "2026-10-22T20:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T19:30",
+          "end": "2026-10-22T20:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T20:00",
+          "end": "2026-10-22T21:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T20:30",
+          "end": "2026-10-22T21:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": false
+        },
+        {
+          "start": "2026-10-22T21:00",
+          "end": "2026-10-22T22:00",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        },
+        {
+          "start": "2026-10-22T21:30",
+          "end": "2026-10-22T22:30",
+          "status": "unavailable",
+          "weight": 0.0,
+          "relaxable": true
+        }
+      ],
+      "unknown": []
+    }
+  ],
+  "calls": [
+    {
+      "tool": "read_my_calendar",
+      "caller": "personal:p03",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "personal:p03",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "personal:p03",
+      "args": {
+        "participant_id": "p03"
+      }
+    },
+    {
+      "tool": "search_schedules",
+      "caller": "personal:p03",
+      "args": {
+        "query": "public holidays October 2026",
+        "hits": [
+          "doc-sg-public-holidays-2026"
+        ]
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "personal:p01",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "personal:p01",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "personal:p01",
+      "args": {
+        "participant_id": "p01"
+      }
+    },
+    {
+      "tool": "search_schedules",
+      "caller": "personal:p01",
+      "args": {
+        "query": "public holidays October 2026 2026-10-19 to 2026-10-22",
+        "hits": [
+          "doc-sg-public-holidays-2026"
+        ]
+      }
+    },
+    {
+      "tool": "read_my_calendar",
+      "caller": "personal:p04",
+      "args": {
+        "participant_id": "p04"
+      }
+    },
+    {
+      "tool": "get_leave",
+      "caller": "personal:p04",
+      "args": {
+        "participant_id": "p04"
+      }
+    },
+    {
+      "tool": "read_my_messages",
+      "caller": "personal:p04",
+      "args": {
+        "participant_id": "p04"
+      }
+    },
+    {
+      "tool": "search_schedules",
+      "caller": "personal:p04",
+      "args": {
+        "query": "public holidays October 2026",
+        "hits": [
+          "doc-sg-public-holidays-2026"
+        ]
+      }
+    },
+    {
+      "tool": "post_to_thread",
+      "caller": "coordinator",
+      "args": {
+        "text": "Proposed time: Thu 2026-10-22, 18:00–19:00 — 3 attendees can attend. Placing a tentative hold while I request approval.",
+        "blocked": null
+      }
+    },
+    {
+      "tool": "place_hold",
+      "caller": "coordinator",
+      "args": {
+        "start": "2026-10-22T18:00",
+        "end": "2026-10-22T19:00",
+        "key": "r-ho-030-hold-2026-10-22T18:00"
+      }
+    },
+    {
+      "tool": "store_approval",
+      "caller": "gate",
+      "args": {
+        "approval_id": "approval-1",
+        "start": "2026-10-22T18:00",
+        "end": "2026-10-22T19:00",
+        "decision": "approve"
+      }
+    },
+    {
+      "tool": "send_invite",
+      "caller": "gate",
+      "args": {
+        "start": "2026-10-22T18:00",
+        "end": "2026-10-22T19:00",
+        "approval_id": "approval-1",
+        "key": "r-ho-030-approval-1"
+      }
+    },
+    {
+      "tool": "read_back",
+      "caller": "gate",
+      "args": {
+        "request_id": "r-ho-030"
+      }
+    }
+  ],
+  "writes": [
+    {
+      "tool": "place_hold",
+      "request_id": "r-ho-030",
+      "start": "2026-10-22T18:00",
+      "end": "2026-10-22T19:00",
+      "key": "r-ho-030-hold-2026-10-22T18:00",
+      "approval_id": null
+    },
+    {
+      "tool": "send_invite",
+      "request_id": "r-ho-030",
+      "start": "2026-10-22T18:00",
+      "end": "2026-10-22T19:00",
+      "key": "r-ho-030-approval-1",
+      "approval_id": "approval-1"
+    }
+  ],
+  "timeline": [
+    {
+      "seq": 1,
+      "actor": "personal:p03",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p03",
+      "visible_to": [
+        "p03"
+      ]
+    },
+    {
+      "seq": 2,
+      "actor": "personal:p03",
+      "kind": "call",
+      "text": "get_leave participant_id=p03",
+      "visible_to": [
+        "p03"
+      ]
+    },
+    {
+      "seq": 3,
+      "actor": "personal:p03",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p03",
+      "visible_to": [
+        "p03"
+      ]
+    },
+    {
+      "seq": 4,
+      "actor": "personal:p03",
+      "kind": "call",
+      "text": "search_schedules query=public holidays October 2026, hits=['doc-sg-public-holidays-2026']",
+      "visible_to": [
+        "p03"
+      ]
+    },
+    {
+      "seq": 5,
+      "actor": "personal:p03",
+      "kind": "rules",
+      "text": "9 rules (from e-p03-1, e-p03-2, e-p03-3, e-p03-4, e-p03-5, e-p03-6, e-p03-7, e-p03-8, e-p03-9); 0 unresolved windows",
+      "visible_to": [
+        "p03"
+      ]
+    },
+    {
+      "seq": 6,
+      "actor": "personal:p01",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p01",
+      "visible_to": [
+        "p01"
+      ]
+    },
+    {
+      "seq": 7,
+      "actor": "personal:p01",
+      "kind": "call",
+      "text": "get_leave participant_id=p01",
+      "visible_to": [
+        "p01"
+      ]
+    },
+    {
+      "seq": 8,
+      "actor": "personal:p01",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p01",
+      "visible_to": [
+        "p01"
+      ]
+    },
+    {
+      "seq": 9,
+      "actor": "personal:p01",
+      "kind": "call",
+      "text": "search_schedules query=public holidays October 2026 2026-10-19 to 2026-10-22, hits=['doc-sg-public-holidays-2026']",
+      "visible_to": [
+        "p01"
+      ]
+    },
+    {
+      "seq": 10,
+      "actor": "personal:p01",
+      "kind": "rules",
+      "text": "6 rules (from e-p01-10, e-p01-11, e-p01-12, e-p01-13, e-p01-14, msg-p01-1); 0 unresolved windows",
+      "visible_to": [
+        "p01"
+      ]
+    },
+    {
+      "seq": 11,
+      "actor": "personal:p04",
+      "kind": "call",
+      "text": "read_my_calendar participant_id=p04",
+      "visible_to": [
+        "p04"
+      ]
+    },
+    {
+      "seq": 12,
+      "actor": "personal:p04",
+      "kind": "call",
+      "text": "get_leave participant_id=p04",
+      "visible_to": [
+        "p04"
+      ]
+    },
+    {
+      "seq": 13,
+      "actor": "personal:p04",
+      "kind": "call",
+      "text": "read_my_messages participant_id=p04",
+      "visible_to": [
+        "p04"
+      ]
+    },
+    {
+      "seq": 14,
+      "actor": "personal:p04",
+      "kind": "call",
+      "text": "search_schedules query=public holidays October 2026, hits=['doc-sg-public-holidays-2026']",
+      "visible_to": [
+        "p04"
+      ]
+    },
+    {
+      "seq": 15,
+      "actor": "personal:p04",
+      "kind": "rules",
+      "text": "8 rules (from e-p04-15, e-p04-16, e-p04-17, e-p04-18, e-p04-19, e-p04-20, e-p04-21, e-p04-22); 0 unresolved windows",
+      "visible_to": [
+        "p04"
+      ]
+    },
+    {
+      "seq": 16,
+      "actor": "p03",
+      "kind": "request",
+      "text": "Badminton doubles for an hour with Chloe, Aisha, Dev next week (Monday to Thursday)",
+      "visible_to": [
+        "thread"
+      ]
+    },
+    {
+      "seq": 17,
+      "actor": "guardrail:summary schema",
+      "kind": "guardrail",
+      "text": "pass: summary from p03",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 18,
+      "actor": "personal:p03",
+      "kind": "summary",
+      "text": "6 available, 0 prefer not, 26 unavailable (6 relaxable)",
+      "visible_to": [
+        "p03",
+        "coordinator"
+      ]
+    },
+    {
+      "seq": 19,
+      "actor": "guardrail:summary schema",
+      "kind": "guardrail",
+      "text": "pass: summary from p01",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 20,
+      "actor": "personal:p01",
+      "kind": "summary",
+      "text": "13 available, 0 prefer not, 19 unavailable (0 relaxable)",
+      "visible_to": [
+        "p01",
+        "coordinator"
+      ]
+    },
+    {
+      "seq": 21,
+      "actor": "guardrail:summary schema",
+      "kind": "guardrail",
+      "text": "pass: summary from p04",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 22,
+      "actor": "personal:p04",
+      "kind": "summary",
+      "text": "8 available, 0 prefer not, 24 unavailable (6 relaxable)",
+      "visible_to": [
+        "p04",
+        "coordinator"
+      ]
+    },
+    {
+      "seq": 23,
+      "actor": "coordinator",
+      "kind": "ranking",
+      "text": "3 slots. Best first:\n- 2026-10-22T18:00 to 19:00: score 3.0 of 3, needs nobody's consent\n- 2026-10-22T21:00 to 22:00: score 3.0 of 3, needs consent from p03 (Chloe Lim), p04 (Dev Nair)\n- 2026-10-22T21:30 to 22:30: score 3.0 of 3, needs consent from p03 (Chloe Lim), p04 (Dev Nair)",
+      "visible_to": [
+        "coordinator"
+      ]
+    },
+    {
+      "seq": 24,
+      "actor": "coordinator",
+      "kind": "call",
+      "text": "post_to_thread text=Proposed time: Thu 2026-10-22, 18:00–19:00 — 3 attendees can attend. Placing a tentative hold while I request approval., blocked=None",
+      "visible_to": [
+        "coordinator"
+      ]
+    },
+    {
+      "seq": 25,
+      "actor": "guardrail:privacy filter",
+      "kind": "guardrail",
+      "text": "pass: thread message from coordinator",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 26,
+      "actor": "coordinator",
+      "kind": "thread",
+      "text": "Proposed time: Thu 2026-10-22, 18:00–19:00 — 3 attendees can attend. Placing a tentative hold while I request approval.",
+      "visible_to": [
+        "thread"
+      ]
+    },
+    {
+      "seq": 27,
+      "actor": "coordinator",
+      "kind": "call",
+      "text": "place_hold start=2026-10-22T18:00, end=2026-10-22T19:00, key=r-ho-030-hold-2026-10-22T18:00",
+      "visible_to": [
+        "coordinator"
+      ]
+    },
+    {
+      "seq": 28,
+      "actor": "organiser",
+      "kind": "approval",
+      "text": "approve 2026-10-22T18:00 to 19:00",
+      "visible_to": [
+        "organiser",
+        "coordinator"
+      ]
+    },
+    {
+      "seq": 29,
+      "actor": "guardrail:valid slot",
+      "kind": "guardrail",
+      "text": "pass: 2026-10-22T18:00 to 2026-10-22T19:00",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 30,
+      "actor": "gate",
+      "kind": "call",
+      "text": "store_approval approval_id=approval-1, start=2026-10-22T18:00, end=2026-10-22T19:00, decision=approve",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 31,
+      "actor": "guardrail:recheck",
+      "kind": "guardrail",
+      "text": "pass: calendars at 2026-10-22T18:00",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 32,
+      "actor": "guardrail:consent",
+      "kind": "guardrail",
+      "text": "pass: consents at 2026-10-22T18:00",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 33,
+      "actor": "gate",
+      "kind": "call",
+      "text": "send_invite start=2026-10-22T18:00, end=2026-10-22T19:00, approval_id=approval-1, key=r-ho-030-approval-1",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 34,
+      "actor": "guardrail:stored approval",
+      "kind": "guardrail",
+      "text": "pass: approval approval-1 for 2026-10-22T18:00",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 35,
+      "actor": "gate",
+      "kind": "call",
+      "text": "read_back request_id=r-ho-030",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 36,
+      "actor": "guardrail:read-back",
+      "kind": "guardrail",
+      "text": "pass: invite on 3 calendars",
+      "visible_to": [
+        "system"
+      ]
+    },
+    {
+      "seq": 37,
+      "actor": "gate",
+      "kind": "gate",
+      "text": "invite sent and verified",
+      "visible_to": [
+        "coordinator",
+        "organiser"
+      ]
+    },
+    {
+      "seq": 38,
+      "actor": "coordinator",
+      "kind": "outcome",
+      "text": "scheduled 2026-10-22T18:00 invite sent and verified",
+      "visible_to": [
+        "thread"
+      ]
+    },
+    {
+      "seq": 39,
+      "actor": "guardrail:budget",
+      "kind": "guardrail",
+      "text": "pass: 11 calls, 19774 tokens, USD 0.0111",
+      "visible_to": [
+        "system"
+      ]
+    }
+  ],
+  "guardrails": [
+    {
+      "name": "summary schema",
+      "where": "tool result",
+      "reads": "summary from p03",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "summary schema",
+      "where": "tool result",
+      "reads": "summary from p01",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "summary schema",
+      "where": "tool result",
+      "reads": "summary from p04",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "privacy filter",
+      "where": "output",
+      "reads": "thread message from coordinator",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "valid slot",
+      "where": "tool call",
+      "reads": "2026-10-22T18:00 to 2026-10-22T19:00",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "recheck",
+      "where": "tool call",
+      "reads": "calendars at 2026-10-22T18:00",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "consent",
+      "where": "tool call",
+      "reads": "consents at 2026-10-22T18:00",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stored approval",
+      "where": "tool call",
+      "reads": "approval approval-1 for 2026-10-22T18:00",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "read-back",
+      "where": "output",
+      "reads": "invite on 3 calendars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "budget",
+      "where": "runtime",
+      "reads": "11 calls, 19774 tokens, USD 0.0111",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "coordinator_context": "You are the coordinator agent for one scheduling request, working for the organiser.\nYou see availability summaries only: when each participant can meet, never why. Never guess, mention or ask\nabout anyone's reasons, and never say in the thread whose time was given up or who cannot come.\nHow to work:\n1. Call find_slots.\n2. If the top slot needs nobody's consent: post it to the thread (the time, and how many can attend),\n   place a hold on it, then call request_approval for it.\n3. If every slot needs consent: ask privately only the participants named for the top slot, one question\n   each (at most 2 per person), e.g. \"Could you free 15:00-16:00 on Sat 24 Oct for this?\". Then call\n   find_slots again.\n4. If no slot works: call hand_back with a short explanation that gives no one's reasons.\n5. If request_approval reports that the slot is no longer free or that a required attendee declined, call\n   find_slots again and handle the new top slot as above. That needs a new approval.\nAnswer questions in the thread briefly and without anyone's reasons. Never ask anything in the thread.\nRequest from p03: Badminton doubles for an hour with Chloe, Aisha, Dev next week (Monday to Thursday)\nDuration 60 min, 2026-10-19 to 2026-10-22, 18:00-22:30.\nAttendees:\n- p03 Chloe Lim (required)\n- p01 Aisha Rahman (required)\n- p04 Dev Nair (required)\nRequest thread so far:\n(empty)\n\n3 slots. Best first:\n- 2026-10-22T18:00 to 19:00: score 3.0 of 3, needs nobody's consent\n- 2026-10-22T21:00 to 22:00: score 3.0 of 3, needs consent from p03 (Chloe Lim), p04 (Dev Nair)\n- 2026-10-22T21:30 to 22:30: score 3.0 of 3, needs consent from p03 (Chloe Lim), p04 (Dev Nair)\n\nposted\n\nhold r-ho-030-hold-2026-10-22T18:00 on 2026-10-22T18:00-19:00\n\ninvite sent and verified",
+  "llm_calls": 11,
+  "input_tokens": 16259,
+  "output_tokens": 3515,
+  "cost_usd": 0.011095,
+  "latency_s": 45.14,
+  "error": null
+}
