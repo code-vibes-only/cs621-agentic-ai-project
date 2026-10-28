@@ -8,8 +8,15 @@ from scheduler.sandbox.tools import personal_tools
 def test_reset_clears_every_log(scenario):
     s = scenario("dev-001")
     world.place_hold(s.request.id, "2026-10-19T11:00", "2026-10-19T12:00", "k1", "test")
+    world.note("coordinator", "test", "left over")
+    world.guard("test check", "output", "left over", False)
+    for log in (world.THREAD, world.BLOCKED, world.CONTEXT):
+        log.append("left over")
+    world.FIRED.add(0)
     scenario("dev-001")
     assert not world.WRITES and not world.CALLS and not world.HOLDS
+    assert not (world.THREAD or world.BLOCKED or world.QUESTIONS or world.SUMMARIES or world.CONTEXT
+                or world.TIMELINE or world.GUARDRAILS or world.FIRED)        # nothing carries into the next scenario
 
 
 def test_personal_tools_reach_only_their_own_participant(scenario):
