@@ -5,13 +5,14 @@ import json
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from scheduler.contracts.availability import AvailabilitySummary
 from scheduler.contracts.tools import Call, Write
 
 
 class Outcome(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     status: Literal["scheduled", "hand_back", "error", "budget"]
     start: str | None = None
     end: str | None = None
@@ -19,6 +20,7 @@ class Outcome(BaseModel):
 
 
 class Question(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     to: str
     text: str
     channel: Literal["private", "thread"] = "private"
@@ -27,6 +29,7 @@ class Question(BaseModel):
 class TimelineEvent(BaseModel):
     """One step of an episode, in order, with who may see it: "thread" (every participant),
     a participant id, "coordinator", "organiser" or "system"."""
+    model_config = ConfigDict(extra="forbid")
     seq: int
     actor: str
     kind: str
@@ -37,6 +40,7 @@ class TimelineEvent(BaseModel):
 class GuardrailCheck(BaseModel):
     """One verdict of a check that runs outside the model, on what the model produced. Passes
     are recorded too, so a past run can be reconstructed from the record."""
+    model_config = ConfigDict(extra="forbid")
     name: str
     where: Literal["input", "tool result", "tool call", "output", "runtime"]
     reads: str
@@ -45,6 +49,7 @@ class GuardrailCheck(BaseModel):
 
 
 class EpisodeResult(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     arm: str
     scenario_id: str
     run: int

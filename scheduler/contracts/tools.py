@@ -18,12 +18,14 @@ class CorpusDoc(BaseModel):
 
 
 class Call(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     tool: str
     caller: str                      # "personal:p01", "coordinator", "gate", "harness"
     args: dict
 
 
 class Write(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     tool: Literal["place_hold", "release_hold", "send_invite"]
     request_id: str
     start: str | None = None
