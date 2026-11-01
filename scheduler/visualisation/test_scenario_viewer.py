@@ -18,7 +18,7 @@ def built():
 
 def test_covers_every_scenario_and_agrees_with_truth(built):
     data, problems = built
-    assert data["meta"]["n"] == 59
+    assert data["meta"]["n"] == 62
     assert problems == []
 
 

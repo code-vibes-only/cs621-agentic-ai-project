@@ -37,7 +37,7 @@ HERE = Path(__file__).resolve().parent
 TEMPLATE = HERE / "scenario_viewer_template.html"
 BRIEFS = HERE / "briefs"          # OPTIONAL hand-written briefs, one <scenario id>.md each; absent by default
 EXPORTS = HERE / "exports"        # where --html writes by default (git-ignored: regenerate with one command)
-RESULT_TAGS = ("dev7", "privacy-dev", "attack-dev", "heldout-final")      # result folders read by default
+RESULT_TAGS = ("dev7", "privacy-dev", "attack-dev", "attack-dev2", "heldout-final")      # result folders read by default
 WD = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 
 # ------------------------------------------------------------------ plain-English text

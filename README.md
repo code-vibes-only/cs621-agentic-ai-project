@@ -50,15 +50,18 @@ uv run python -m scheduler.scenario_viewer data/scenarios/dev/dev-026.json
 
 Pass any dev or held-out scenario JSON path to the command.
 
-To review every scenario in one place, write the offline explorer page and open it in a browser:
+To review every scenario in one place, write the offline scenario viewer and open it in a browser:
 
 ```sh
-uv run python -m scheduler.scenario_viewer --html out/
+uv run python -m scheduler.visualisation --html
 ```
 
-It shows each scenario's brief, calendars, answer key, attack and saved results, the personal agents against the
-answer key, and the labelled leak messages. It takes about a minute to build, needs no server and makes no
-model calls. A switch hides the answer key to show only what the agents can read. `out/` is git-ignored.
+It writes `scheduler/visualisation/exports/scenario_viewer.html` (git-ignored) with each scenario's brief, calendars,
+answer key, attack and saved results. It needs no server and makes no model calls. A switch hides the answer key to show
+only what the agents can read. `--check` cross-checks the viewer against the repository.
+
+The older explorer (`scenario_viewer --html out/`) is deprecated and will be removed. Its layer 3 and 5 diagnostics are in
+`results/component/report.md`, and `docs/attack-coverage.md` lists where each case in issue #19 is tested.
 
 ### Held-out sweep (run centrally)
 

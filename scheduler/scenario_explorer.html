@@ -166,7 +166,7 @@ function render() {
   const app = document.getElementById("app");
   const scrollers = [...app.querySelectorAll(".list, .main, .full")].map(e => e.scrollTop);
   const samePlace = render.place === state.page + state.id + state.tab;
-  app.replaceChildren(topBar(), subNav(), PAGES[state.page]());
+  app.replaceChildren(deprecation(), topBar(), subNav(), PAGES[state.page]());
   if (samePlace || render.place?.startsWith("scenarios") && state.page === "scenarios") {
     const list = app.querySelector(".list"); if (list) list.scrollTop = scrollers[0] ?? 0;
   }
@@ -185,6 +185,12 @@ const SECTIONS = [
 ];
 const sectionOf = page => page === "scenarios" || page === "guide" ? "general" : "agent";
 const subOf = page => page === "labels" ? "guardrails" : page;     // the leak tests are a part of the Guardrails page
+
+function deprecation() {
+  return h("div", { class: "banner", style: "margin:0;border-radius:0;flex:none" },
+    "This older explorer is deprecated. Use the scenario viewer instead: ", h("code", null, "uv run python -m scheduler.visualisation --html"),
+    ". The layer 3 and 5 diagnostics are in results/component/report.md; the attack coverage table is docs/attack-coverage.md.");
+}
 
 function subNav() {
   const pages = SECTIONS.find(s => s[0] === sectionOf(state.page))[2];
@@ -564,20 +570,6 @@ function guardrailsPage() {
     state.page === "labels" ? labelsBody() : stopsBody());
 }
 
-function coverageCard() {
-  const words = name => name.replace(/^test_/, "").replaceAll("_", " ");
-  const status = row => row.scenarios.length && row.tests.length ? chip("real model and scripted test", "good")
-    : row.tests.length ? chip("scripted test only", "warn") : chip("not covered", "bad");
-  return h("div", { class: "card" }, h("h3", null, "Issue #19: which cases are covered"),
-    h("p", { class: "muted" }, "One row per case in the issue's list. A scenario ran on the real model. A scripted test makes a model obey the attack and checks that code stops it. Both are free to rerun; neither is a model result."),
-    h("div", { class: "scroll" }, h("table", { class: "t" },
-      h("thead", null, h("tr", null, ["Type", "Case", "Covered", "Real-model scenarios", "Scripted tests"].map(x => h("th", null, x)))),
-      h("tbody", null, D.coverage.map(row => h("tr", null,
-        h("td", null, row.type), h("td", null, row.case, row.note ? h("div", { class: "muted small" }, row.note) : null), h("td", null, status(row)),
-        h("td", null, row.scenarios.length ? row.scenarios.map(id => [scenarioLink(id, "attack"), " "]) : h("span", { class: "muted" }, "none")),
-        h("td", { class: "small" }, row.tests.length ? row.tests.map(name => h("div", null, words(name))) : h("span", { class: "muted" }, "none"))))))));
-}
-
 function stopsBody() {
   const groups = new Map();
   for (const s of D.scenarios) {
@@ -596,7 +588,6 @@ function stopsBody() {
       h("h3", null, "Stops: ", [...g.kinds].join(", ")), h("p", null, text),
       h("div", { class: "scroll" }, h("table", { class: "t" }, h("thead", null, h("tr", null, ["Scenario", "Planted in", "Saved runs"].map(x => h("th", null, x)))),
         h("tbody", null, g.items.map(s => h("tr", null, h("td", null, scenarioLink(s.id, "attack"), " ", chip(s.split === "dev" ? "dev" : "held-out")), h("td", null, s.attack.where), h("td", null, results(s))))))))),
-    coverageCard(),
     h("div", { class: "card" }, h("h3", null, "Leaks into the group thread"),
       h("p", null, "Two further checks guard the thread against private reasons: the privacy filter blocks a message before it is posted, and the checker grades what was posted afterwards. The Hand-written leak tests tab tests both."),
       h("p", null, h("button", { class: "chip link", onclick: () => go({ page: "labels" }) }, "Open the leak tests"))));

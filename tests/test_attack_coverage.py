@@ -5,8 +5,7 @@ paths. This file covers the remaining rows of the issue's table: tool poisoning 
 add an attendee, forged or ignored consent, exfiltration through the hand-back, a private question
 and the hold key, unbounded consumption and tool hijacking. A format (a base64 message, a payload
 split in two, markup in a page, an instruction in an event title) changes whether a real model
-obeys, not what the code does once it has, so those formats share the tests above. The coverage
-table in the scenario explorer lists which test or scenario stands for each case."""
+obeys, not what the code does once it has, so those formats share the tests above. docs/attack-coverage.md lists which test or scenario stands for each case."""
 import copy
 import re
 

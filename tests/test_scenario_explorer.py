@@ -81,15 +81,6 @@ def test_every_saved_sweep_has_a_plain_name(data):
     assert set(ex.TAG_NAMES) == set(ex.TAGS) and data["tag_names"] == ex.TAG_NAMES
 
 
-def test_every_name_in_the_attack_coverage_table_exists(data):
-    tests_dir = ex.PAGE.parents[1] / "tests"
-    defined = {name for path in tests_dir.glob("test_*.py") for name in re.findall(r"^def (test_\w+)", path.read_text(encoding="utf-8"), re.M)}
-    ids = {s["id"] for s in data["scenarios"]}
-    for row in data["coverage"]:
-        assert set(row["scenarios"]) <= ids and set(row["tests"]) <= defined, row["case"]
-        assert all(by_id(data, sid)["attack"] for sid in row["scenarios"]), row["case"]       # a scenario named here is an attack case
-
-
 def test_the_labels_page_has_every_labelled_message(data):
     assert len(data["labels"]) == 38 and {m["label"] for m in data["labels"]} == {"leak", "clean"}
 
