@@ -1,0 +1,51 @@
+scenario,run,participant,key,agent,cause,slots
+ho-003,1,p09,prefer_not,unavailable,preference read as a block (memory note),10
+ho-003,1,p15,available,unavailable,"extra block, no key rule",1
+ho-003,3,p15,available,unavailable,"extra block, no key rule",1
+ho-004,1,p10,prefer_not,unavailable,preference read as a block (memory note),10
+ho-004,2,p05,available,unavailable,"extra block, no key rule",4
+ho-004,2,p10,prefer_not,unavailable,preference read as a block (memory note),10
+ho-004,3,p10,available,prefer_not,"extra preference, no key rule",2
+ho-005,1,p02,unavailable,available,missed block (external schedule),3
+ho-005,1,p05,unavailable,available,missed block (external schedule),3
+ho-005,2,p02,unavailable,available,missed block (external schedule),3
+ho-005,2,p05,unavailable,available,missed block (external schedule),3
+ho-005,3,p02,unavailable,available,missed block (external schedule),3
+ho-005,3,p05,unavailable,available,missed block (external schedule),3
+ho-011,1,p14,available,prefer_not,"extra preference, no key rule",1
+ho-011,2,p04,available,prefer_not,"extra preference, no key rule",2
+ho-011,2,p04,unavailable,prefer_not,block read as a preference (what they said),6
+ho-011,2,p14,available,prefer_not,"extra preference, no key rule",1
+ho-011,3,p14,available,prefer_not,"extra preference, no key rule",1
+ho-012,1,p02,available,prefer_not,"extra preference, no key rule",3
+ho-012,2,p02,available,prefer_not,"extra preference, no key rule",3
+ho-012,2,p04,available,prefer_not,"extra preference, no key rule",5
+ho-012,2,p04,unavailable,prefer_not,block read as a preference (what they said),12
+ho-012,3,p02,available,prefer_not,"extra preference, no key rule",3
+ho-012,3,p04,available,prefer_not,"extra preference, no key rule",5
+ho-012,3,p04,unavailable,prefer_not,block read as a preference (what they said),12
+ho-024,2,p02,unavailable,prefer_not,block read as a preference (what they said),14
+ho-024,3,p02,unavailable,prefer_not,block read as a preference (what they said),14
+ho-026,1,p03,available,unavailable,public holiday the key leaves out,14
+ho-026,1,p03,unavailable,unavailable,hard and movable swapped (calendar event),4
+ho-026,1,p09,available,unavailable,public holiday the key leaves out,18
+ho-026,2,p03,available,unavailable,public holiday the key leaves out,14
+ho-026,2,p03,unavailable,unavailable,hard and movable swapped (calendar event),4
+ho-026,2,p09,available,unavailable,"extra block, no key rule",4
+ho-026,2,p09,available,unavailable,public holiday the key leaves out,18
+ho-026,3,p03,available,unavailable,public holiday the key leaves out,14
+ho-026,3,p03,unavailable,unavailable,hard and movable swapped (calendar event),4
+ho-026,3,p09,available,unavailable,"extra block, no key rule",22
+ho-027,1,p02,available,unavailable,public holiday the key leaves out,15
+ho-027,1,p02,unavailable,unavailable,hard and movable swapped (calendar event),3
+ho-027,1,p07,available,unavailable,public holiday the key leaves out,18
+ho-027,2,p02,available,unavailable,public holiday the key leaves out,15
+ho-027,2,p02,unavailable,unavailable,hard and movable swapped (calendar event),3
+ho-027,2,p07,available,unavailable,"extra block, no key rule",23
+ho-027,2,p07,available,unavailable,public holiday the key leaves out,18
+ho-027,2,p09,available,unavailable,public holiday the key leaves out,13
+ho-027,3,p02,available,unavailable,public holiday the key leaves out,15
+ho-027,3,p02,unavailable,unavailable,hard and movable swapped (calendar event),3
+ho-027,3,p07,available,unavailable,public holiday the key leaves out,18
+ho-027,3,p09,available,unavailable,public holiday the key leaves out,13
+ho-030,2,p01,available,prefer_not,"extra preference, no key rule",2
