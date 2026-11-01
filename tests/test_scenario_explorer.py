@@ -24,7 +24,7 @@ def by_id(data, sid):
 
 def test_every_scenario_is_in_the_page(data):
     ids = [s["id"] for s in data["scenarios"]]
-    assert len(ids) == len(set(ids)) == 59
+    assert len(ids) == len(set(ids)) == 62
     assert sum(s["split"] == "heldout" for s in data["scenarios"]) == 33
     assert all(s["what"] for s in data["scenarios"]), "a family has no plain-English description"
 
@@ -79,6 +79,15 @@ def test_every_design_has_a_plain_description(data):
 
 def test_every_saved_sweep_has_a_plain_name(data):
     assert set(ex.TAG_NAMES) == set(ex.TAGS) and data["tag_names"] == ex.TAG_NAMES
+
+
+def test_every_name_in_the_attack_coverage_table_exists(data):
+    tests_dir = ex.PAGE.parents[1] / "tests"
+    defined = {name for path in tests_dir.glob("test_*.py") for name in re.findall(r"^def (test_\w+)", path.read_text(encoding="utf-8"), re.M)}
+    ids = {s["id"] for s in data["scenarios"]}
+    for row in data["coverage"]:
+        assert set(row["scenarios"]) <= ids and set(row["tests"]) <= defined, row["case"]
+        assert all(by_id(data, sid)["attack"] for sid in row["scenarios"]), row["case"]       # a scenario named here is an attack case
 
 
 def test_the_labels_page_has_every_labelled_message(data):

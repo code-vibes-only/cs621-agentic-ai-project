@@ -412,7 +412,7 @@ function attackTab(s) {
   const arms = [...new Set(eps.map(e => e.arm))].sort();
   return [
     h("div", { class: "card" }, h("h3", null, "The planted text"),
-      h("p", { class: "muted" }, `${a.kind.replaceAll("_", " ")}, in ${a.where}`),
+      h("p", { class: "muted" }, `${a.label}, in ${a.where}`),
       h("div", { class: "quote" }, h("mark", null, a.text || "(not found in the scenario's text)"))),
     h("div", { class: "card" }, h("h3", null, "What must not happen"),
       h("p", null, a.must_not.map(x => [chip(x.replaceAll("_", " "), "bad"), " "]), h("span", { class: "muted" }, ` severity ${a.weight}`)),
@@ -564,12 +564,26 @@ function guardrailsPage() {
     state.page === "labels" ? labelsBody() : stopsBody());
 }
 
+function coverageCard() {
+  const words = name => name.replace(/^test_/, "").replaceAll("_", " ");
+  const status = row => row.scenarios.length && row.tests.length ? chip("real model and scripted test", "good")
+    : row.tests.length ? chip("scripted test only", "warn") : chip("not covered", "bad");
+  return h("div", { class: "card" }, h("h3", null, "Issue #19: which cases are covered"),
+    h("p", { class: "muted" }, "One row per case in the issue's list. A scenario ran on the real model. A scripted test makes a model obey the attack and checks that code stops it. Both are free to rerun; neither is a model result."),
+    h("div", { class: "scroll" }, h("table", { class: "t" },
+      h("thead", null, h("tr", null, ["Type", "Case", "Covered", "Real-model scenarios", "Scripted tests"].map(x => h("th", null, x)))),
+      h("tbody", null, D.coverage.map(row => h("tr", null,
+        h("td", null, row.type), h("td", null, row.case, row.note ? h("div", { class: "muted small" }, row.note) : null), h("td", null, status(row)),
+        h("td", null, row.scenarios.length ? row.scenarios.map(id => [scenarioLink(id, "attack"), " "]) : h("span", { class: "muted" }, "none")),
+        h("td", { class: "small" }, row.tests.length ? row.tests.map(name => h("div", null, words(name))) : h("span", { class: "muted" }, "none"))))))));
+}
+
 function stopsBody() {
   const groups = new Map();
   for (const s of D.scenarios) {
     if (!s.attack) continue;
     const g = groups.get(s.attack.guardrail) || { kinds: new Set(), items: [] };
-    g.kinds.add(s.attack.kind.replaceAll("_", " ")); g.items.push(s); groups.set(s.attack.guardrail, g);
+    g.kinds.add(s.attack.label); g.items.push(s); groups.set(s.attack.guardrail, g);
   }
   const results = s => {
     const eps = s.episodes.filter(e => e.attack_worked !== null), arms = [...new Set(eps.map(e => e.arm))].sort();
@@ -582,6 +596,7 @@ function stopsBody() {
       h("h3", null, "Stops: ", [...g.kinds].join(", ")), h("p", null, text),
       h("div", { class: "scroll" }, h("table", { class: "t" }, h("thead", null, h("tr", null, ["Scenario", "Planted in", "Saved runs"].map(x => h("th", null, x)))),
         h("tbody", null, g.items.map(s => h("tr", null, h("td", null, scenarioLink(s.id, "attack"), " ", chip(s.split === "dev" ? "dev" : "held-out")), h("td", null, s.attack.where), h("td", null, results(s))))))))),
+    coverageCard(),
     h("div", { class: "card" }, h("h3", null, "Leaks into the group thread"),
       h("p", null, "Two further checks guard the thread against private reasons: the privacy filter blocks a message before it is posted, and the checker grades what was posted afterwards. The Hand-written leak tests tab tests both."),
       h("p", null, h("button", { class: "chip link", onclick: () => go({ page: "labels" }) }, "Open the leak tests"))));

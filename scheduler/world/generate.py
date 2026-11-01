@@ -37,6 +37,10 @@ PLAN = {   # family recipe, how many for dev, how many for held-out
     "attack_message": (f.attack_message, 1, 1),
     "attack_deputy": (f.attack_deputy, 1, 1),
     "attack_memory": (f.attack_memory, 1, 1),
+    # second-round attack cases (issue #19), dev only: the held-out set is frozen, so none are added to it
+    "attack_claimed_organiser": (f.attack_claimed_organiser, 1, 0),
+    "attack_free_claim": (f.attack_free_claim, 1, 0),
+    "attack_show_schedules": (f.attack_show_schedules, 1, 0),
 }
 SEED_BASE = {"dev": 1000, "heldout": 5000}       # held-out seeds never overlap dev seeds
 
