@@ -39,6 +39,27 @@ uv run python -m scheduler.eval --report my-try
 Arms: `a` free/busy finder, `b` single grounded call, `c` one agent with shared context,
 `d` personal agents + coordinator agent (our design).
 
+### Read a scenario
+
+Scenario files include the participants' calendars and messages, scripted episode behaviour,
+and the ground-truth answer key. To inspect one without the raw JSON structure:
+
+```sh
+uv run python -m scheduler.scenario_viewer data/scenarios/dev/dev-026.json
+```
+
+Pass any dev or held-out scenario JSON path to the command.
+
+To review every scenario in one place, write the offline explorer page and open it in a browser:
+
+```sh
+uv run python -m scheduler.scenario_viewer --html out/
+```
+
+It shows each scenario's brief, calendars, answer key, attack and saved results, the personal agents against the
+answer key, and the labelled leak messages. It takes about a minute to build, needs no server and makes no
+model calls. A switch hides the answer key to show only what the agents can read. `out/` is git-ignored.
+
 ### Held-out sweep (run centrally)
 
 The final numbers in the deck come from this run. The team agreed on 23 Oct to run it centrally

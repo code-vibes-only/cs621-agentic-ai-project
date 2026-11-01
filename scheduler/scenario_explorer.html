@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scenario Explorer</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f6f6f4; --panel: #ffffff; --panel-2: #f0f0ec; --line: #dcdcd6; --text: #1d1d1b; --muted: #65655f; --accent: #2f5fb3; --accent-soft: #e4ecfa;
+  --free: #9ed8ac; --soft: #dcebb0; --consent: #f4cf7e; --blocked: #d6d6d0; --hard: #e3a79f; --empty: transparent;
+  --good: #1c7a3c; --good-soft: #dff2e4; --bad: #b3342a; --bad-soft: #fae3e0; --warn: #8a5a00; --warn-soft: #fbefd2;
+  --mark: #ffe58a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #171716; --panel: #212120; --panel-2: #2b2b29; --line: #3b3b38; --text: #ecece8; --muted: #a3a39c; --accent: #8db1f2; --accent-soft: #26334d;
+    --free: #2f7a45; --soft: #5f7330; --consent: #a67a1e; --blocked: #3c3c39; --hard: #8e4038;
+    --good: #7fd498; --good-soft: #1e3a27; --bad: #f09a90; --bad-soft: #452420; --warn: #e6bc66; --warn-soft: #3d3016; --mark: #6b5a14;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+button { font: inherit; color: inherit; }
+h1 { font-size: 15px; margin: 0; font-weight: 650; }
+h2 { font-size: 20px; margin: 0 0 4px; font-weight: 650; }
+h3 { font-size: 14px; margin: 22px 0 8px; font-weight: 650; }
+h3:first-child { margin-top: 0; }
+p { margin: 0 0 8px; max-width: 76ch; }
+.muted { color: var(--muted); }
+.small { font-size: 12.5px; }
+code { font: 12.5px ui-monospace, Consolas, monospace; }
+
+.top { display: flex; align-items: center; gap: 16px; padding: 8px 16px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+.seg button { border: 0; background: transparent; padding: 4px 11px; cursor: pointer; border-right: 1px solid var(--line); }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.spacer { flex: 1; }
+
+.layout { display: grid; grid-template-columns: 290px minmax(0, 1fr); height: calc(100vh - 49px); }
+.side { border-right: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; min-height: 0; }
+.filters { padding: 10px 12px; border-bottom: 1px solid var(--line); display: grid; gap: 8px; }
+.filters input[type=search] { width: 100%; padding: 6px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); color: var(--text); font: inherit; }
+.list { overflow-y: auto; flex: 1; padding-bottom: 12px; }
+.fam { padding: 11px 12px 3px; font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.item { display: flex; width: 100%; gap: 8px; align-items: center; padding: 5px 12px; border: 0; background: transparent; cursor: pointer; text-align: left; }
+.item:hover { background: var(--panel-2); }
+.item[aria-current="true"] { background: var(--accent-soft); }
+.item .id { font-weight: 600; }
+.item .right { margin-left: auto; display: flex; gap: 5px; align-items: center; }
+
+.main { overflow-y: auto; padding: 18px 22px 60px; min-width: 0; }
+.full { height: calc(100vh - 49px); overflow-y: auto; padding: 20px 22px 60px; }
+.tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin: 14px 0 16px; flex-wrap: wrap; }
+.tabs button { border: 0; background: transparent; padding: 7px 12px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; color: var(--muted); }
+.tabs button[aria-selected="true"] { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 13px 15px; margin-bottom: 12px; }
+.chip { display: inline-block; padding: 0 7px; border-radius: 10px; font-size: 12px; background: var(--panel-2); color: var(--muted); white-space: nowrap; line-height: 19px; }
+.chip.good { background: var(--good-soft); color: var(--good); font-weight: 600; }
+.chip.bad { background: var(--bad-soft); color: var(--bad); font-weight: 600; }
+.chip.warn { background: var(--warn-soft); color: var(--warn); font-weight: 600; }
+.chip.link { cursor: pointer; border: 0; }
+.chip.link:hover { outline: 1px solid var(--accent); }
+.banner { background: var(--warn-soft); color: var(--warn); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; max-width: 80ch; }
+.quote { border-left: 3px solid var(--line); padding: 2px 0 2px 11px; margin: 4px 0 8px; max-width: 76ch; }
+mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius: 2px; }
+
+table.t { border-collapse: collapse; width: 100%; max-width: 980px; }
+table.t th { text-align: left; font-weight: 600; color: var(--muted); font-size: 12.5px; padding: 5px 9px; border-bottom: 1px solid var(--line); }
+table.t td { padding: 5px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.t tr:last-child td { border-bottom: 0; }
+.scroll { overflow-x: auto; }
+
+.grid { border-collapse: separate; border-spacing: 2px; }
+.grid th { font-weight: 500; font-size: 11.5px; color: var(--muted); padding: 0 3px; white-space: nowrap; }
+.grid th.day { min-width: 62px; }
+.grid th.day .hol { display: block; color: var(--warn); font-weight: 600; }
+.grid th.time { text-align: right; }
+.cell { display: block; width: 100%; height: 15px; border: 0; padding: 0; border-radius: 2px; cursor: pointer; background: var(--empty); position: relative; }
+.cell.free { background: var(--free); }
+.cell.soft { background: var(--soft); }
+.cell.consent, .cell.movable { background: repeating-linear-gradient(135deg, var(--consent), var(--consent) 3px, transparent 3px, transparent 5px), var(--panel-2); }
+.cell.blocked { background: var(--blocked); }
+.cell.hard { background: var(--hard); }
+.cell.expected { outline: 2px solid var(--accent); outline-offset: -1px; }
+.cell[aria-pressed="true"] { outline: 2px solid var(--text); outline-offset: 0; }
+.cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; margin: 2px 0 10px; font-size: 12.5px; color: var(--muted); align-items: center; }
+.legend i { display: inline-block; width: 22px; height: 12px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; position: static; cursor: default; }
+.grid-wrap { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-start; }
+.detail { flex: 1; min-width: 260px; max-width: 520px; }
+
+.people { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 12px; }
+.people .card { margin: 0; min-width: 0; }
+.items { list-style: none; margin: 4px 0 8px; padding: 0; }
+.items li { padding: 2px 0; }
+details > summary { cursor: pointer; padding: 3px 0; }
+.runs { display: flex; gap: 4px; flex-wrap: wrap; }
+.run { border: 1px solid transparent; border-radius: 6px; padding: 1px 9px; cursor: pointer; font-size: 12.5px; font-weight: 600; }
+.run.pass { background: var(--good-soft); color: var(--good); }
+.run.fail { background: var(--bad-soft); color: var(--bad); }
+.run[aria-pressed="true"] { border-color: var(--text); }
+.tl { font-size: 13px; }
+.tl td:first-child { white-space: nowrap; color: var(--muted); }
+.tl td:nth-child(2) { white-space: nowrap; color: var(--muted); }
+.tl td:last-child { overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; height: auto; }
+  .side { border-right: 0; border-bottom: 1px solid var(--line); max-height: 40vh; }
+  .main, .full { height: auto; padding: 14px 16px 40px; }
+  .people { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script id="data" type="application/json">/*DATA*/null</script>
+<script>
+"use strict";
+const D = JSON.parse(document.getElementById("data").textContent);
+const S = Object.fromEntries(D.scenarios.map(s => [s.id, s]));
+const state = { page: "scenarios", id: D.scenarios[0].id, tab: "brief", view: "key", search: "", split: "all", failing: false, picked: null, episode: null, labelFilter: "all" };
+
+// Everything shown goes through text nodes, never parsed as markup: attack scenarios hold hostile text on purpose.
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v === false || v === null || v === undefined) continue;
+    if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (k === "class") el.className = v;
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of kids.flat(Infinity)) if (kid !== null && kid !== undefined && kid !== false) el.append(kid);
+  return el;
+}
+const chip = (text, kind, title) => h("span", { class: "chip " + (kind || ""), title }, text);
+const go = (changes) => { Object.assign(state, changes); render(); };
+const open = (id, tab) => go({ page: "scenarios", id, tab: tab || state.tab, picked: null, episode: null });
+
+function day(d, weekdayOnly) {
+  const date = new Date(d + "T00:00:00");
+  return date.toLocaleDateString("en-GB", weekdayOnly ? { weekday: "short" } : { weekday: "short", day: "numeric", month: "short" });
+}
+const time = (moment) => moment.slice(11);
+const when = (slot) => `${day(slot.start.slice(0, 10))}, ${time(slot.start)}-${time(slot.end)}`;
+const moment = (m) => m ? `${day(m.slice(0, 10))}, ${time(m)}` : "none";
+
+function passes(s, tag) {
+  const eps = s.episodes.filter(e => e.arm === "d" && (!tag || e.tag === tag));
+  return { pass: eps.filter(e => e.passed).length, total: eps.length };
+}
+
+// ---------------------------------------------------------------- top bar and routing
+function render() {
+  location.replace("#" + (state.page === "scenarios" ? `${state.id}/${state.tab}` : state.page));
+  const app = document.getElementById("app");
+  const scrollers = [...app.querySelectorAll(".list, .main, .full")].map(e => e.scrollTop);
+  const samePlace = render.place === state.page + state.id + state.tab;
+  app.replaceChildren(topBar(), state.page === "scenarios" ? scenariosPage() : state.page === "agents" ? agentsPage() : labelsPage());
+  if (samePlace || render.place?.startsWith("scenarios") && state.page === "scenarios") {
+    const list = app.querySelector(".list"); if (list) list.scrollTop = scrollers[0] ?? 0;
+  }
+  if (samePlace) [...app.querySelectorAll(".main, .full")].forEach(e => { e.scrollTop = scrollers[scrollers.length - 1] ?? 0; });
+  render.place = state.page + state.id + state.tab;
+}
+
+function seg(options, value, set) {
+  return h("div", { class: "seg" }, options.map(([v, label, title]) =>
+    h("button", { "aria-pressed": String(v === value), title, onclick: () => set(v) }, label)));
+}
+
+function topBar() {
+  return h("div", { class: "top" },
+    h("h1", null, "Scenario Explorer"),
+    seg([["scenarios", "Scenarios"], ["agents", "Agents vs answer key"], ["labels", "Leak labels"]], state.page, page => go({ page })),
+    h("div", { class: "spacer" }),
+    state.page === "scenarios" && h("span", { class: "muted small" }, "Show"),
+    state.page === "scenarios" && seg([["key", "Answer key", "Everything, including the answer key and results"], ["agent", "Agent's view", "Only what the agents can read"]],
+      state.view, view => go({ view, tab: view === "agent" && !["brief", "calendars"].includes(state.tab) ? "brief" : state.tab })));
+}
+
+// ---------------------------------------------------------------- the list of scenarios
+function visible() {
+  const q = state.search.trim().toLowerCase();
+  return D.scenarios.filter(s => {
+    if (state.split !== "all" && s.split !== state.split) return false;
+    if (state.failing) { const p = passes(s); if (!(p.total && p.pass < p.total) && !s.disagreements.length) return false; }
+    return !q || [s.id, s.request.text, ...s.tags].join(" ").toLowerCase().includes(q);
+  });
+}
+
+function sidebar() {
+  const shown = visible(), groups = new Map();
+  for (const s of shown) { if (!groups.has(s.family)) groups.set(s.family, []); groups.get(s.family).push(s); }
+  return h("div", { class: "side" },
+    h("div", { class: "filters" },
+      h("input", { type: "search", placeholder: "Search id, tag or request", value: state.search, "aria-label": "Search scenarios",
+        oninput: e => { state.search = e.target.value; const list = document.querySelector(".list"); list.replaceWith(listOf(visibleGroups())); const c = document.querySelector(".count"); c.textContent = countText(); } }),
+      seg([["all", "All"], ["dev", "Dev"], ["heldout", "Held-out"]], state.split, split => go({ split })),
+      h("label", { class: "small" }, h("input", { type: "checkbox", checked: state.failing, onchange: e => go({ failing: e.target.checked }) }), " Only failed runs or key disagreements"),
+      h("div", { class: "muted small count" }, countText())),
+    listOf(groups));
+}
+function visibleGroups() {
+  const groups = new Map();
+  for (const s of visible()) { if (!groups.has(s.family)) groups.set(s.family, []); groups.get(s.family).push(s); }
+  return groups;
+}
+const countText = () => `${visible().length} of ${D.scenarios.length} scenarios. Badge: our design's runs passed.`;
+function listOf(groups) {
+  return h("div", { class: "list" }, [...groups].map(([family, items]) => [
+    h("div", { class: "fam" }, family.replaceAll("_", " ")),
+    items.map(s => {
+      const p = passes(s);
+      return h("button", { class: "item", "aria-current": String(s.id === state.id), onclick: () => open(s.id) },
+        h("span", { class: "id" }, s.id),
+        h("span", { class: "right" },
+          s.disagreements.length ? chip("≠ key", "warn", "A personal agent's summary differs from the answer key") : null,
+          p.total ? chip(`${p.pass}/${p.total}`, p.pass === p.total ? "good" : "bad") : chip("no runs")));
+    })]));
+}
+
+// ---------------------------------------------------------------- one scenario
+function scenariosPage() {
+  const s = S[state.id], agent = state.view === "agent";
+  const tabs = [["brief", "Brief"], ["calendars", "Calendars"]];
+  if (!agent) {
+    tabs.push(["key", "Answer key"]);
+    if (s.attack) tabs.push(["attack", "Attack"]);
+    tabs.push(["results", `Results (${s.episodes.length})`]);
+  }
+  const tab = tabs.some(t => t[0] === state.tab) ? state.tab : "brief";
+  const body = { brief: briefTab, calendars: calendarsTab, key: keyTab, attack: attackTab, results: resultsTab }[tab](s, agent);
+  return h("div", { class: "layout" }, sidebar(),
+    h("div", { class: "main" },
+      h("h2", null, s.id, " ", h("span", { class: "muted", style: "font-weight:400;font-size:14px" }, s.family.replaceAll("_", " "))),
+      h("div", null, chip(s.split === "dev" ? "dev" : "held-out, frozen"), " ", s.tags.filter(t => t !== s.family).map(t => [chip(t.replaceAll("_", " ")), " "])),
+      h("div", { class: "tabs", role: "tablist" }, tabs.map(([id, label]) =>
+        h("button", { role: "tab", "aria-selected": String(id === tab), onclick: () => go({ tab: id, picked: null }) }, label))),
+      body));
+}
+
+function gapBanner(s, agent) {
+  const gap = D.gaps.find(g => g.scenario === s.id);
+  if (agent || !gap || gap.counted_for === gap.attendees) return null;
+  return h("div", { class: "banner" }, `The window includes a public holiday (${gap.days.map(d => day(d)).join(", ")}, ${gap.slots} slots), but the answer key counts it for ${gap.counted_for} of ${gap.attendees} attendees. The agents' prompt says holidays apply to everyone, so an agent blocking it is not necessarily wrong.`);
+}
+
+function briefTab(s, agent) {
+  const r = s.request, k = s.key;
+  const should = [];
+  if (k.outcome === "scheduled") should.push(k.slot ? `Book ${moment(k.slot)}${k.rule === "any_feasible" ? " or any workable slot" : ""}.` : "Book a workable slot.");
+  else should.push("Hand back to the organiser without giving anyone's reasons.");
+  for (const [label, names] of Object.entries(k.must)) if (names.length) should.push(`${label}: ${names.join(", ")}.`);
+  if (s.attack) should.push(`Must not happen: ${s.attack.must_not.join(", ").replaceAll("_", " ")}.`);
+  return [
+    gapBanner(s, agent),
+    !agent && h("div", { class: "card" }, h("h3", null, "What this tests"), h("p", null, s.what || "No description for this family yet."),
+      s.notes ? h("p", { class: "muted" }, s.notes) : null),
+    h("div", { class: "card" }, h("h3", null, "The request"),
+      h("div", { class: "quote" }, r.text),
+      h("table", { class: "t" }, h("tbody", null,
+        h("tr", null, h("td", { class: "muted" }, "Organiser"), h("td", null, r.organiser)),
+        h("tr", null, h("td", { class: "muted" }, "Window"), h("td", null, `${day(r.start)} to ${day(r.end)}, on ${r.days.join(", ")}, ${r.day_start}-${r.day_end}`)),
+        h("tr", null, h("td", { class: "muted" }, "Length"), h("td", null, `${r.duration} minutes`)),
+        h("tr", null, h("td", { class: "muted" }, "Today"), h("td", null, day(s.today))),
+        h("tr", null, h("td", { class: "muted" }, "Attendees"), h("td", null, r.attendees.map(a => `${a.name} (${a.role})`).join(", ")))))),
+    !agent && h("div", { class: "card" }, h("h3", null, "What should happen"), h("ul", { class: "items" }, should.map(x => h("li", null, x)))),
+    !agent && (s.script.replies.length || s.script.events.length) ? h("div", { class: "card" }, h("h3", null, "Scripted during the run"),
+      h("ul", { class: "items" },
+        s.script.replies.map(x => h("li", null, `${x.who}, asked about "${x.about}": "${x.answer}" `, chip(x.consent ? "agrees" : "no consent", x.consent ? "good" : "", x.slot ? `only for ${x.slot}` : null))),
+        s.script.events.map(e => h("li", null, `${e.at.replaceAll("_", " ")}: ${e.who} `, e.type === "new_meeting" && e.meeting ? `gets a new meeting, "${e.meeting.title}", ${moment(e.meeting.start)}` : e.type === "rsvp" ? `replies ${e.response}` : `posts: "${e.text}"`))),
+      h("p", { class: "muted small" }, `The organiser is scripted to ${s.script.approval}.`)) : null,
+    s.docs.length ? h("div", { class: "card" }, h("h3", null, "External schedules in this case"),
+      s.docs.map(d => h("details", null, h("summary", null, d.title, " ", h("span", { class: "muted small" }, d.id)), h("p", { class: "small" }, d.text)))) : null,
+  ];
+}
+
+// ---------------------------------------------------------------- calendars
+function axes(s) {
+  const days = [...new Set(s.slots.map(x => x.start.slice(0, 10)))].sort();
+  const times = [...new Set(s.slots.map(x => time(x.start)))].sort();
+  return { days, times, at: new Map(s.slots.map(x => [x.start, x])) };
+}
+
+function slotGrid(s, classOf, opts) {
+  const { days, times, at } = axes(s);
+  return h("div", { class: "scroll" }, h("table", { class: "grid" },
+    h("thead", null, h("tr", null, h("th"), days.map(d => h("th", { class: "day" }, day(d),
+      opts.holidays && D.holidays.includes(d) ? h("span", { class: "hol" }, "holiday") : null)))),
+    h("tbody", null, times.map(t => h("tr", null,
+      h("th", { class: "time" }, t.endsWith(":00") ? t : ""),
+      days.map(d => {
+        const slot = at.get(`${d}T${t}`);
+        if (!slot) return h("td");
+        return h("td", null, h("button", { class: `cell ${classOf(slot)} ${opts.expected && s.key.expected.includes(slot.start) && slot.start === s.key.slot ? "expected" : ""}`,
+          title: opts.title(slot), "aria-label": opts.title(slot), "aria-pressed": opts.pick ? String(state.picked === slot.start) : false, onclick: opts.pick ? () => go({ picked: slot.start }) : null }));
+      }))))));
+}
+
+const WORDS = { free: "free", soft: "allowed, but not preferred", movable: "needs consent", hard: "blocked", consent: "works with consent", blocked: "blocked" };
+function legend(items) {
+  return h("div", { class: "legend" }, items.map(([cls, text]) => h("span", null, h("i", { class: "cell " + cls }), text)));
+}
+
+function slotDetail(s) {
+  const slot = s.slots.find(x => x.start === state.picked);
+  if (!slot) return h("div", { class: "detail muted" }, "Click a slot to see each attendee and why.");
+  return h("div", { class: "detail card" },
+    h("h3", null, when(slot)),
+    h("p", null, chip(WORDS[slot.group], slot.group === "free" ? "good" : slot.group === "consent" ? "warn" : ""), slot.score !== null ? ` score ${slot.score} of ${s.request.attendees.length}` : "",
+      slot.start === s.key.slot ? " (the expected slot)" : ""),
+    h("table", { class: "t" }, h("tbody", null, s.request.attendees.map(a => {
+      const w = slot.who[a.id];
+      return h("tr", null, h("td", null, a.name, a.role === "optional" ? h("span", { class: "muted small" }, " optional") : null),
+        h("td", null, WORDS[w.status]), h("td", { class: "muted small" }, w.why || ""));
+    }))));
+}
+
+function personCard(s, p, agent) {
+  const role = s.request.attendees.find(a => a.id === p.id);
+  const sections = [];
+  const list = (title, rows) => rows.length && sections.push(h("h3", null, title), h("ul", { class: "items small" }, rows));
+  for (const c of p.calendars || []) {
+    list(`Calendar: ${c.name}`, [...(c.events || [])].sort((a, b) => a.start.localeCompare(b.start)).map(e =>
+      h("li", null, `${moment(e.start)}-${time(e.end)}  ${e.title} `, e.movable ? chip("movable", "warn") : null, e.priority !== "normal" ? [" ", chip(e.priority + " priority")] : null)));
+  }
+  list("Time away", (p.leave || []).map(l => h("li", null, `${day(l.start_date)} to ${day(l.end_date)}: ${l.reason} `, l.reachable_if_urgent ? chip("reachable if urgent", "warn") : null)));
+  list("Messages", (p.messages || []).map(m => h("li", null, h("span", { class: "muted" }, `${m.sender}: `), m.text)));
+  list("Said for this request", (p.preferences || []).map(x => h("li", null, `"${x.text}"`)));
+  list("Memory notes", (p.memory || []).map(m => h("li", null, `"${m.text}" `, h("span", { class: "muted" }, `${m.source === "agent_guess" ? "agent's guess" : "from them"}, ${m.stated_on}${m.expires ? `, expires ${m.expires}` : ""}${m.scope !== "persistent" ? `, ${m.scope}` : ""}`))));
+  list("Agreed in advance", (p.pre_consent || []).map(c => h("li", null, c.text)));
+  const attending = !!role;
+  return h("div", { class: "card" },
+    h("h3", null, p.name, " ", h("span", { class: "muted", style: "font-weight:400" }, `${p.id}, ${attending ? role.role : "not attending"}, usual hours ${p.hours_start}-${p.hours_end}`)),
+    attending ? slotGrid(s, slot => agent ? (slot.who[p.id].busy ? "blocked" : "free") : slot.who[p.id].status,
+      { title: slot => `${when(slot)}: ${agent ? (slot.who[p.id].busy ? "busy on the calendar" : "nothing on the calendar") : `${WORDS[slot.who[p.id].status]}${slot.who[p.id].why ? ", " + slot.who[p.id].why : ""}`}` }) : null,
+    sections.length ? sections : h("p", { class: "muted small" }, "Nothing else recorded."));
+}
+
+function calendarsTab(s, agent) {
+  const attending = new Set(s.request.attendees.map(a => a.id));
+  const people = [...s.people].sort((a, b) => attending.has(b.id) - attending.has(a.id));
+  return [
+    gapBanner(s, agent),
+    agent ? h("p", { class: "muted" }, "Each personal agent reads only its own person's card. The coordinator sees none of this, only availability summaries. Shading shows the calendar, time away and usual hours alone.") : null,
+    !agent && h("div", { class: "card" }, h("h3", null, "The group: which slots can work"),
+      legend([["free", "free for everyone required"], ["consent", "works with consent"], ["blocked", "blocked"], ["blocked expected", "expected slot (outlined)"]]),
+      h("div", { class: "grid-wrap" }, slotGrid(s, slot => slot.group, { title: slot => `${when(slot)}: ${WORDS[slot.group]}`, pick: true, expected: true, holidays: true }), slotDetail(s))),
+    h("h3", null, "Each person"),
+    legend(agent ? [["free", "nothing on the calendar"], ["blocked", "busy"]] : [["free", "free"], ["soft", "not preferred"], ["movable", "needs consent"], ["hard", "blocked"]]),
+    h("div", { class: "people" }, people.map(p => personCard(s, p, agent))),
+  ];
+}
+
+// ---------------------------------------------------------------- answer key and attack
+function keyTab(s) {
+  const k = s.key, byStart = new Map(s.slots.map(x => [x.start, x]));
+  const ranked = k.expected.map(x => byStart.get(x)).sort((a, b) => b.score - a.score || a.start.localeCompare(b.start));
+  const groups = new Map();
+  for (const r of k.rules) { if (!groups.has(r.who)) groups.set(r.who, []); groups.get(r.who).push(r); }
+  const requirements = Object.entries(k.must).filter(([, names]) => names.length);
+  let why;
+  if (k.outcome === "hand_back") why = "No slot works for the required attendees, so the right result is to hand back.";
+  else if (k.free) why = `${k.free} slots work without asking anyone, so only those count. The best score is ${k.best}.`;
+  else why = `No slot is free for everyone, so the slots that work with consent count (${k.with_consent}). The best score is ${k.best}.`;
+  return [
+    gapBanner(s),
+    h("div", { class: "card" }, h("h3", null, "Expected result"),
+      h("p", null, k.outcome === "scheduled" ? `Book ${moment(k.slot)}` : "Hand back to the organiser", k.outcome === "scheduled" && k.rule === "any_feasible" ? " (any workable slot passes)" : ""),
+      h("p", { class: "muted" }, why, k.rule === "best" && k.outcome === "scheduled" ? " Any slot that ties the best score passes the outcome check." : ""),
+      requirements.length ? h("ul", { class: "items" }, requirements.map(([label, names]) => h("li", null, `${label}: ${names.join(", ")}`))) : null,
+      k.canaries.length ? h("p", null, "Must never reach the thread: ", k.canaries.map(c => [chip(c, "bad"), " "])) : null),
+    ranked.length ? h("div", { class: "card" }, h("h3", null, `Slots that count (${ranked.length})`),
+      h("details", { open: ranked.length <= 8 }, h("summary", { class: "muted small" }, "Ranked by score"),
+        h("table", { class: "t" }, h("thead", null, h("tr", null, h("th", null, "Slot"), h("th", null, "Score"), h("th", null, "Needs consent from"))),
+          h("tbody", null, ranked.map(x => h("tr", null, h("td", null, when(x), x.start === k.slot ? [" ", chip("expected", "good")] : k.rule === "any_feasible" || x.score === k.best ? [" ", chip("also passes")] : null), h("td", null, String(x.score)),
+            h("td", null, x.needs.map(id => s.request.attendees.find(a => a.id === id)?.name || id).join(", ") || h("span", { class: "muted" }, "nobody")))))))) : null,
+    h("div", { class: "card" }, h("h3", null, "Rules in the key"),
+      h("p", { class: "muted small" }, "Hard blocks the slot. Movable needs that person's consent. Soft is allowed, at a score penalty. Usual hours are added by code."),
+      [...groups].map(([who, rules]) => h("details", { open: groups.size === 1 }, h("summary", null, `${who} `, h("span", { class: "muted small" }, `${rules.length} rules`)),
+        h("div", { class: "scroll" }, h("table", { class: "t small" }, h("tbody", null, rules.map(r => h("tr", null, h("td", null, r.kind === "soft" ? `soft ${r.weight}` : r.kind), h("td", { style: "white-space:nowrap" }, r.when), h("td", null, r.why || h("span", { class: "muted" }, r.ref || "")), h("td", { class: "muted" }, h("code", null, r.ref || "")))))))))),
+  ];
+}
+
+function attackTab(s) {
+  const a = s.attack;
+  const eps = s.episodes.filter(e => e.attack_worked !== null);
+  const arms = [...new Set(eps.map(e => e.arm))].sort();
+  return [
+    h("div", { class: "card" }, h("h3", null, "The planted text"),
+      h("p", { class: "muted" }, `${a.kind.replaceAll("_", " ")}, in ${a.where}`),
+      h("div", { class: "quote" }, h("mark", null, a.text || "(not found in the scenario's text)"))),
+    h("div", { class: "card" }, h("h3", null, "What must not happen"),
+      h("p", null, a.must_not.map(x => [chip(x.replaceAll("_", " "), "bad"), " "]), h("span", { class: "muted" }, ` severity ${a.weight}`)),
+      h("h3", null, "What is meant to stop it"), h("p", null, a.guardrail)),
+    h("div", { class: "card" }, h("h3", null, "What happened in saved runs"),
+      arms.length ? h("table", { class: "t" }, h("thead", null, h("tr", null, h("th", null, "Design"), h("th", null, "Attack worked"), h("th", null, "Runs with a draft blocked by the filter"))),
+        h("tbody", null, arms.map(arm => {
+          const rows = eps.filter(e => e.arm === arm);
+          return h("tr", null, h("td", null, D.arms[arm]), h("td", null, `${rows.filter(e => e.attack_worked).length} of ${rows.length}`), h("td", null, `${rows.filter(e => e.blocked.length).length} of ${rows.length}`));
+        }))) : h("p", { class: "muted" }, "No saved runs."),
+      h("p", { class: "muted small" }, "A blocked draft shows the filter stopped something. No blocked draft does not show what the model tried: see each run's timeline under Results.")),
+  ];
+}
+
+// ---------------------------------------------------------------- results
+function resultsTab(s) {
+  if (!s.episodes.length) return h("p", { class: "muted" }, "No saved real-model runs for this scenario.");
+  const tags = [...new Set(s.episodes.map(e => e.tag))];
+  const key = e => `${e.tag}/${e.arm}/${e.run}`;
+  const picked = s.episodes.find(e => key(e) === state.episode) || s.episodes.find(e => e.arm === "d") || s.episodes[0];
+  return [
+    gapBanner(s),
+    tags.map(tag => {
+      const eps = s.episodes.filter(e => e.tag === tag), arms = [...new Set(eps.map(e => e.arm))].sort();
+      return h("div", { class: "card" }, h("h3", null, "Sweep ", h("code", null, tag)),
+        h("table", { class: "t" }, h("tbody", null, arms.map(arm => h("tr", null,
+          h("td", { style: "width:220px" }, D.arms[arm] || arm),
+          h("td", null, h("div", { class: "runs" }, eps.filter(e => e.arm === arm).sort((a, b) => a.run - b.run).map(e =>
+            h("button", { class: `run ${e.passed ? "pass" : "fail"}`, "aria-pressed": String(e === picked), title: e.problems.join("; "), onclick: () => go({ episode: key(e) }) },
+              `${e.run} ${e.passed ? "pass" : "fail"}`)))))))));
+    }),
+    episodeCard(s, picked),
+    s.disagreements.length ? h("div", { class: "card" }, h("h3", null, "Where personal agents' first summaries differ from the key"),
+      h("p", { class: "muted small" }, "Our design only. See \"Agents vs answer key\" for what each cause means overall."),
+      h("div", { class: "scroll" }, h("table", { class: "t" }, h("thead", null, h("tr", null, ["Run", "Person", "Key says", "Agent says", "Cause", "Slots"].map(x => h("th", null, x)))),
+        h("tbody", null, s.disagreements.map(r => h("tr", null, h("td", null, String(r.run)), h("td", null, s.people.find(p => p.id === r.participant)?.name || r.participant), h("td", null, r.key), h("td", null, r.agent), h("td", null, r.cause), h("td", null, String(r.slots)))))))) : null,
+  ];
+}
+
+function episodeCard(s, e) {
+  const text = (rows, empty) => rows.length ? h("ul", { class: "items" }, rows.map(x => h("li", null, x))) : h("p", { class: "muted small" }, empty);
+  return h("div", { class: "card" },
+    h("h3", null, `${D.arms[e.arm] || e.arm}, run ${e.run} `, chip(e.passed ? "pass" : "fail", e.passed ? "good" : "bad"), e.critical ? [" ", chip("critical", "bad")] : null),
+    h("p", null, e.status === "scheduled" ? `Booked ${moment(e.start)}.` : `Ended as ${e.status.replaceAll("_", " ")}.`,
+      s.key.slot && e.start && e.start !== s.key.slot ? h("span", { class: "muted" }, ` The key's expected slot is ${moment(s.key.slot)}.`) : null),
+    e.error ? h("p", { class: "muted" }, "Error: " + e.error) : null,
+    e.problems.length ? [h("h3", null, "What the checker flagged"), h("p", null, e.problems.map(p => [chip(p, "bad"), " "]))] : null,
+    h("h3", null, "Thread"), text(e.thread, "Nothing posted."),
+    e.blocked.length ? [h("h3", null, "Blocked by the privacy filter"), text(e.blocked)] : null,
+    e.questions.length ? [h("h3", null, "Questions asked"), text(e.questions.map(q => `to ${s.people.find(p => p.id === q.to)?.name || q.to} (${q.channel}): ${q.text}`))] : null,
+    e.timeline.length ? h("details", null, h("summary", null, `Timeline, ${e.timeline.length} steps`),
+      h("div", { class: "scroll" }, h("table", { class: "t tl" }, h("tbody", null, e.timeline.map(t => h("tr", null, h("td", null, t.actor), h("td", null, t.kind), h("td", null, t.text))))))) : null);
+}
+
+// ---------------------------------------------------------------- agents vs key
+function agentsPage() {
+  const link = id => h("button", { class: "chip link", onclick: () => open(id, "results") }, id);
+  return h("div", { class: "full" },
+    h("h2", null, "Personal agents against the answer key"),
+    h("p", { class: "muted" }, "Each personal agent's first summary, slot by slot, from saved runs of our design. A second look only: the held-out numbers in docs/results.md do not change, and these are not merged into them."),
+    D.layer3.map(r => h("div", { class: "card" },
+      h("h3", null, h("code", null, r.tag), ` ${r.runs} runs, ${r.slots.toLocaleString()} slots`),
+      h("p", { class: "muted small" }, `Mean ± sample SD per run. Left out because the world changes during the run: ${r.left_out.join(", ") || "none"}.`),
+      h("div", { class: "scroll" }, h("table", { class: "t" }, h("thead", null, h("tr", null, h("th"), h("th", null, "Personal agents"), h("th", null, "Free/busy baseline"))),
+        h("tbody", null, r.metrics.map(m => h("tr", null, m.map(x => h("td", null, x))))))),
+      h("h3", null, "Why they differ"),
+      h("div", { class: "scroll" }, h("table", { class: "t" }, h("thead", null, h("tr", null, h("th", null, "Cause"), h("th", null, "Slots"), h("th", null, "Scenarios"))),
+        h("tbody", null, r.causes.map(c => h("tr", null, h("td", null, c.cause), h("td", null, String(c.slots)), h("td", null, c.scenarios.map(id => [link(id), " "]))))))))),
+    h("div", { class: "card" }, h("h3", null, "Public holidays in the answer key"),
+      h("p", { class: "muted" }, "The prompt says holidays apply to everyone. The key counts them in some scenarios only."),
+      h("table", { class: "t" }, h("thead", null, h("tr", null, h("th", null, "Scenario"), h("th", null, "Holiday in the window"), h("th", null, "Slots on it"), h("th", null, "Key counts it for"))),
+        h("tbody", null, D.gaps.map(g => h("tr", null, h("td", null, link(g.scenario)), h("td", null, g.days.map(d => day(d)).join(", ")), h("td", null, String(g.slots)),
+          h("td", null, chip(`${g.counted_for} of ${g.attendees}`, g.counted_for === g.attendees ? "good" : "warn"))))))),
+    D.unreadable.length ? h("p", { class: "muted small" }, `${D.unreadable.length} older result files could not be read and are not shown.`) : null);
+}
+
+// ---------------------------------------------------------------- leak labels
+function labelsPage() {
+  const wrong = m => m.label === "leak" ? !m.filter : m.filter;
+  const filters = { all: () => true, both: m => m.label === "leak" && !m.filter && !m.checker, flagged: m => m.label === "clean" && (m.filter || m.checker), right: m => !wrong(m) };
+  const rows = D.labels.filter(filters[state.labelFilter]);
+  const leaks = D.labels.filter(m => m.label === "leak"), clean = D.labels.filter(m => m.label === "clean");
+  const verdict = (flagged, label) => chip(flagged ? "flags it" : "passes", (flagged === (label === "leak")) ? "good" : "bad", (flagged === (label === "leak")) ? "Agrees with the label" : "Disagrees with the label");
+  return h("div", { class: "full" },
+    h("h2", null, "Leak labels"),
+    h("p", { class: "muted" }, "Hand-written messages about dev-001's participants, run through the privacy filter and the checker. They were written to probe the filter, so the counts describe this list, not real traffic. Green agrees with the label, red disagrees. Please challenge the labels."),
+    h("p", null, chip(`filter caught ${leaks.filter(m => m.filter).length} of ${leaks.length} leaks`), " ", chip(`checker caught ${leaks.filter(m => m.checker).length} of ${leaks.length}`), " ",
+      chip(`${filters.both && leaks.filter(filters.both).length} pass both`, "bad"), " ", chip(`filter flagged ${clean.filter(m => m.filter).length} of ${clean.length} clean`)),
+    h("p", null, seg([["all", `All (${D.labels.length})`], ["both", "Leaks that pass both"], ["flagged", "Clean but flagged"], ["right", "Filter agrees"]], state.labelFilter, labelFilter => go({ labelFilter }))),
+    h("div", { class: "card" }, h("div", { class: "scroll" }, h("table", { class: "t" },
+      h("thead", null, h("tr", null, ["Message", "Label", "Kind", "Filter", "Checker"].map(x => h("th", null, x)))),
+      h("tbody", null, rows.map(m => h("tr", null, h("td", null, m.text), h("td", null, chip(m.label, m.label === "leak" ? "warn" : "")), h("td", { class: "muted small" }, m.kind), h("td", null, verdict(m.filter, m.label)), h("td", null, verdict(m.checker, m.label)))))))));
+}
+
+// ---------------------------------------------------------------- start
+const [first, second] = location.hash.slice(1).split("/");
+if (S[first]) { state.id = first; if (second) state.tab = second; }
+else if (first === "agents" || first === "labels") state.page = first;
+render();
+</script>
+</body>
+</html>
