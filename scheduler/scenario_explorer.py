@@ -22,6 +22,20 @@ PAGE = Path(__file__).with_name("scenario_explorer.html")
 TAGS = ("heldout-final", "dev7", "dev5-d", "attack-dev", "privacy-dev")      # the saved real-model sweeps
 TEXT_LIMIT = 600            # one timeline line; a saved run's full text stays in its result file
 ARMS = {"a": "Free/busy finder", "b": "Single grounded call", "c": "One agent, shared context", "d": "Our design"}
+ARM_NOTES = {
+    "a": "Plain code, no model. It reads every calendar and time away, then books the first time nobody is busy. It never searches documents or reads messages.",
+    "b": "Code gathers every calendar, message and document up front, then one model call picks the time.",
+    "c": "One agent that sees everyone's information together in a single shared context, with no separate agent per person.",
+    "d": "Each person has a private personal agent that reads their own data. A coordinator agent sees only their availability summaries, never the reasons.",
+}
+
+TAG_NAMES = {      # a folder under results/ is a saved sweep: which scenarios, which arms, how many runs
+    "heldout-final": "Held-out set, the frozen final run: 33 scenarios, all four arms, 3 runs each",
+    "dev7": "Dev sweep: 7 dev scenarios, arms a, b and d, 3 runs each",
+    "dev5-d": "Early dev check: 5 dev scenarios, our design only, 1 run each",
+    "attack-dev": "Attack cases in dev: 3 scenarios, arms c and d, 3 runs each",
+    "privacy-dev": "Privacy cases in dev: 2 scenarios, arms c and d, 3 runs each",
+}
 
 WHAT_IT_TESTS = {     # plain English for the families; kept here so the frozen scenario files stay untouched
     "simple_feasible": "The easy case: everyone's calendar leaves a free time. Any working agent should book the best one without asking anyone.",
@@ -188,10 +202,10 @@ def layer3_view(r: component.Layer3) -> dict:
         cause["slots"] += row["slots"]
         cause["scenarios"].add(row["scenario"])
     return {"tag": r.tag, "runs": len(r.per_run), "slots": sum(c["slots"] for c in r.per_run.values()), "left_out": r.skipped_events,
-            "metrics": [["Slots whose status matches the key", per("agree", "slots"), per("base_agree", "slots")],
-                        ["Key's blocked slots reported as blocked", per("found", "key_blocked"), per("base_found", "key_blocked")],
-                        ["Key's open slots reported as blocked", per("extra", "key_open"), per("base_extra", "key_open")],
-                        ["The same, leaving out the public holiday", per("extra", "key_open", "extra_holiday"), "n/a"]],
+            "metrics": [["Same answer as the key, all slots", per("agree", "slots"), per("base_agree", "slots")],
+                        ["Unusable slots it spotted (higher is better)", per("found", "key_blocked"), per("base_found", "key_blocked")],
+                        ["Usable slots it wrongly hid (lower is better)", per("extra", "key_open"), per("base_extra", "key_open")],
+                        ["Same, ignoring the public-holiday disagreement", per("extra", "key_open", "extra_holiday"), "n/a"]],
             "causes": [{**c, "scenarios": sorted(c["scenarios"])} for c in sorted(causes.values(), key=lambda c: -c["slots"])]}
 
 
@@ -207,7 +221,7 @@ def page_data(settings: Settings) -> dict:
             disagreements.setdefault(row["scenario"], []).append(row)
     views = [scenario_view(s, corpus) | {"episodes": episodes.get(s.id, []), "disagreements": disagreements.get(s.id, [])}
              for s in scenarios.values()]
-    return {"scenarios": views, "arms": ARMS, "holidays": sorted(holidays), "unreadable": unreadable,
+    return {"scenarios": views, "arms": ARMS, "arm_notes": ARM_NOTES, "tag_names": TAG_NAMES, "holidays": sorted(holidays), "unreadable": unreadable,
             "gaps": component.holiday_gaps(scenarios, holidays), "layer3": [layer3_view(r) for r in layers],
             "labels": component.layer5(settings, scenarios)}
 

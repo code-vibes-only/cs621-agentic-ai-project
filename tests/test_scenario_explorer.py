@@ -73,6 +73,14 @@ def test_the_holiday_gap_is_in_the_page(data):
     assert "2026-11-08" in data["holidays"]
 
 
+def test_every_design_has_a_plain_description(data):
+    assert set(ex.ARM_NOTES) == set(ex.ARMS) and data["arm_notes"] == ex.ARM_NOTES
+
+
+def test_every_saved_sweep_has_a_plain_name(data):
+    assert set(ex.TAG_NAMES) == set(ex.TAGS) and data["tag_names"] == ex.TAG_NAMES
+
+
 def test_the_labels_page_has_every_labelled_message(data):
     assert len(data["labels"]) == 38 and {m["label"] for m in data["labels"]} == {"leak", "clean"}
 
