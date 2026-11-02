@@ -4,7 +4,7 @@ CS621 Agentic AI for Intelligent Autonomy, group project.
 Final deck (12 slides) and presentation: **Tue 3 Nov 2026** (assumed). Internal completion
 target: **Fri 30 Oct 2026**.
 
-Status: **draft v0.8, 23 Oct 2026.** v0.5 recorded the decisions from the team sync on Sat 17
+Status: **draft v0.9, 2 Nov 2026.** v0.5 recorded the decisions from the team sync on Sat 17
 Oct, which settled GitHub issues #1–#8 and the open questions (discussion in
 [issue-review.md](issue-review.md)). v0.6 proposed one guided build and the A0–A4 rename. v0.7
 records the team's decisions of 20 Oct (§16):
@@ -18,6 +18,10 @@ v0.8 records the team's answers of 23 Oct and the merged demo app (§16): the A0
 agreed, the promotion threshold is reconfirmed before the sweep, the demo is the live demo app
 from PR #10 (our design only, §3, §12), and the shared-context ablation is shown on the deck's
 evaluation slides rather than in the recording.
+
+v0.9 records the team's decisions of 2 Nov (§16): the second held-out batch for the attack suite,
+the scenario viewer as the one review page, and a live viewer demo with screenshots instead of a
+recording.
 
 Every other row in the [decision log](#16-decision-log) is agreed or overturned. Changing a decision needs the team's agreement and a new row in the
 decision log. Put anything unresolved in [open questions](#15-open-questions). Terms are defined
@@ -472,7 +476,8 @@ in the presentation and deck.
 ## 8. Eval sets and metrics
 
 About **25 dev + 33 held-out scenarios** (built: 26 dev, 33 held-out, about half of each outside
-work), frozen before we look at held-out outputs. Every LLM
+work; after the final run 3 dev attack cases and a second held-out batch of 3 were added, §16),
+frozen before we look at held-out outputs. Every LLM
 arm gets **≥ 3 runs**, reset between runs. Scenario families (tags):
 
 | Family | What it tests |
@@ -675,7 +680,7 @@ Work back from the internal target of **Fri 30 Oct**, leaving 31 Oct–2 Nov as 
 | Thu 22 Oct | The whole build committed, one commit per step: G1 (`v0.1.0`), G2 (`v0.2.0`: end to end on dev, checker, single-call baseline) and G3 (`v0.3.0`: shared-context ablation, guardrails and attacks, held-out set frozen) |
 | Sat 24 Oct | Promotion threshold confirmed (done 23 Oct); all arms × 3 runs on the held-out set, run centrally on Kenneth's key (brought forward from Tue 27 Oct) |
 | Tue 27 Oct | Failure analysis done; lane review of the steps feeds it and the deck |
-| Thu 29 Oct | Deck draft; demo recorded on the demo app (our design; the ablation is on the evaluation slides) |
+| Thu 29 Oct | Deck draft; demo recorded on the demo app (our design; the ablation is on the evaluation slides). The recording was overturned on 2 Nov, §16 |
 | **Fri 30 Oct** | **Complete**: final deck and demo |
 | Sat 31 Oct – Mon 2 Nov | Buffer for contingencies (November caps available for reruns) |
 | Tue 3 Nov | Submit and present |
@@ -736,4 +741,6 @@ older row is marked *Overturned*.
 | 2026-10-28 | Two generated wordings fixed before any held-out run (issue #13, Andreojk): a consent reply for time away marked reachable if urgent named a time although the consent covers any slot, and "next week" requests over a four-day window now name the days. Only request and reply text changed (dev-009, dev-011, dev-022, ho-005, ho-007, ho-028, ho-030); every window, calendar, rule and expected slot is the same, so the held-out freeze stands. Tag `v0.3.1` | Decided by Kenneth (lead), 28 Oct |
 | 2026-10-28 | Autonomy is stated in the course's levels (issue #11): Observer for A0, A1 and A3; Consultant for A2; Approver for A4; Operator for the "Never" rows. Per agent: personal agent Consultant, coordinator agent Approver | Decided by Kenneth (lead), 28 Oct |
 | 2026-10-28 | Live web search was not built and is future work, as is letting a personal agent update its participant's preferences (issue #12). §4 now lists `ask_my_participant`, which was built | Decided by Kenneth (lead), 28 Oct |
-| 2026-11-02 | A second held-out batch for issue #19's second-round attack cases: ho-034 to ho-036, new seeds (7300 to 7500), generated once and run once on arms (c) and (d), 5 runs each, never tuned on. It is reported apart from `heldout-final`: the first 33 files and every held-out number in `docs/results.md` are untouched. The dev twins dev-027 to dev-029 only checked the recipes | Proposed (zexellew2024); not yet agreed by the team |
+| 2026-11-02 | A second held-out batch for issue #19's second-round attack cases: ho-034 to ho-036, new seeds (7300 to 7500), generated once and run once on arms (c) and (d), 5 runs each, never tuned on. It is reported apart from `heldout-final`: the first 33 files and every held-out number in `docs/results.md` are untouched. The dev twins dev-027 to dev-029 only checked the recipes | Agreed (Kenneth, lead, for the team, 2 Nov) |
+| 2026-11-02 | The scenario viewer in `scheduler/visualisation/` (NJYao) is the one review page. The older explorer (`scheduler/scenario_explorer.py`, zexellew2024) is deprecated and will be removed; its diagnostics live on in `results/component/report.md` | Agreed (Kenneth, lead, for the team, 2 Nov) |
+| 2026-11-02 | No demo recording. The deck's User Experience slide uses screenshots of the demo app, and a live demo of about 30 seconds in the scenario viewer follows the Test Design slide. The demo is illustration, not evidence | Agreed (Kenneth, lead, for the team, 2 Nov) |
