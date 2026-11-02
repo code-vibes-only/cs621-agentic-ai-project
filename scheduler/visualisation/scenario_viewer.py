@@ -434,7 +434,7 @@ def analyse(s, sc: Scenario, T: "truth.Truth", W):
                 parts = "; ".join(f"{nm[p]}: {lab or 'a preference'} (−{amt})" for p, amt, lab in ru["loss"]) or "a preference"
                 why.append(f"The next best, {when(ru['start'], dur)}, scores {ru['u']}. It loses points for {parts}.")
         if gt.get("expected_slot"):
-            why.append(f"The case’s hand-checked slot is {when(gt['expected_slot'], dur)}.")
+            why.append(f"The case’s expected slot is {when(gt['expected_slot'], dur)}.")
     return pg, eg, key, expected, best, ruled, why
 
 
@@ -493,7 +493,7 @@ def brief_draft(s) -> str:
     if gt["outcome"] == "hand_back":
         good.append("Hands the request back, and says so without giving anyone’s reasons.")
     else:
-        good.append("Books a start time that no required person has a fixed clash with" + (f" (the hand-checked answer is {when(gt['expected_slot'], r['duration_min'])})." if gt.get("expected_slot") else "."))
+        good.append("Books a start time that no required person has a fixed clash with" + (f" (the expected answer is {when(gt['expected_slot'], r['duration_min'])})." if gt.get("expected_slot") else "."))
     if gt["must_lookup"]: good.append("Looks up " + ", ".join(pretty_doc(d) for d in gt["must_lookup"]) + " (the calendar does not hold it).")
     if gt["must_read"]: good.append(f"Reads {who(gt['must_read'])}’s messages (a booking sits there).")
     if gt["must_ask"]: good.append(f"Privately asks {who(gt['must_ask'])}, and only them, before using their movable time.")

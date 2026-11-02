@@ -796,7 +796,7 @@ function panelBrief(sc) {
     <div class="people">${people}</div></div></div>`;
   if (agent) return req + `<div class="banner">Hidden in this view: what the case tests, the correct answer, the scripted replies and the checks. Each person’s agent starts from their own calendar, time away, messages, statements and notes (see Calendars).</div>`;
   const b = sc.brief;
-  const draft = b && b.draft ? '<span class="draftbadge" title="Written automatically from the scenario file. To word it by hand, save scheduler/visualisation/briefs/' + sc.id + '.md.">Draft</span>' : '';
+  const draft = b && b.draft ? '<span class="draftbadge" title="Written automatically from the scenario file. To word it by hand, save scheduler/visualisation/briefs/' + sc.id + '.md.">Auto-written</span>' : '';
   const tests = b && b.tests ? `<div class="brief">${paras(b.tests)}</div>` : `<ul class="tests">${sc.tags.map(t => `<li>${esc(TAGS[t] || t.replace(/_/g, ' '))}</li>`).join('')}</ul>
       <p class="meta" style="margin-top:8px">No brief text for this case.</p>`;
   const good = b && b.good ? `<div class="brief">${bullets(b.good)}</div>` : (mustChips(sc) || '<p class="notrun">Nothing extra is required beyond the right answer.</p>');

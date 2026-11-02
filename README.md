@@ -61,8 +61,8 @@ It writes `scheduler/visualisation/exports/scenario_viewer.html` (git-ignored) w
 answer key, attack and saved results. It needs no server and makes no model calls. A switch hides the answer key to show
 only what the agents can read. `--check` cross-checks the viewer against the repository.
 
-The older explorer (`scenario_viewer --html out/`) is deprecated and will be removed. Its layer 3 and 5 diagnostics are in
-`results/component/report.md`, and `docs/attack-coverage.md` lists where each case in issue #19 is tested.
+The layer 3 and 5 diagnostics are in `results/component/report.md`, and `docs/attack-coverage.md` lists where each attack
+case is tested.
 
 ### Held-out sweep (done, 28 Oct)
 

@@ -111,7 +111,10 @@ at the recheck, which covers calendars and time away only.
 
 [attack-coverage.md](attack-coverage.md) maps every attack type to its scenarios and tests,
 including the known gaps: a private question is neither filtered nor graded, and a paraphrased leak
-can pass both the filter and the checker.
+can pass both the filter and the checker. Two more are recorded in `tests/test_coordinator_alone.py`:
+the approval gate does not read the availability summaries, so a slot ruled out only by a document
+can still get an invite if a model asks for it, and a reply carrying both `request_approval` and
+`hand_back` does both.
 
 ## 8. The record
 

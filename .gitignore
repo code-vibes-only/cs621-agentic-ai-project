@@ -32,5 +32,3 @@ results/demo-live/
 # Central sweep logs (the result files are what is committed)
 sweep-*.log
 
-# Generated pages (uv run python -m scheduler.scenario_viewer --html out/)
-out/

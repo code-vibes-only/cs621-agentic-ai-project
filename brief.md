@@ -20,8 +20,8 @@ from PR #10 (our design only, §3, §12), and the shared-context ablation is sho
 evaluation slides rather than in the recording.
 
 v0.9 records the team's decisions of 2 Nov (§16): the second held-out batch for the attack suite,
-the scenario viewer as the one review page, and a live viewer demo with screenshots instead of a
-recording.
+the scenario viewer as the one review page, a live viewer demo with screenshots instead of a
+recording, and the code freeze at tag `v0.4.0`.
 
 Every other row in the [decision log](#16-decision-log) is agreed or overturned. Changing a decision needs the team's agreement and a new row in the
 decision log. Put anything unresolved in [open questions](#15-open-questions). Terms are defined
@@ -742,5 +742,6 @@ older row is marked *Overturned*.
 | 2026-10-28 | Autonomy is stated in the course's levels (issue #11): Observer for A0, A1 and A3; Consultant for A2; Approver for A4; Operator for the "Never" rows. Per agent: personal agent Consultant, coordinator agent Approver | Decided by Kenneth (lead), 28 Oct |
 | 2026-10-28 | Live web search was not built and is future work, as is letting a personal agent update its participant's preferences (issue #12). §4 now lists `ask_my_participant`, which was built | Decided by Kenneth (lead), 28 Oct |
 | 2026-11-02 | A second held-out batch for issue #19's second-round attack cases: ho-034 to ho-036, new seeds (7300 to 7500), generated once and run once on arms (c) and (d), 5 runs each, never tuned on. It is reported apart from `heldout-final`: the first 33 files and every held-out number in `docs/results.md` are untouched. The dev twins dev-027 to dev-029 only checked the recipes | Agreed (Kenneth, lead, for the team, 2 Nov) |
-| 2026-11-02 | The scenario viewer in `scheduler/visualisation/` (NJYao) is the one review page. The older explorer (`scheduler/scenario_explorer.py`, zexellew2024) is deprecated and will be removed; its diagnostics live on in `results/component/report.md` | Agreed (Kenneth, lead, for the team, 2 Nov) |
+| 2026-11-02 | The scenario viewer in `scheduler/visualisation/` (NJYao) is the one review page. It replaces the older explorer (`scheduler/scenario_explorer.py`, zexellew2024), which is removed; its diagnostics live on in `results/component/report.md` | Agreed (Kenneth, lead, for the team, 2 Nov) |
 | 2026-11-02 | No demo recording. The deck's User Experience slide uses screenshots of the demo app, and a live demo of about 30 seconds in the scenario viewer follows the Test Design slide. The demo is illustration, not evidence | Agreed (Kenneth, lead, for the team, 2 Nov) |
+| 2026-11-02 | Code freeze for the presentation at tag `v0.4.0`. The known gaps stay as stated limits in `docs/results.md`: over-asking, the approval gate not reading the availability summaries, a reply carrying both `request_approval` and `hand_back`, and the unfiltered private question. No fix and no held-out rerun before Tue 3 Nov, so 0.84 ± 0.09 stands | Decided by Kenneth (lead), 2 Nov |
