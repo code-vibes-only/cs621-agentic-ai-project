@@ -104,6 +104,11 @@ it worked, a guardrail stopped something, or no guardrail fired.
 held. That is what the scripted-model tests are for: a scripted model does exactly what the attack
 asks, and each test checks what stops it (`tests/test_attack_obedient.py`,
 `tests/test_attack_coverage.py`). They are tests of the code, not model results.
+ho-015, the injected page, is tagged `privacy_probe` as well as `attack`. The organiser's request
+text itself was never attacked: it reaches the coordinator agent and every personal agent, and a
+leak would still stop at the typed summary and the filter, but false availability would not stop
+at the recheck, which covers calendars and time away only.
+
 [attack-coverage.md](attack-coverage.md) maps every attack type to its scenarios and tests,
 including the known gaps: a private question is neither filtered nor graded, and a paraphrased leak
 can pass both the filter and the checker.

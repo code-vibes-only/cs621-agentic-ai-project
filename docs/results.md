@@ -23,7 +23,7 @@ the mean ± sample SD of the per-run mean over runs 1–3.
   and questions the case requires, and no others.
 - **Privacy by construction.** The coordinator in arm (d) never had a private detail in its
   window. Arms (b) and (c) see everyone's data, about 2.8 planted private details per episode.
-- **Cost.** Arm (d) costs about 10% more than arm (c) per episode and takes about 10 s longer.
+- **Cost.** Arm (d) costs about 12% more than arm (c) per episode and takes about 10 s longer.
 
 By setting (runs 1–3; 14 work-hours, 7 evening and 12 weekend scenarios):
 
@@ -89,7 +89,7 @@ failed on trajectory. The question text is not logged, only who was asked:
 **What drives the questions.** Across all arm-(d) episodes, a personal agent asked its
 participant to clarify:
 - never, when they had said nothing (0 of 254);
-- 17% of the time, for the memory note "Please keep Friday afternoons clear." (10 of 60);
+- 19% of the time, for the memory note "Please keep Friday afternoons clear." (10 of 54);
 - 67% of the time, for the Sunday League statement (4 of 6);
 - only 50% of the time, when the case needed a clarification (3 of 6).
 

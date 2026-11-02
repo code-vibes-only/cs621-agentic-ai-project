@@ -79,7 +79,7 @@ The people the app schedules for are always called **participants**.
 | Term | Meaning |
 |---|---|
 | Sandbox | Our simulated calendars and invite system. No real calendar is read or written, and no real message is sent. |
-| Tentative hold | A reversible, auto-expiring placeholder on the participants' sandbox calendars. |
+| Tentative hold | A reversible placeholder, kept as a record in the sandbox and never placed on a calendar. Automatic expiry was not built. |
 | Invite | A confirmed meeting sent to every participant's sandbox calendar. It requires approval. |
 | RSVP | A participant's response to an invite: accept, tentative, decline or no response. In the MVP, RSVPs are scripted events in a scenario, and only declines are handled ([§3](#3-scope)). |
 | Approval gate | Code that blocks an invite until the required approvals and consents are stored and availability has been rechecked. |
@@ -272,7 +272,7 @@ flowchart LR
   - Calendar titles, the participant's own words and reasons never leave it.
 - **Privacy filter (code).**
   - Validates every availability summary against the schema and rejects free text.
-  - Checks every message in the request thread for private details and for attribution ("E has a
+  - Checks every agent post to the request thread for private details and for attribution ("E has a
     steering meeting on Monday", "B is on leave"). It reads the sandbox's calendar titles,
     reasons for time away and the names in messages, never the test canaries.
 - **Coordinator agent.**
@@ -406,11 +406,11 @@ and refused, and the attack table (§8).
 | Class | Action | Acting agent | Autonomy | Guard |
 |---|---|---|---|---|
 | A0 | Read own participant's calendars, messages and memory, look up external schedules; read availability summaries and call the enumerator | Personal agent (calendars, messages, memory, lookups); coordinator agent (summaries, enumerator) | Observer (L5): autonomous | Read-only tools; a personal agent can read only its own participant's data; its only output is a typed summary, so text it reads cannot reach the thread |
-| A1 | Propose slots in the request thread | Coordinator agent | Observer (L5): autonomous | Privacy filter on every message in the request thread |
+| A1 | Propose slots in the request thread | Coordinator agent | Observer (L5): autonomous | Privacy filter on every agent post to the request thread |
 | A2 | Ask a participant a private relax/clarify question | Coordinator agent, through the participant's personal agent | Consultant (L3): asks within a budget (e.g. ≤ 2 questions per participant per request) | Question cap; never in the request thread |
 | A2 | Answer a relax question from pre-given consent | Personal agent | Consultant (L3): answers alone only for the commitment the consent names | Consent stored in preference memory, outside model text; the approval gate checks it |
 | A2 | Alert own participant about a clash with an agreed meeting | Personal agent | Consultant (L3): informational only; the participant decides | No write; the participant decides |
-| A3 | Place a tentative hold on sandbox calendars | Coordinator agent | Observer (L5): autonomous, reversible, auto-expires | Idempotent; released on replan |
+| A3 | Place a tentative hold (a sandbox record, not a calendar entry) | Coordinator agent | Observer (L5): autonomous, reversible | Idempotent; released on replan |
 | A4 | Send invites | Coordinator agent | **Approver (L4)**: the organiser approves; participants whose relaxable time is used must have consented, live or pre-given. A replan after a required decline needs a new approval | Approval stored outside model text; revalidated at commit; read-back verification |
 | — | Relax a *hard* constraint | Neither | **Never** (Operator, L1: only the participant) | Enforced in the enumerator, not the prompt |
 | — | Move, decline or shorten a participant's existing commitment | Neither | **Never** (Operator, L1): the agent only asks; the participant acts | No such write tool exists. Moving another meeting would affect people outside the request |
