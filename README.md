@@ -14,8 +14,9 @@ written. The design is in [brief.md](brief.md); the security review is in
 You need [uv](https://docs.astral.sh/uv/). From the repo root:
 
 ```sh
-uv sync                                     # installs the pinned Python and packages from uv.lock
-SCHEDULER_FAKE_LLM=1 uv run pytest          # the tests use a scripted fake model: no key, no cost
+uv sync --group demo                        # installs the pinned Python and packages from uv.lock
+SCHEDULER_FAKE_LLM=1 uv run --group demo pytest   # the tests use a scripted fake model: no key, no cost
+uv run --group demo pytest scheduler/visualisation   # the viewer's own tests, which plain pytest does not collect
 ```
 
 For real runs, put your own OpenAI key in your shell, or in a local `.env` (gitignored; never commit it):
@@ -60,21 +61,21 @@ It writes `scheduler/visualisation/exports/scenario_viewer.html` (git-ignored) w
 answer key, attack and saved results. It needs no server and makes no model calls. A switch hides the answer key to show
 only what the agents can read. `--check` cross-checks the viewer against the repository.
 
-The older explorer (`scenario_viewer --html out/`) is deprecated and will be removed. Its layer 3 and 5 diagnostics are in
-`results/component/report.md`, and `docs/attack-coverage.md` lists where each case in issue #19 is tested.
+The layer 3 and 5 diagnostics are in `results/component/report.md`, and `docs/attack-coverage.md` lists where each attack
+case is tested.
 
-### Held-out sweep (run centrally)
+### Held-out sweep (done, 28 Oct)
 
-The final numbers in the deck come from this run. The team agreed on 23 Oct to run it centrally
-on Kenneth's machine, with the team sharing the OpenAI cost (brief §16). The arms are (b), (c)
-and (d); the free/busy finder (a) makes no model calls and runs once.
+The final numbers in the deck come from this run, on Kenneth's machine and key, with the team
+sharing the OpenAI cost (brief §16). The arms were (b), (c) and (d); the free/busy finder (a) makes
+no model calls and ran once. Results are in `results/heldout-final/`, and the analysis is in
+[docs/results.md](docs/results.md).
 
-**What runs.** The 33 frozen held-out scenarios in `data/scenarios/heldout/` (frozen at tag
-`v0.3.0`) are split into five subsets of 7. Each subset runs every LLM arm, 3 runs each, and
-attack cases 5 runs. That is about 63 episodes and USD 0.60 a subset, so about USD 3 in all. The
-five subsets run side by side, which takes about an hour.
+**What ran.** The first 33 held-out scenarios, ho-001 to ho-033 (frozen at tag `v0.3.0`, wordings
+fixed at `v0.3.1`), split into five subsets. Each subset ran every LLM arm, 3 runs each, and attack
+cases 5 runs: about 63 episodes and USD 0.60 a subset, USD 2.87 in all, in 46 minutes side by side.
 
-| Subset | Scenarios | Command |
+| Subset | Scenarios | Command at `v0.3.1` |
 |---|---|---|
 | 1 | ho-001 to ho-007 | `--sweep 1` |
 | 2 | ho-008 to ho-014 | `--sweep 2` |
@@ -82,32 +83,41 @@ five subsets run side by side, which takes about an hour.
 | 4 | ho-022 to ho-028 | `--sweep 4` |
 | 5 | ho-029 to ho-033 | `--sweep 5` |
 
+**Repeating it.** `--sweep` takes scenarios by their position in `data/scenarios/heldout/`, so these
+subsets hold only at tag `v0.3.1`. Since the second batch below, `--sweep 5` on a later commit also
+takes ho-034 and ho-035, and `--sweep 6` takes ho-036. A repeat costs about USD 3, so agree it with
+the team first, start from the tag, and use a new run tag:
+
 ```sh
-git switch main && git pull && uv sync
+git switch --detach v0.3.1 && uv sync
 uv run --env-file .env python -m scheduler.eval --check-model                 # one tiny call
 SCHEDULER_FAKE_LLM=1 uv run python -m scheduler.eval --sweep 1 --tag rehearsal  # free rehearsal; delete results/rehearsal/ after
-for n in 1 2 3 4 5; do                                                           # the real run, five subsets side by side
-  uv run --env-file .env python -m scheduler.eval --sweep $n --tag heldout-final > sweep-$n.log 2>&1 &
+for n in 1 2 3 4 5; do                                                           # five subsets side by side
+  uv run --env-file .env python -m scheduler.eval --sweep $n --tag my-rerun > sweep-$n.log 2>&1 &
 done; wait
-uv run python -m scheduler.eval --arm a --split heldout --scenarios all --runs 3 --tag heldout-final
-uv run python -m scheduler.eval --report heldout-final
+uv run python -m scheduler.eval --arm a --split heldout --scenarios all --runs 3 --tag my-rerun
+uv run python -m scheduler.eval --report my-rerun
 ```
 
 Each episode prints one line to its log and writes one file under
-`results/heldout-final/<arm>/<scenario>/run<k>.json`. A `fail` line is a result, not an error:
-nothing is rerun to get a pass. If a subset's command stops part-way, only that subset is rerun,
-from the beginning, and the rerun is noted in HANDOFF.
+`results/<tag>/<arm>/<scenario>/run<k>.json`. A `fail` line is a result, not an error: nothing is
+rerun to get a pass.
 
-**Where to follow it.** The results go to the branch `sweep/heldout-final` and a pull request
-into `main`, so every result file, and finally `report.md`, can be read there. The run uses `main`.
-Since the freeze (tag `v0.3.0`) the code has gained only the `--sweep` command and the demo app;
-neither changes how an agent or the checker behaves (fake-mode grades checked identical, 23 Oct).
-`scheduler/eval/__main__.py` holds the `--sweep` command; the arms are in
-`scheduler/eval/arms.py`, and the checker that grades each episode is in `scheduler/eval/checker.py`.
+`results/heldout-final/` and the threshold stay frozen (brief §16). Do not run
+`--report heldout-final` on a later commit: the report has gained a column and a section since
+the run, so it would rewrite the frozen `grades.csv` and `report.md`. The split of attack runs by
+what stopped them is in [docs/results.md](docs/results.md) instead.
 
-Do not change prompts, code, data or the threshold before or during the sweep: the held-out set
-and the threshold are frozen (brief §16). Anything you notice goes in an issue for the failure
-analysis.
+### Second held-out batch (2 Nov)
+
+ho-034 to ho-036 are held-out twins of the three second-round attack families (issue #19), on new
+seeds 7300 to 7500. They were generated once and run once on arms (c) and (d), 5 runs each, under
+the tag `heldout-attack2`, for USD 0.28 (brief §16). They are reported apart from `heldout-final`:
+none of them enters the headline table. Their dev versions, dev-027 to dev-029, are in
+`results/attack-dev2/`.
+
+`scheduler/eval/__main__.py` holds the `--sweep` command, the arms are in `scheduler/eval/arms.py`,
+and the checker that grades each episode is in `scheduler/eval/checker.py`.
 
 ### Demo
 
@@ -149,9 +159,11 @@ docker run --rm --env-file .env -v "$PWD/results:/app/results" scheduler --arm d
 | `scheduler/sandbox/` | The simulated world: calendars, time away, messages, the request thread, holds, invites, and the call, write, guardrail and timeline records |
 | `scheduler/agents/` | Personal agent, privacy filter, coordinator agent, the shared-context ablation, and the fakes used in tests |
 | `scheduler/engine/` | Enumerator and scorer; approval gate, write and verify |
-| `scheduler/eval/` | Arms, baselines, the episode runner, the independent checker and the metrics |
+| `scheduler/eval/` | Arms, baselines, the episode runner, the independent checker, the metrics, the component diagnostics and the attack coverage table |
 | `scheduler/world/` | The scenario generator and its assumptions (work, evening and weekend settings; attack cases) |
 | `scheduler/demo/` | The demo app: groups, private agent chats, calendars and the trace replay |
-| `docs/` | The security review |
-| `data/` | The frozen corpus and the dev and held-out scenarios |
+| `scheduler/visualisation/` | The offline scenario viewer and its tests |
+| `tests/` | The test suite: fake or scripted model, no cost |
+| `docs/` | The security review, the held-out results and failure analysis, the attack coverage table and the presentation Q&A |
+| `data/` | The frozen corpus, the dev scenarios and the held-out scenarios |
 | `results/` | Result files from real runs; every reported number comes from one |

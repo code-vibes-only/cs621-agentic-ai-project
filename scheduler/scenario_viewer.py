@@ -228,16 +228,8 @@ def main(argv: list[str] | None = None) -> None:
         prog="python -m scheduler.scenario_viewer",
         description="Show a scenario JSON as a readable scheduling brief.",
     )
-    parser.add_argument("scenario", type=Path, nargs="?", help="path to a scenario JSON file")
-    parser.add_argument("--html", type=Path, metavar="DIR", help="DEPRECATED, use python -m scheduler.visualisation --html: write one offline page covering every scenario to this folder")
+    parser.add_argument("scenario", type=Path, help="path to a scenario JSON file")
     args = parser.parse_args(argv)
-    if args.html:
-        print("DEPRECATED: this older explorer page is replaced by the scenario viewer. Use `uv run python -m scheduler.visualisation --html`. The layer 3 and 5 diagnostics it showed are in results/component/report.md, and the attack coverage table is docs/attack-coverage.md.", file=sys.stderr)
-        from scheduler.scenario_explorer import write_page
-        print(write_page(args.html))
-        return
-    if not args.scenario:
-        parser.error("give a scenario JSON file, or --html DIR")
     try:
         scenario = load_scenario(args.scenario)
     except (OSError, ValueError, ValidationError) as exc:

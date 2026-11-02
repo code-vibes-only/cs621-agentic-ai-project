@@ -4,7 +4,7 @@ CS621 Agentic AI for Intelligent Autonomy, group project.
 Final deck (12 slides) and presentation: **Tue 3 Nov 2026** (assumed). Internal completion
 target: **Fri 30 Oct 2026**.
 
-Status: **draft v0.8, 23 Oct 2026.** v0.5 recorded the decisions from the team sync on Sat 17
+Status: **draft v0.9, 2 Nov 2026.** v0.5 recorded the decisions from the team sync on Sat 17
 Oct, which settled GitHub issues #1–#8 and the open questions (discussion in
 [issue-review.md](issue-review.md)). v0.6 proposed one guided build and the A0–A4 rename. v0.7
 records the team's decisions of 20 Oct (§16):
@@ -18,6 +18,10 @@ v0.8 records the team's answers of 23 Oct and the merged demo app (§16): the A0
 agreed, the promotion threshold is reconfirmed before the sweep, the demo is the live demo app
 from PR #10 (our design only, §3, §12), and the shared-context ablation is shown on the deck's
 evaluation slides rather than in the recording.
+
+v0.9 records the team's decisions of 2 Nov (§16): the second held-out batch for the attack suite,
+the scenario viewer as the one review page, a live viewer demo with screenshots instead of a
+recording, and the code freeze at tag `v0.4.0`.
 
 Every other row in the [decision log](#16-decision-log) is agreed or overturned. Changing a decision needs the team's agreement and a new row in the
 decision log. Put anything unresolved in [open questions](#15-open-questions). Terms are defined
@@ -75,7 +79,7 @@ The people the app schedules for are always called **participants**.
 | Term | Meaning |
 |---|---|
 | Sandbox | Our simulated calendars and invite system. No real calendar is read or written, and no real message is sent. |
-| Tentative hold | A reversible, auto-expiring placeholder on the participants' sandbox calendars. |
+| Tentative hold | A reversible placeholder, kept as a record in the sandbox and never placed on a calendar. Automatic expiry was not built. |
 | Invite | A confirmed meeting sent to every participant's sandbox calendar. It requires approval. |
 | RSVP | A participant's response to an invite: accept, tentative, decline or no response. In the MVP, RSVPs are scripted events in a scenario, and only declines are handled ([§3](#3-scope)). |
 | Approval gate | Code that blocks an invite until the required approvals and consents are stored and availability has been rechecked. |
@@ -268,7 +272,7 @@ flowchart LR
   - Calendar titles, the participant's own words and reasons never leave it.
 - **Privacy filter (code).**
   - Validates every availability summary against the schema and rejects free text.
-  - Checks every message in the request thread for private details and for attribution ("E has a
+  - Checks every agent post to the request thread for private details and for attribution ("E has a
     steering meeting on Monday", "B is on leave"). It reads the sandbox's calendar titles,
     reasons for time away and the names in messages, never the test canaries.
 - **Coordinator agent.**
@@ -402,11 +406,11 @@ and refused, and the attack table (§8).
 | Class | Action | Acting agent | Autonomy | Guard |
 |---|---|---|---|---|
 | A0 | Read own participant's calendars, messages and memory, look up external schedules; read availability summaries and call the enumerator | Personal agent (calendars, messages, memory, lookups); coordinator agent (summaries, enumerator) | Observer (L5): autonomous | Read-only tools; a personal agent can read only its own participant's data; its only output is a typed summary, so text it reads cannot reach the thread |
-| A1 | Propose slots in the request thread | Coordinator agent | Observer (L5): autonomous | Privacy filter on every message in the request thread |
+| A1 | Propose slots in the request thread | Coordinator agent | Observer (L5): autonomous | Privacy filter on every agent post to the request thread |
 | A2 | Ask a participant a private relax/clarify question | Coordinator agent, through the participant's personal agent | Consultant (L3): asks within a budget (e.g. ≤ 2 questions per participant per request) | Question cap; never in the request thread |
 | A2 | Answer a relax question from pre-given consent | Personal agent | Consultant (L3): answers alone only for the commitment the consent names | Consent stored in preference memory, outside model text; the approval gate checks it |
 | A2 | Alert own participant about a clash with an agreed meeting | Personal agent | Consultant (L3): informational only; the participant decides | No write; the participant decides |
-| A3 | Place a tentative hold on sandbox calendars | Coordinator agent | Observer (L5): autonomous, reversible, auto-expires | Idempotent; released on replan |
+| A3 | Place a tentative hold (a sandbox record, not a calendar entry) | Coordinator agent | Observer (L5): autonomous, reversible | Idempotent; released on replan |
 | A4 | Send invites | Coordinator agent | **Approver (L4)**: the organiser approves; participants whose relaxable time is used must have consented, live or pre-given. A replan after a required decline needs a new approval | Approval stored outside model text; revalidated at commit; read-back verification |
 | — | Relax a *hard* constraint | Neither | **Never** (Operator, L1: only the participant) | Enforced in the enumerator, not the prompt |
 | — | Move, decline or shorten a participant's existing commitment | Neither | **Never** (Operator, L1): the agent only asks; the participant acts | No such write tool exists. Moving another meeting would affect people outside the request |
@@ -472,7 +476,8 @@ in the presentation and deck.
 ## 8. Eval sets and metrics
 
 About **25 dev + 33 held-out scenarios** (built: 26 dev, 33 held-out, about half of each outside
-work), frozen before we look at held-out outputs. Every LLM
+work; after the final run 3 dev attack cases and a second held-out batch of 3 were added, §16),
+frozen before we look at held-out outputs. Every LLM
 arm gets **≥ 3 runs**, reset between runs. Scenario families (tags):
 
 | Family | What it tests |
@@ -675,7 +680,7 @@ Work back from the internal target of **Fri 30 Oct**, leaving 31 Oct–2 Nov as 
 | Thu 22 Oct | The whole build committed, one commit per step: G1 (`v0.1.0`), G2 (`v0.2.0`: end to end on dev, checker, single-call baseline) and G3 (`v0.3.0`: shared-context ablation, guardrails and attacks, held-out set frozen) |
 | Sat 24 Oct | Promotion threshold confirmed (done 23 Oct); all arms × 3 runs on the held-out set, run centrally on Kenneth's key (brought forward from Tue 27 Oct) |
 | Tue 27 Oct | Failure analysis done; lane review of the steps feeds it and the deck |
-| Thu 29 Oct | Deck draft; demo recorded on the demo app (our design; the ablation is on the evaluation slides) |
+| Thu 29 Oct | Deck draft; demo recorded on the demo app (our design; the ablation is on the evaluation slides). The recording was overturned on 2 Nov, §16 |
 | **Fri 30 Oct** | **Complete**: final deck and demo |
 | Sat 31 Oct – Mon 2 Nov | Buffer for contingencies (November caps available for reruns) |
 | Tue 3 Nov | Submit and present |
@@ -736,4 +741,7 @@ older row is marked *Overturned*.
 | 2026-10-28 | Two generated wordings fixed before any held-out run (issue #13, Andreojk): a consent reply for time away marked reachable if urgent named a time although the consent covers any slot, and "next week" requests over a four-day window now name the days. Only request and reply text changed (dev-009, dev-011, dev-022, ho-005, ho-007, ho-028, ho-030); every window, calendar, rule and expected slot is the same, so the held-out freeze stands. Tag `v0.3.1` | Decided by Kenneth (lead), 28 Oct |
 | 2026-10-28 | Autonomy is stated in the course's levels (issue #11): Observer for A0, A1 and A3; Consultant for A2; Approver for A4; Operator for the "Never" rows. Per agent: personal agent Consultant, coordinator agent Approver | Decided by Kenneth (lead), 28 Oct |
 | 2026-10-28 | Live web search was not built and is future work, as is letting a personal agent update its participant's preferences (issue #12). §4 now lists `ask_my_participant`, which was built | Decided by Kenneth (lead), 28 Oct |
-| 2026-11-02 | A second held-out batch for issue #19's second-round attack cases: ho-034 to ho-036, new seeds (7300 to 7500), generated once and run once on arms (c) and (d), 5 runs each, never tuned on. It is reported apart from `heldout-final`: the first 33 files and every held-out number in `docs/results.md` are untouched. The dev twins dev-027 to dev-029 only checked the recipes | Proposed (zexellew2024); not yet agreed by the team |
+| 2026-11-02 | A second held-out batch for issue #19's second-round attack cases: ho-034 to ho-036, new seeds (7300 to 7500), generated once and run once on arms (c) and (d), 5 runs each, never tuned on. It is reported apart from `heldout-final`: the first 33 files and every held-out number in `docs/results.md` are untouched. The dev twins dev-027 to dev-029 only checked the recipes | Agreed (Kenneth, lead, for the team, 2 Nov) |
+| 2026-11-02 | The scenario viewer in `scheduler/visualisation/` (NJYao) is the one review page. It replaces the older explorer (`scheduler/scenario_explorer.py`, zexellew2024), which is removed; its diagnostics live on in `results/component/report.md` | Agreed (Kenneth, lead, for the team, 2 Nov) |
+| 2026-11-02 | No demo recording. The deck's User Experience slide uses screenshots of the demo app, and a live demo of about 30 seconds in the scenario viewer follows the Test Design slide. The demo is illustration, not evidence | Agreed (Kenneth, lead, for the team, 2 Nov) |
+| 2026-11-02 | Code freeze for the presentation at tag `v0.4.0`. The known gaps stay as stated limits in `docs/results.md`: over-asking, the approval gate not reading the availability summaries, a reply carrying both `request_approval` and `hand_back`, and the unfiltered private question. No fix and no held-out rerun before Tue 3 Nov, so 0.84 ± 0.09 stands | Decided by Kenneth (lead), 2 Nov |
