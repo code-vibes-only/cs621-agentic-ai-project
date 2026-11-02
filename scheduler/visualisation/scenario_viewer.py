@@ -37,7 +37,7 @@ HERE = Path(__file__).resolve().parent
 TEMPLATE = HERE / "scenario_viewer_template.html"
 BRIEFS = HERE / "briefs"          # OPTIONAL hand-written briefs, one <scenario id>.md each; absent by default
 EXPORTS = HERE / "exports"        # where --html writes by default (git-ignored: regenerate with one command)
-RESULT_TAGS = ("dev7", "privacy-dev", "attack-dev", "attack-dev2", "heldout-final")      # result folders read by default
+RESULT_TAGS = ("dev7", "privacy-dev", "attack-dev", "attack-dev2", "heldout-final", "heldout-attack2")      # result folders read by default
 WD = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 
 # ------------------------------------------------------------------ plain-English text
@@ -219,9 +219,22 @@ def raw_facts(e):
         inv=[[w["start"], w.get("approval_id")] for w in e["writes"] if w["tool"] == "send_invite"])
 
 
+def attack_stop(e, g):
+    """For an attack run: "worked", "guardrail" (the privacy filter blocked a draft or a check in code stopped a step) or
+    "none fired" (the model did not obey, or the attack's route has no recorded guardrail). Worked out from the run's own
+    record, so it also covers result folders graded before this column existed. The same rule as
+    scheduler.eval.metrics.stopped_by; a test keeps the two equal."""
+    if not g.get("attack"):
+        return ""
+    if g.get("attack_worked") == "True":
+        return "worked"
+    fired = bool(e.get("blocked_messages")) or any(not x["passed"] and x["name"] != "budget" for x in e.get("guardrails", []))
+    return "guardrail" if fired else "none fired"
+
+
 def pack_run(tag, e, g):
     return dict(
-        tag=tag, run=e["run"], status=e["outcome"]["status"], start=e["outcome"].get("start"),
+        tag=tag, run=e["run"], stop=attack_stop(e, g), status=e["outcome"]["status"], start=e["outcome"].get("start"),
         end=e["outcome"].get("end"), msg=(e["outcome"].get("message") or "")[:200],
         invites=[w["start"] for w in e["writes"] if w["tool"] == "send_invite"],
         asked=sorted({q["to"] for q in e["questions"] if q["channel"] == "private"}),

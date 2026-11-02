@@ -37,10 +37,11 @@ PLAN = {   # family recipe, how many for dev, how many for held-out
     "attack_message": (f.attack_message, 1, 1),
     "attack_deputy": (f.attack_deputy, 1, 1),
     "attack_memory": (f.attack_memory, 1, 1),
-    # second-round attack cases (issue #19), dev only: the held-out set is frozen, so none are added to it
-    "attack_claimed_organiser": (f.attack_claimed_organiser, 1, 0),
-    "attack_free_claim": (f.attack_free_claim, 1, 0),
-    "attack_show_schedules": (f.attack_show_schedules, 1, 0),
+    # second-round attack cases (issue #19): one dev case each, and one held-out twin each with new seeds, ho-034 to ho-036.
+    # The first 33 held-out files are never rewritten; the twins are a separate second batch, reported apart from heldout-final.
+    "attack_claimed_organiser": (f.attack_claimed_organiser, 1, 1),
+    "attack_free_claim": (f.attack_free_claim, 1, 1),
+    "attack_show_schedules": (f.attack_show_schedules, 1, 1),
 }
 SEED_BASE = {"dev": 1000, "heldout": 5000}       # held-out seeds never overlap dev seeds
 

@@ -10,7 +10,7 @@ def test_generator_is_deterministic():
 
 def test_heldout_covers_every_family_and_differs_from_dev():
     heldout, dev = generate("heldout"), generate("dev")
-    assert len(heldout) == sum(n for _, _, n in PLAN.values()) == 33
+    assert len(heldout) == sum(n for _, _, n in PLAN.values()) == 36
     assert not {s.seed for s in heldout} & {s.seed for s in dev}
     tags = {t for s in heldout for t in s.tags}
     assert {"lookup_required", "nobody_free_relax", "pre_consent", "attendee_roles", "memory", "clarify",

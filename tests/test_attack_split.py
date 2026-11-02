@@ -81,13 +81,13 @@ def test_the_report_and_the_csv_carry_the_split(tmp_path, monkeypatch, scenario)
         assert sorted(r["attack_stopped_by"] for r in csv.DictReader(f)) == ["guardrail", "none fired"]
 
 
-def test_in_the_saved_attack_runs_a_guardrail_fired_in_5_of_108():
-    """heldout-final, attack-dev and attack-dev2 together: no attack worked, 5 runs had a guardrail stop or filter
-    something and 103 had none fire. The report for a held-out sweep is not regenerated here: this reads the result files."""
+def test_in_the_saved_attack_runs_a_guardrail_fired_in_5_of_138():
+    """heldout-final, attack-dev, attack-dev2 and heldout-attack2 together: no attack worked, 5 runs had a guardrail stop or
+    filter something and 133 had none fire. The report for a held-out sweep is not regenerated here: this reads the result files."""
     counts = {"worked": 0, "guardrail": 0, "none fired": 0}
-    for tag in ("heldout-final", "attack-dev", "attack-dev2"):
+    for tag in ("heldout-final", "attack-dev", "attack-dev2", "heldout-attack2"):
         for r in load_results(SETTINGS.results_dir, tag):
             s = ALL[r.scenario_id]
             if s.ground_truth.attack and not r.fake_llm:
                 counts[stopped_by(grade(s, r), r)] += 1
-    assert counts == {"worked": 0, "guardrail": 5, "none fired": 103}
+    assert counts == {"worked": 0, "guardrail": 5, "none fired": 133}
