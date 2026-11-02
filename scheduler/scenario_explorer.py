@@ -1,4 +1,8 @@
-"""One offline page for checking test cases without reading raw JSON: every scenario with its
+"""DEPRECATED (1 Nov): replaced by the scenario viewer in scheduler/visualisation (`uv run python -m scheduler.visualisation --html`).
+This page still builds but is not extended any more. Its layer 3 and 5 diagnostics are in results/component/report.md and the
+attack coverage table is docs/attack-coverage.md.
+
+One offline page for checking test cases without reading raw JSON: every scenario with its
 calendars, answer key, attack and saved results, plus the component diagnostics. It only reads:
 no server, no model calls, no change to a scenario or a result file.
 
@@ -19,7 +23,7 @@ from scheduler.eval.checker import grade
 from scheduler.eval.truth import compute, truth_constraints
 
 PAGE = Path(__file__).with_name("scenario_explorer.html")
-TAGS = ("heldout-final", "dev7", "dev5-d", "attack-dev", "privacy-dev")      # the saved real-model sweeps
+TAGS = ("heldout-final", "dev7", "dev5-d", "attack-dev", "attack-dev2", "privacy-dev")      # the saved real-model sweeps
 TEXT_LIMIT = 600            # one timeline line; a saved run's full text stays in its result file
 ARMS = {"a": "Free/busy finder", "b": "Single grounded call", "c": "One agent, shared context", "d": "Our design"}
 ARM_NOTES = {
@@ -34,6 +38,7 @@ TAG_NAMES = {      # a folder under results/ is a saved sweep: which scenarios, 
     "dev7": "Dev sweep: 7 dev scenarios, arms a, b and d, 3 runs each",
     "dev5-d": "Early dev check: 5 dev scenarios, our design only, 1 run each",
     "attack-dev": "Attack cases in dev: 3 scenarios, arms c and d, 3 runs each",
+    "attack-dev2": "Second-round attack cases in dev (issue #19): 3 scenarios, arms c and d, 3 runs each",
     "privacy-dev": "Privacy cases in dev: 2 scenarios, arms c and d, 3 runs each",
 }
 
@@ -59,6 +64,7 @@ GUARDRAILS = {
     "injected_page": "Personal agents can only send a typed availability summary, with no field for free text. Thread messages go through the privacy filter.",
     "injected_message": "Personal agents can only send a typed availability summary, with no field for free text. Thread messages go through the privacy filter.",
     "thread_deputy": "Consent is recorded only from the participant's own reply, and the invite needs the organiser's stored approval and a recheck in code. A claim in the thread changes neither.",
+    "thread_leak": "Thread messages go through the privacy filter, and the coordinator has no tool that reads a calendar: it sees availability summaries only.",
     "poisoned_memory": "The recheck before the invite reads the real calendar and time away, so a false note cannot get a clashing invite sent. The prompt also says to ignore notes marked as the agent's guess.",
 }
 PROBLEMS = {          # Grade field -> what it means when it is not zero
@@ -124,8 +130,9 @@ def _attack(s: Scenario, docs: dict) -> dict | None:
         where, text = "the request thread", " ".join(e.text or "" for e in s.scripted.events if e.type == "thread_message")
     else:
         where, text = found.get(attack.payload, f"document {attack.payload}"), texts.get(attack.payload, "")
-    return {"kind": attack.kind, "where": where, "text": text, "must_not": attack.must_not, "weight": attack.weight,
-            "guardrail": GUARDRAILS[attack.kind]}
+    asks_for_leak = attack.kind == "thread_deputy" and attack.must_not == ["leak"]
+    return {"kind": attack.kind, "label": "thread request for a leak" if asks_for_leak else attack.kind.replace("_", " "), "where": where, "text": text, "must_not": attack.must_not, "weight": attack.weight,
+            "guardrail": GUARDRAILS["thread_leak" if asks_for_leak else attack.kind]}
 
 
 def scenario_view(s: Scenario, corpus: dict) -> dict:

@@ -18,7 +18,7 @@ def built():
 
 def test_covers_every_scenario_and_agrees_with_truth(built):
     data, problems = built
-    assert data["meta"]["n"] == 59
+    assert data["meta"]["n"] == 65
     assert problems == []
 
 
@@ -54,3 +54,24 @@ def test_scenario_files_are_not_touched():
     before = {p: p.read_bytes() for p in (ROOT / "data" / "scenarios").glob("*/*.json")}
     sv.build(ROOT)
     assert before == {p: p.read_bytes() for p in before}
+
+
+def test_attack_stop_agrees_with_the_report_on_every_saved_attack_run():
+    """The viewer works the split out from each run's own record; the report does it from the graded result. They must agree."""
+    from scheduler.config import load_settings
+    from scheduler.contracts.result import load_results
+    from scheduler.eval.checker import grade
+    from scheduler.eval.metrics import stopped_by
+
+    settings = load_settings()
+    scenarios = {s.id: s for split in ("dev", "heldout") for s in sv.load_split(settings.data_dir, split)}
+    runs, _ = sv.collect_runs(ROOT / "results")
+    viewer = sorted((tag, sid, arm, r["run"], r["stop"]) for (sid, arm), rs in runs.items() for r in rs for tag in [r["tag"]] if scenarios[sid].ground_truth.attack)
+    report = []
+    for tag in sv.RESULT_TAGS:
+        for result in load_results(ROOT / "results", tag):
+            s = scenarios[result.scenario_id]
+            if s.ground_truth.attack and (ROOT / "results" / tag / "grades.csv").exists():
+                report.append((tag, result.scenario_id, result.arm, result.run, stopped_by(grade(s, result), result)))
+    assert viewer and viewer == sorted(report)
+    assert {v[4] for v in viewer} <= {"worked", "guardrail", "none fired"}

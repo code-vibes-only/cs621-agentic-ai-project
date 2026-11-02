@@ -24,8 +24,8 @@ def by_id(data, sid):
 
 def test_every_scenario_is_in_the_page(data):
     ids = [s["id"] for s in data["scenarios"]]
-    assert len(ids) == len(set(ids)) == 59
-    assert sum(s["split"] == "heldout" for s in data["scenarios"]) == 33
+    assert len(ids) == len(set(ids)) == 65
+    assert sum(s["split"] == "heldout" for s in data["scenarios"]) == 36
     assert all(s["what"] for s in data["scenarios"]), "a family has no plain-English description"
 
 

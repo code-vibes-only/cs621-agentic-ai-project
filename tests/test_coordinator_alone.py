@@ -6,67 +6,24 @@ an unknown tool, a slot off the grid, a third question, a reply that never finis
 check what code does about it: the question cap, the privacy filter, the approval gate and
 the turn limit. Two "known gap" tests record behaviour the team may want to change; they pass
 today and will need updating when the behaviour changes."""
-import itertools
-
 import pytest
-from langchain_core.messages import AIMessage, ToolMessage
+from langchain_core.messages import AIMessage
 
 from scheduler import llm
 from scheduler.agents.coordinator import MAX_QUESTIONS, MAX_TURNS, Coordinator
-from scheduler.contracts.availability import AvailabilitySummary, SlotStatus
 from scheduler.eval.truth import compute
 from scheduler.sandbox import world
+from scripted import Script, agents, ai
 
 GOOD = ("2026-10-19T11:00", "2026-10-19T12:00")           # dev-001: free for all five
 DATASUMMIT = ("2026-10-20T09:00", "2026-10-20T10:00")     # Dev is at DataSummit: only the conference agenda says so
 OFF_GRID = ("2026-10-19T11:07", "2026-10-19T11:37")
 HAND_BACK = "No slot works for everyone in this window."
-_ids = itertools.count()
-
-
-def ai(*calls):
-    return AIMessage(content="", tool_calls=[{"name": n, "args": a, "id": f"call-{next(_ids)}"} for n, a in calls])
-
-
-class Script:
-    """The model's next replies, in order, then idle talk with no tool call. Keeps what it was shown."""
-    def __init__(self, *replies):
-        self.replies, self.seen = list(replies), []
-
-    def __call__(self, messages):
-        self.seen.append(list(messages))
-        return self.replies.pop(0) if self.replies else AIMessage(content="Let me think.")
-
-    def tool_texts(self):
-        """Every tool answer the model has been shown so far, oldest first."""
-        return [m.content for m in self.seen[-1] if isinstance(m, ToolMessage)] if self.seen else []
-
-
-class Stub:
-    """A personal agent with a hand-written summary: no parsing, no model."""
-    def __init__(self, scenario, pid, blocked=(), relaxable=(), answer="yes"):
-        self.scenario, self.pid, self.blocked, self.relaxable, self.answer, self.declined = scenario, pid, set(blocked), set(relaxable), answer, []
-
-    def summary(self, slots):
-        return AvailabilitySummary(participant_id=self.pid, request_id=self.scenario.request.id, slots=[
-            SlotStatus(start=a, end=b, status="unavailable" if a in self.blocked else "available", relaxable=a in self.blocked and a in self.relaxable)
-            for a, b in slots])
-
-    def answer_relax(self, start, end):
-        return self.answer
-
-    def decline(self, start, end):
-        self.declined.append((start, end))
 
 
 @pytest.fixture(autouse=True)
 def fresh_usage():
     llm.reset_usage()
-
-
-def agents(s, **blocked):
-    """One stub per attendee; blocked={"p01": {slots...}} makes those slots unavailable for that person."""
-    return {a.id: Stub(s, a.id, blocked.get(a.id, ())) for a in s.request.attendees}
 
 
 def run(s, script, decision="approve", team=None):

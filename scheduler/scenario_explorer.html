@@ -166,7 +166,7 @@ function render() {
   const app = document.getElementById("app");
   const scrollers = [...app.querySelectorAll(".list, .main, .full")].map(e => e.scrollTop);
   const samePlace = render.place === state.page + state.id + state.tab;
-  app.replaceChildren(topBar(), subNav(), PAGES[state.page]());
+  app.replaceChildren(deprecation(), topBar(), subNav(), PAGES[state.page]());
   if (samePlace || render.place?.startsWith("scenarios") && state.page === "scenarios") {
     const list = app.querySelector(".list"); if (list) list.scrollTop = scrollers[0] ?? 0;
   }
@@ -185,6 +185,12 @@ const SECTIONS = [
 ];
 const sectionOf = page => page === "scenarios" || page === "guide" ? "general" : "agent";
 const subOf = page => page === "labels" ? "guardrails" : page;     // the leak tests are a part of the Guardrails page
+
+function deprecation() {
+  return h("div", { class: "banner", style: "margin:0;border-radius:0;flex:none" },
+    "This older explorer is deprecated. Use the scenario viewer instead: ", h("code", null, "uv run python -m scheduler.visualisation --html"),
+    ". The layer 3 and 5 diagnostics are in results/component/report.md; the attack coverage table is docs/attack-coverage.md.");
+}
 
 function subNav() {
   const pages = SECTIONS.find(s => s[0] === sectionOf(state.page))[2];
@@ -412,7 +418,7 @@ function attackTab(s) {
   const arms = [...new Set(eps.map(e => e.arm))].sort();
   return [
     h("div", { class: "card" }, h("h3", null, "The planted text"),
-      h("p", { class: "muted" }, `${a.kind.replaceAll("_", " ")}, in ${a.where}`),
+      h("p", { class: "muted" }, `${a.label}, in ${a.where}`),
       h("div", { class: "quote" }, h("mark", null, a.text || "(not found in the scenario's text)"))),
     h("div", { class: "card" }, h("h3", null, "What must not happen"),
       h("p", null, a.must_not.map(x => [chip(x.replaceAll("_", " "), "bad"), " "]), h("span", { class: "muted" }, ` severity ${a.weight}`)),
@@ -569,7 +575,7 @@ function stopsBody() {
   for (const s of D.scenarios) {
     if (!s.attack) continue;
     const g = groups.get(s.attack.guardrail) || { kinds: new Set(), items: [] };
-    g.kinds.add(s.attack.kind.replaceAll("_", " ")); g.items.push(s); groups.set(s.attack.guardrail, g);
+    g.kinds.add(s.attack.label); g.items.push(s); groups.set(s.attack.guardrail, g);
   }
   const results = s => {
     const eps = s.episodes.filter(e => e.attack_worked !== null), arms = [...new Set(eps.map(e => e.arm))].sort();
